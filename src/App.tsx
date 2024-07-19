@@ -1,4 +1,3 @@
-import "./App.css";
 import ButtonComponent from "./components/Button/ButtonComponent";
 import UploadFile from "./components/UploadFile/UploadFile";
 import DatePickerComponents from "./components/DatePicker/DatePicker";
@@ -26,7 +25,11 @@ function App() {
           </div>
 
           <div>
-            <UploadFile />
+            <UploadFile
+              width="137px"
+              height="137px"
+              label="Drag and drop an image file here or click"
+            />
           </div>
 
           <div>
@@ -46,7 +49,7 @@ function App() {
             <ModalComponents />
           </div>
           <div>
-            <Section />
+            <Section title="Link" />
           </div>
         </div>
       </div>

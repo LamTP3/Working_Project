@@ -1,34 +1,40 @@
 import React from "react";
 import { Collapse } from "antd";
-import "./Section.scss";
-import TabUpIcon from "../../../Icon/TabUpIcon/TabUpIcon";
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
 
-const Section: React.FC = () => (
-  <>
-    <Collapse
-      items={[
-        {
-          key: "1",
-          label: (
-            <div className="header-style">
-              <div>Link</div>
-              <div className="line-between"></div>
-              <div>
-                <TabUpIcon />
-              </div>
-            </div>
-          ),
-          children: <p>{text}</p>,
-          showArrow: false,
-        },
-      ]}
-    />
-  </>
-);
+import TabUpIcon from "../../../Icon/TabUpIcon/TabUpIcon";
+import { SectionProps } from "./SectionType";
+import { Warraper } from "./styled";
+const Section: React.FC<SectionProps> = ({ title }) => {
+  console.log("Check: ", title); // This should log 'Link' if everything is correct.
+  return (
+    <>
+      <Warraper>
+        {" "}
+        <Collapse
+          items={[
+            {
+              key: "1",
+              label: (
+                <div className="header-style">
+                  <div>{title}</div>
+                  <div className="line-between"></div>
+                  <div>
+                    <TabUpIcon />
+                  </div>
+                </div>
+              ),
+              children: (
+                <p>
+                  {/** Truyền các component như Button, Date Picker vào đây */}
+                </p>
+              ),
+              showArrow: false,
+            },
+          ]}
+        />
+      </Warraper>
+    </>
+  );
+};
 
 export default Section;

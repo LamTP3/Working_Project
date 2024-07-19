@@ -1,6 +1,6 @@
 import React from "react";
 import { Select, Space } from "antd";
-import "./MultipleSelect.scss";
+import { MultipleSelectWarraper } from "./styled";
 
 const handleChange = (value: string[]) => {
   console.log(`selected ${value}`);
@@ -34,22 +34,24 @@ const options = [
 ];
 
 const MultipleSelect: React.FC = () => (
-  <Select
-    mode="multiple"
-    style={{ width: "300px" }}
-    placeholder="select one country"
-    defaultValue={["china"]}
-    onChange={handleChange}
-    options={options}
-    optionRender={(option) => (
-      <Space>
-        <span role="img" aria-label={option.data.label}>
-          {option.data.emoji}
-        </span>
-        {option.data.desc}
-      </Space>
-    )}
-  />
+  <MultipleSelectWarraper>
+    <Select
+      mode="multiple"
+      style={{ width: "300px" }}
+      placeholder="select one country"
+      defaultValue={["china"]}
+      onChange={handleChange}
+      options={options}
+      optionRender={(option) => (
+        <Space>
+          <span role="img" aria-label={option.data.label}>
+            {option.data.emoji}
+          </span>
+          {option.data.desc}
+        </Space>
+      )}
+    />
+  </MultipleSelectWarraper>
 );
 
 export default MultipleSelect;

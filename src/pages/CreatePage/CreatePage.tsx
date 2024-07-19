@@ -2,7 +2,7 @@ import Section from "./Section/Section";
 function CreatePage() {
   return (
     <div>
-      <Section />
+      <Section title="Link" />
     </div>
   );
 }

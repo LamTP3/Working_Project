@@ -1,58 +1,43 @@
 import React from "react";
-import { ConfigProvider, DatePicker } from "antd";
+import { DatePicker } from "antd";
 import type { DatePickerProps } from "antd";
-import en from "antd/es/date-picker/locale/en_US";
-import enUS from "antd/es/locale/en_US";
-import dayjs from "dayjs";
-import buddhistEra from "dayjs/plugin/buddhistEra";
 import { DateIcon } from "../../Icon";
-import "./DatePicker.scss";
-dayjs.extend(buddhistEra);
+import { DatePickerWarraper } from "./styled";
 
 // Định dạng ngày giờ
 const dateFormat = "MM/DD/YYYY HH:mm";
-
-// Component level locale
-const buddhistLocale: typeof en = {
-  ...en,
-  lang: {
-    ...en.lang,
-    fieldDateFormat: dateFormat,
-    fieldDateTimeFormat: dateFormat,
-    yearFormat: "YYYY",
-    cellYearFormat: "YYYY",
-  },
-};
-
-// ConfigProvider level locale
-const globalBuddhistLocale: typeof enUS = {
-  ...enUS,
-  DatePicker: {
-    ...enUS.DatePicker!,
-    lang: buddhistLocale.lang,
-  },
-};
 
 const DatePickerComponents: React.FC = () => {
   const onChange: DatePickerProps["onChange"] = (date, dateStr) => {
     if (date) {
       console.log("Begin date: ", date);
-      console.log("Fomate to exact date we need", date.format(dateFormat));
+      console.log("Formatted to exact date we need", date.format(dateFormat));
     } else {
       console.log("onChange:", dateStr);
     }
   };
 
+  // Hàm để vô hiệu hóa các ngày trước ngày hôm nay
+  const disabledDate = (current: Date) => {
+    // Lấy ngày hôm nay và đặt thời gian là 00:00:00
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    // Không cho phép chọn ngày trước hôm nay
+    return current && current < today;
+  };
+
   return (
     <>
-      <ConfigProvider locale={globalBuddhistLocale}>
+      <DatePickerWarraper>
         <DatePicker
           showTime
           onChange={onChange}
           placeholder="MM/dd/yyyy HH:mm"
           suffixIcon={<DateIcon />}
+          format={dateFormat}
+          disabledDate={(currentDate) => disabledDate(currentDate.toDate())} // Chuyển đổi moment object thành Date object
         />
-      </ConfigProvider>
+      </DatePickerWarraper>
     </>
   );
 };

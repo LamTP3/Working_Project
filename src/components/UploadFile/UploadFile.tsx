@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Image, Upload } from "antd";
 import type { GetProp, UploadFile, UploadProps } from "antd";
 import { UploadBoxIcon } from "../../Icon/index";
-import "./UploadFile.scss";
-
+import { UploadFileWarraper } from "./styled";
+import { UploadFileProps } from "./UploadFileType";
+//FileType: Định nghĩa kiểu dữ liệu của file tải lên.
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
+//getBase64: Hàm chuyển đổi file thành base64 để xem trước.
 const getBase64 = (file: FileType): Promise<string> =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -14,7 +16,7 @@ const getBase64 = (file: FileType): Promise<string> =>
     reader.onerror = (error) => reject(error);
   });
 
-const UploadFile: React.FC = () => {
+const UploadFile: React.FC<UploadFileProps> = ({ width, height, label }) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [fileList, setFileList] = useState<UploadFile[]>([]);
@@ -40,33 +42,34 @@ const UploadFile: React.FC = () => {
     <button style={{ border: 0, background: "none" }} type="button">
       <UploadBoxIcon />
       <div style={{ marginTop: 8 }} className="text-style">
-        Drag and drop an image file here or click
+        {label}
       </div>
     </button>
   );
-
   return (
     <>
-      <Upload
-        listType="picture-card"
-        fileList={fileList}
-        onPreview={handlePreview}
-        onChange={handleChange}
-        beforeUpload={beforeUpload}
-      >
-        {fileList.length >= 1 ? null : uploadButton}
-      </Upload>
-      {previewImage && (
-        <Image
-          wrapperStyle={{ display: "none" }}
-          preview={{
-            visible: previewOpen,
-            onVisibleChange: (visible) => setPreviewOpen(visible),
-            afterOpenChange: (visible) => !visible && setPreviewImage(""),
-          }}
-          src={previewImage}
-        />
-      )}
+      <UploadFileWarraper $width={`${width}`} $height={`${height}`}>
+        <Upload
+          listType="picture-card"
+          fileList={fileList}
+          onPreview={handlePreview}
+          onChange={handleChange}
+          beforeUpload={beforeUpload}
+        >
+          {fileList.length >= 1 ? null : uploadButton}
+        </Upload>
+        {previewImage && (
+          <Image
+            wrapperStyle={{ display: "none" }}
+            preview={{
+              visible: previewOpen,
+              onVisibleChange: (visible) => setPreviewOpen(visible),
+              afterOpenChange: (visible) => !visible && setPreviewImage(""),
+            }}
+            src={previewImage}
+          />
+        )}
+      </UploadFileWarraper>
     </>
   );
 };
