@@ -1,11 +1,55 @@
 import "./App.css";
-
+import ButtonComponent from "./components/Button/ButtonComponent";
+import UploadFile from "./components/UploadFile/UploadFile";
+import DatePickerComponents from "./components/DatePicker/DatePicker";
+import MultipleSelect from "./components/MultipleSelect/MultipleSelect";
+import CheckboxComponent from "./components/Checkbox/Checkbox";
+import ModalComponents from "./components/Modal/ModalComponents";
+import Section from "./pages/CreatePage/Section/Section";
 function App() {
+  const options = [
+    { label: "Apple", value: "Apple1" },
+    { label: "Pear", value: "Pear1" },
+    { label: "Orange", value: "Orange1" },
+  ];
   return (
     <>
-      <h1 className="text-xl font-bold text-red-500">
-        Hello Tailwind css with react vite
-      </h1>
+      <div className="bg">
+        <div className="m-5 space-y-2 ">
+          <div>
+            <ButtonComponent
+              background_color="Gradient"
+              button_content="Button Text"
+              arrow_icon={true}
+              width={"150px"}
+            />
+          </div>
+
+          <div>
+            <UploadFile />
+          </div>
+
+          <div>
+            <DatePickerComponents />
+          </div>
+
+          <div>
+            <MultipleSelect />
+          </div>
+          <div>
+            <CheckboxComponent optionsData={options} useCricle={true} />
+          </div>
+          <div>
+            <CheckboxComponent optionsData={options} useCricle={false} />
+          </div>
+          <div>
+            <ModalComponents />
+          </div>
+          <div>
+            <Section />
+          </div>
+        </div>
+      </div>
     </>
   );
 }
