@@ -24,6 +24,9 @@ export const Warraper = styled.div`
     justify-content: space-between;
     align-items: center;
     gap: 30px;
+    .title-style {
+      white-space: nowrap;
+    }
     .line-between {
       height: 1px;
       width: 100%;

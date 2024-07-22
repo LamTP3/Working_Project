@@ -2,8 +2,12 @@ import styled from "styled-components";
 
 type Props = {
   $circle: boolean;
+  $heightElement?: boolean;
 };
 export const CheckboxWarraper = styled.div<Props>`
+  .ant-checkbox-wrapper {
+    margin-top: ${(props) => (props.$heightElement ? "28px" : "0px")};
+  }
   .ant-checkbox-inner {
     border: 1.5px solid #c2c2c2 !important;
     background-color: #24265b !important;

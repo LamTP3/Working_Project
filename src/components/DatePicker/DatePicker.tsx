@@ -3,11 +3,12 @@ import { DatePicker } from "antd";
 import type { DatePickerProps } from "antd";
 import { DateIcon } from "../../Icon";
 import { DatePickerWarraper } from "./styled";
+import { Props } from "./DatePickerType";
 
 // Định dạng ngày giờ
 const dateFormat = "MM/DD/YYYY HH:mm";
 
-const DatePickerComponents: React.FC = () => {
+const DatePickerComponents: React.FC<Props> = ({ disabled, width }) => {
   const onChange: DatePickerProps["onChange"] = (date, dateStr) => {
     if (date) {
       console.log("Begin date: ", date);
@@ -28,14 +29,16 @@ const DatePickerComponents: React.FC = () => {
 
   return (
     <>
-      <DatePickerWarraper>
+      <DatePickerWarraper $width={width} $disabled={disabled}>
         <DatePicker
           showTime
           onChange={onChange}
           placeholder="MM/dd/yyyy HH:mm"
           suffixIcon={<DateIcon />}
           format={dateFormat}
-          disabledDate={(currentDate) => disabledDate(currentDate.toDate())} // Chuyển đổi moment object thành Date object
+          disabledDate={(currentDate) => disabledDate(currentDate.toDate())}
+          // Chuyển đổi moment object thành Date object
+          disabled={disabled}
         />
       </DatePickerWarraper>
     </>
