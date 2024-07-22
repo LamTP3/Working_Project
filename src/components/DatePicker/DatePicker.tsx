@@ -36,8 +36,7 @@ const DatePickerComponents: React.FC<Props> = ({ disabled, width }) => {
           placeholder="MM/dd/yyyy HH:mm"
           suffixIcon={<DateIcon />}
           format={dateFormat}
-          disabledDate={(currentDate) => disabledDate(currentDate.toDate())}
-          // Chuyển đổi moment object thành Date object
+          disabledDate={(currentDate) => disabledDate(currentDate.toDate())} // Chuyển đổi moment object thành Date object
           disabled={disabled}
         />
       </DatePickerWarraper>

@@ -1,6 +1,8 @@
 import { Col, Row } from "antd";
 import LabelComponent from "../../../components/Label/LabelComponent";
 import UploadFile from "../../../components/UploadFile/UploadFile";
+import InputComponent from "../../../components/InputComp/Input/InputComp";
+
 function BasicInformation() {
   return (
     <div>
@@ -8,23 +10,23 @@ function BasicInformation() {
         <Row>
           <Col className="gutter-row mt-5" span={24}>
             <Row>
-              <Col className="gutter-row" span={12}>
+              <Col className="gutter-row pr-10" span={12}>
                 <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                   <Col className="gutter-row " span={24}>
                     <div>
                       <LabelComponent label="Project name" required={true} />
                     </div>
                     <div>
-                      <input type="text" />
+                      <InputComponent placeholder="e.g.Bitcoin" />
                     </div>
                   </Col>
-                  <Col className="gutter-row mt-12" span={24}>
+                  <Col className="gutter-row mt-8" span={24}>
                     <div>
                       <LabelComponent label="Contact name" required={true} />
                     </div>
 
                     <div>
-                      <input type="text" />
+                      <InputComponent placeholder="Name & Surname" />
                     </div>
                   </Col>
                 </Row>
@@ -45,23 +47,23 @@ function BasicInformation() {
           </Col>
           <Col className="gutter-row mt-5" span={24}>
             <Row>
-              <Col className="gutter-row" span={12}>
+              <Col className="gutter-row pr-10" span={12}>
                 <Row>
                   <Col className="gutter-row " span={24}>
                     <div>
                       <LabelComponent label="Project name" required={true} />
                     </div>
                     <div>
-                      <input type="text" />
+                      <InputComponent placeholder="e.g.@johndoe" />
                     </div>
                   </Col>
-                  <Col className="gutter-row mt-12" span={24}>
+                  <Col className="gutter-row mt-8" span={24}>
                     <div>
                       <LabelComponent label="Contact name" required={true} />
                     </div>
 
                     <div>
-                      <input type="text" />
+                      <InputComponent placeholder="e.g.abc@abc.xyz" />
                     </div>
                   </Col>
                 </Row>

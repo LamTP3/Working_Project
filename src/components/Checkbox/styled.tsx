@@ -7,6 +7,7 @@ type Props = {
 export const CheckboxWarraper = styled.div<Props>`
   .ant-checkbox-wrapper {
     margin-top: ${(props) => (props.$heightElement ? "28px" : "0px")};
+    white-space: nowrap;
   }
   .ant-checkbox-inner {
     border: 1.5px solid #c2c2c2 !important;

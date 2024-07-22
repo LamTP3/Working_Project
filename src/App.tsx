@@ -1,6 +1,6 @@
 import ButtonComponent from "./components/Button/ButtonComponent";
 import UploadFile from "./components/UploadFile/UploadFile";
-import DatePickercomponents from "./components/DatePicker/DatePicker";
+import DatePickercomponent from "./components/DatePicker/DatePicker";
 import MultipleSelect from "./components/MultipleSelect/MultipleSelect";
 import Modalcomponents from "./components/Modal/ModalComponent";
 import InputComponent from "./components/InputComp/Input/InputComp";
@@ -42,7 +42,7 @@ function App() {
           <div>
             <SubmitProjectPage />
           </div>
-          <div>
+          {/* <div>
             <ButtonComponent
               background_color="Gradient"
               button_content="Button Text"
@@ -60,18 +60,10 @@ function App() {
           </div>
 
           <div>
-            <DatePickercomponents />
-          </div>
-
-          <div>
             <MultipleSelect />
-          </div>
-
-          <div>
-            <Modalcomponents />
-          </div>
+          </div> */}
         </div>
-        <div className="test">
+        {/* <div className="test">
           <InputComponent placeholder="Placeholder" />
           <br />
           <br />
@@ -92,7 +84,7 @@ function App() {
           </div>
           <br />
           <TabsComp items={items} />
-        </div>
+        </div> */}
       </div>
     </>
   );
