@@ -5,7 +5,7 @@ const LabelComponent: React.FC<LabelProps> = ({ required, label }) => {
   return (
     <div className="label-color">
       <div>{label}</div>
-      <div>{required && <div> *</div>}</div>
+      {required && <div> *</div>}
     </div>
   );
 };
