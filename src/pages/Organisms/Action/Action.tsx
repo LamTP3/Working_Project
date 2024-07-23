@@ -1,5 +1,6 @@
 import ReCAPTCHA from "react-google-recaptcha";
-
+import "./Action.scss";
+import ButtonComponent from "../../../components/Button/ButtonComponent";
 function Action() {
   // Hàm xử lý khi CAPTCHA được xác thực
   function onChange(value: any) {
@@ -7,23 +8,20 @@ function Action() {
   }
   return (
     <>
-      <div
-        style={{
-          color: "white",
-          padding: "12px 16px",
-          fontSize: "24px",
-          fontWeight: "600",
-          fontFamily: "Inter",
-        }}
-      >
-        Action
-      </div>
-      <div className="captcha" style={{ marginTop: "20px" }}>
+      <div className="action-title">Action</div>
+      <div className="captcha">
         <ReCAPTCHA
           sitekey="6LfOmBUqAAAAAEfFypMWDPKZTNbdt-q2ymV1K-hV"
           onChange={onChange}
           theme="dark"
         />
+        <div className="mt-5">
+          <ButtonComponent
+            button_content="Submit Information"
+            arrow_icon={true}
+            background_color="Gradient"
+          />
+        </div>
       </div>
     </>
   );

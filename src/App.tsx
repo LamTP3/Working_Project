@@ -1,6 +1,8 @@
+import React from "react";
 import SubmitProjectPage from "./pages/Organisms/SubmitProjectPage";
 import Table from "./pages/Organisms/Table/Table";
-function App() {
+
+const App: React.FC = () => {
   return (
     <>
       <div className="bg">
@@ -15,5 +17,6 @@ function App() {
       </div>
     </>
   );
-}
+};
+
 export default App;

@@ -1,8 +1,10 @@
 import "./Table.scss";
 import LogoComp from "../../../components/Logo/LogoComp";
 import { MoreIcon, ChainIcon } from "../../../Icon";
+// import { useState } from "react";
+
 const generateFakeData = () => {
-  return Array.from({ length: 10 }, (_, index) => ({
+  return Array.from({ length: 7 }, (_, index) => ({
     project: `Project ${index + 1}`,
     content_project: `Symbol ${index + 1}`,
     participants: null,
@@ -16,6 +18,7 @@ const generateFakeData = () => {
 
 function Table() {
   const data = generateFakeData();
+  // const [isOpenModal, setIsOpenModal] = useState(false);
 
   return (
     <div>
@@ -61,6 +64,7 @@ function Table() {
                 <div>
                   <MoreIcon />
                 </div>
+                {/* <div>Modal</div> */}
               </th>
             </tr>
           ))}

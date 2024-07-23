@@ -1,0 +1,42 @@
+.ant-radio-wrapper {
+  .ant-radio-inner {
+    border: 1px solid var(--text-color) !important;
+    background-color: #0d0f31 !important;
+    border-radius: 5px !important;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ant-radio + * {
+    color: var(--text-color);
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.36px;
+  }
+
+  .ant-radio-checked .ant-radio-inner {
+    position: relative;
+  }
+
+  .ant-radio-checked .ant-radio-inner::before {
+    content: "";
+    display: block;
+    width: 15px;
+    height: 15px;
+    background: url("../../assets/Logo/image.png") no-repeat center center;
+    background-size: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%; /* Để hình ảnh có thể tròn nếu cần */
+  }
+
+  .ant-radio-inner::after {
+    display: none;
+  }
+}

@@ -10,7 +10,7 @@ export const CheckboxWarraper = styled.div<Props>`
     white-space: nowrap;
   }
   .ant-checkbox-inner {
-    border: 1.5px solid #c2c2c2 !important;
+    border: 1.5px solid var(--text-color) !important;
     background-color: #24265b !important;
     width: 20px !important;
     height: 20px !important;
@@ -24,6 +24,6 @@ export const CheckboxWarraper = styled.div<Props>`
     font-weight: 500;
     font-size: 16px;
     line-height: 19.26px;
-    color: #c2c2c2;
+    color: var(--text-color);
   }
 `;
