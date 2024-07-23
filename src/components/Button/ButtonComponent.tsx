@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "antd";
-// import "./ButtonComponent.scss";
 import { ButtonProps } from "./ButtonType";
 import { ArrowIcon } from "../../Icon/index";
 import { ButtonWarraper } from "./styled";

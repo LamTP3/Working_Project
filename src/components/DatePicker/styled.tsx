@@ -15,10 +15,10 @@ export const DatePickerWarraper = styled.div<Props>`
     background-color: #14163b !important;
   }
   .ant-picker-input input::placeholder {
-    color: #c2c2c2 !important;
+    color: var(--text-color) !important;
   }
   .ant-picker-input input {
-    color: #c2c2c2 !important;
+    color: var(--text-color) !important;
   }
   span.anticon {
     svg {

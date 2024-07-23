@@ -6,7 +6,7 @@
       th {
         height: 39px;
         text-align: left;
-        color: #c2c2c2;
+        color: var(--text-color);
         padding: 10px 10px;
         font-size: 14px;
         line-height: 16.94px;
@@ -19,11 +19,11 @@
   }
   tbody {
     tr {
-      border-top: 1px solid #c2c2c2;
+      border-top: 1px solidvar(--text-color);
       height: 71px;
       td {
         padding: 0px 10px;
-        color: #c2c2c2;
+        color: var(--text-color);
         font-size: 16px;
         font-family: Inter;
         line-height: 19.36px;

@@ -1,12 +1,13 @@
 import { Col, Row } from "antd";
 import LabelComponent from "../../../components/Label/LabelComponent";
 import InputComp from "../../../components/InputComp/Input/InputComp";
-import CheckboxComponent from "../../../components/Checkbox/CheckboxComponent";
+import RadioComponent from "../../../components/Radio/RadioComponent";
 import TextAreaComp from "../../../components/InputComp/TextArea/TextAreaComp";
+
 function PublicTokenSale() {
-  const options = [
-    { label: "Yes", value: "1" },
-    { label: "No", value: "2" },
+  const radioOptions = [
+    { label: "Yes", value: 1 },
+    { label: "No", value: 2 },
   ];
   return (
     <div>
@@ -32,7 +33,7 @@ function PublicTokenSale() {
             <LabelComponent label="Are you flexible with the amounts? *" />
           </div>
           <div>
-            <CheckboxComponent optionsData={options} useCricle={false} />
+            <RadioComponent options={radioOptions} />
           </div>
         </Col>
         <Col span={12} className="pr-9 mt-5">

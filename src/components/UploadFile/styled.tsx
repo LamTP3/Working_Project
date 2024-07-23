@@ -11,10 +11,10 @@ export const UploadFileWarraper = styled.div<Props>`
     .ant-upload-list-item-thumbnail {
       font-size: 20px;
       font-weight: 600;
-      color: #c2c2c2 !important;
+      color: var(--text-color) !important;
     }
     .ant-upload-list-item-error {
-      border-color: #c2c2c2 !important;
+      border-color: var(--text-color) !important;
     }
     .ant-tooltip {
       display: none;
@@ -35,7 +35,7 @@ export const UploadFileWarraper = styled.div<Props>`
     .text-style {
       font-size: 10px;
       font-weight: 400;
-      color: #c2c2c2 !important;
+      color: var(--text-color) !important;
     }
   }
 `;

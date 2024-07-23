@@ -1,11 +1,10 @@
 import "./LabelComponent.scss";
 import React from "react";
 import { LabelProps } from "./LabelType";
-const LabelComponent: React.FC<LabelProps> = ({ required, label }) => {
+const LabelComponent: React.FC<LabelProps> = ({ label }) => {
   return (
     <div className="label-color">
-      <div>{label}</div>
-      {required && <div> *</div>}
+      <span>{label}</span>
     </div>
   );
 };
