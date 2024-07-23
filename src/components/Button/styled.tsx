@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 type Props = {
-  $width: string;
+  $width?: string;
 };
 export const ButtonWarraper = styled.div<Props>`
   .Gradient {
@@ -35,7 +35,7 @@ export const ButtonWarraper = styled.div<Props>`
   .ant-btn {
     border-radius: 100px;
     height: 50px;
-    width: ${(props) => props.$width};
+    width: ${(props) => (props.$width ? props.$width : "auto")};
     padding: 10px 24px;
   }
 `;

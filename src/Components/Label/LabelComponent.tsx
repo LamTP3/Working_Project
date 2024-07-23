@@ -1,11 +1,15 @@
-import "./LabelComponent.scss";
 import React from "react";
 import { LabelProps } from "./LabelType";
-const LabelComponent: React.FC<LabelProps> = ({ label }) => {
+import { Warraper } from "./styled";
+const LabelComponent: React.FC<LabelProps> = ({ label, disabled }) => {
   return (
-    <div className="label-color">
-      <span>{label}</span>
-    </div>
+    <>
+      <Warraper $disabled={disabled}>
+        <div className="label-color">
+          <span>{label}</span>
+        </div>
+      </Warraper>
+    </>
   );
 };
 

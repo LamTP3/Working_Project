@@ -19,7 +19,7 @@
   }
   tbody {
     tr {
-      border-top: 1px solidvar(--text-color);
+      border-top: 1px solid var(--text-color);
       height: 71px;
       td {
         padding: 0px 10px;
@@ -28,6 +28,18 @@
         font-family: Inter;
         line-height: 19.36px;
         font-weight: 600;
+        .ant-btn {
+          height: auto;
+          padding: unset;
+        }
+        .ant-btn-default {
+          background: none !important;
+          border: none;
+        }
+        .ant-dropdown-open {
+          background: none !important;
+          border: none !important;
+        }
       }
     }
     .table-text {
@@ -38,5 +50,10 @@
       align-items: center;
       gap: 10px;
     }
+  }
+}
+.ant-dropdown {
+  .ant-dropdown-menu {
+    background-color: #1c1e4ae5;
   }
 }

@@ -12,7 +12,7 @@ const ButtonComponent: React.FC<ButtonProps> = ({
 }) => {
   return (
     <div>
-      <ButtonWarraper $width={`${width}`}>
+      <ButtonWarraper $width={width}>
         <Button
           type="primary"
           className={`no-border ${background_color}`}

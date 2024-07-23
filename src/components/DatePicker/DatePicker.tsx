@@ -8,7 +8,11 @@ import { Props } from "./DatePickerType";
 // Định dạng ngày giờ
 const dateFormat = "MM/DD/YYYY HH:mm";
 
-const DatePickerComponents: React.FC<Props> = ({ disabled, width }) => {
+const DatePickerComponent: React.FC<Props> = ({
+  disabled,
+  width,
+  placeholder,
+}) => {
   const onChange: DatePickerProps["onChange"] = (date, dateStr) => {
     if (date) {
       console.log("Begin date: ", date);
@@ -33,7 +37,7 @@ const DatePickerComponents: React.FC<Props> = ({ disabled, width }) => {
         <DatePicker
           showTime
           onChange={onChange}
-          placeholder="MM/dd/yyyy HH:mm"
+          placeholder={placeholder ? placeholder : "MM/dd/yyyy HH:mm"}
           suffixIcon={<DateIcon />}
           format={dateFormat}
           disabledDate={(currentDate) => disabledDate(currentDate.toDate())} // Chuyển đổi moment object thành Date object
@@ -44,4 +48,4 @@ const DatePickerComponents: React.FC<Props> = ({ disabled, width }) => {
   );
 };
 
-export default DatePickerComponents;
+export default DatePickerComponent;
