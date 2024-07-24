@@ -37,7 +37,7 @@ const MultipleSelect: React.FC = () => (
   <MultipleSelectWarraper>
     <Select
       mode="multiple"
-      style={{ width: "300px" }}
+      style={{ width: "100%", height: "40px" }}
       placeholder="select one country"
       defaultValue={["china"]}
       onChange={handleChange}

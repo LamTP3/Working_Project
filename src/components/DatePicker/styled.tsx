@@ -1,7 +1,7 @@
 import styled from "styled-components";
 type Props = {
-  $width: string;
-  $disabled: boolean;
+  $width?: string;
+  $disabled?: boolean;
 };
 export const DatePickerWarraper = styled.div<Props>`
   .ant-picker {

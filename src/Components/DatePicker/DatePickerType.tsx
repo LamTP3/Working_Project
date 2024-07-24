@@ -1,4 +1,5 @@
 export interface Props {
-  disabled: boolean;
-  width: string;
+  disabled?: boolean;
+  width?: string;
+  placeholder?: string;
 }
