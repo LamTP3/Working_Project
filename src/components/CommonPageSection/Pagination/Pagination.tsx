@@ -3,9 +3,21 @@ import { Pagination } from "antd";
 import "./Pagination.scss";
 import NextAnPrevIcon from "../../../Icon/NextAndPrevIcon/NextAnPrevIcon";
 
-const PaginationComponent: React.FC = () => {
+interface PaginationComponentProps {
+  current: number;
+  pageSize: number;
+  total: number;
+  onChange: (page: number, pageSize?: number) => void;
+}
+
+const PaginationComponent: React.FC<PaginationComponentProps> = ({
+  current,
+  pageSize,
+  total,
+  onChange,
+}) => {
   const itemRender = (
-    _: number,
+    _: number, // Sử dụng "_" để chỉ ra rằng biến này không được sử dụng
     type: "page" | "prev" | "next" | "jump-prev" | "jump-next",
     originalElement: React.ReactNode
   ) => {
@@ -23,15 +35,21 @@ const PaginationComponent: React.FC = () => {
         </>
       );
     }
+
     return originalElement;
   };
 
   return (
     <Pagination
-      defaultCurrent={1}
-      total={500}
+      current={current}
+      pageSize={pageSize}
+      total={total}
       showSizeChanger={false}
       itemRender={itemRender}
+      onChange={onChange}
+      showLessItems
+      jumpPrevIcon={<span>•••</span>}
+      jumpNextIcon={<span>•••</span>}
     />
   );
 };

@@ -13,13 +13,14 @@ export const DatePickerWarraper = styled.div<Props>`
     opacity: ${(props) => (props.$disabled ? "0.3" : "1")};
   }
   .ant-picker-outlined {
-    background-color: #14163b !important;
+    background-color: var(--primary-input-bg) !important;
   }
-  .ant-picker-input input::placeholder {
-    color: var(--text-color) !important;
-  }
+
   .ant-picker-input input {
     color: var(--text-color) !important;
+  }
+  .ant-picker-input input::placeholder {
+    color: var(--gray-color) !important;
   }
   span.anticon {
     svg {

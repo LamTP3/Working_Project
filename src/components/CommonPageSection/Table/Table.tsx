@@ -1,5 +1,4 @@
 import "./Table.scss";
-
 import { MoreIcon, ChainIcon } from "../../../Icon";
 import type { MenuProps } from "antd";
 import { Button, Dropdown } from "antd";
@@ -10,7 +9,7 @@ import LogoComp from "../Logo/LogoComp";
 import PaginationComponent from "../Pagination/Pagination";
 
 const generateFakeData = () => {
-  return Array.from({ length: 10 }, (_, index) => ({
+  return Array.from({ length: 100 }, (_, index) => ({
     project: `Project ${index + 1}`,
     content_project: `Symbol ${index + 1}`,
     participants: null,
@@ -25,7 +24,35 @@ const generateFakeData = () => {
 function Table() {
   const data = generateFakeData();
   const [open, setOpen] = useState(false);
-  const [modaName, setModalName] = useState<ModalName>("Confirm");
+  const [modalName, setModalName] = useState<ModalName>("Confirm");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
+  const handleOpen = (modal_name: ModalName) => {
+    setOpen(true);
+    setModalName(modal_name);
+  };
+
+  const handleOk = () => {
+    setOpen(false);
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+  };
+
+  const handlePageChange = (page: number, size?: number) => {
+    setCurrentPage(page);
+    if (size) {
+      setPageSize(size);
+    }
+  };
+
+  const paginatedData = data.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
   const items: MenuProps["items"] = [
     {
       key: "1",
@@ -53,17 +80,19 @@ function Table() {
         </div>
       ),
     },
+    {
+      key: "4",
+      label: (
+        <div
+          className="text-right text-[#F4C349]"
+          onClick={() => handleOpen("Delete")}
+        >
+          Delete
+        </div>
+      ),
+    },
   ];
-  const handleOpen = (modal_name: ModalName) => {
-    setOpen(true);
-    setModalName(modal_name);
-  };
-  const handleOk = () => {
-    setOpen(false);
-  };
-  const handleCancel = () => {
-    setOpen(false);
-  };
+
   return (
     <>
       <div>
@@ -71,7 +100,7 @@ function Table() {
           open={open}
           handleOk={handleOk}
           handleCancel={handleCancel}
-          modal_name={modaName}
+          modal_name={modalName}
         />
       </div>
       <div>
@@ -89,7 +118,7 @@ function Table() {
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index) => (
+            {paginatedData.map((item, index) => (
               <tr key={index}>
                 <td>
                   <div className="project-table-style">
@@ -126,7 +155,12 @@ function Table() {
         </table>
       </div>
       <div className="mt-5">
-        <PaginationComponent />
+        <PaginationComponent
+          total={data.length}
+          current={currentPage}
+          pageSize={pageSize}
+          onChange={handlePageChange}
+        />
       </div>
     </>
   );

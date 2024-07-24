@@ -23,7 +23,7 @@ export const UploadFileWarraper = styled.div<Props>`
   .ant-upload-select {
     height: ${(props) => (props?.$height ? props?.$height : "137px")}!important;
     width: ${(props) => (props?.$width ? props?.$width : "137px")}!important;
-    background-color: #14163b !important;
+    background-color: var(--primary-input-bg) !important;
     border: 2px dashed #24265b !important;
     .ant-upload {
       button {
