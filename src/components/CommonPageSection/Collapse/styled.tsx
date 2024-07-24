@@ -33,4 +33,12 @@ export const Warraper = styled.div`
       background: #24265b;
     }
   }
+
+  .ant-collapse-header{
+    padding: 12px 0px !important;
+  }
+
+  .ant-collapse-content-box {
+    padding: 16px 0px !important;
+  }
 `;
