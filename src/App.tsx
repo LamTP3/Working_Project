@@ -1,6 +1,6 @@
 import React from "react";
 import SubmitProjectPage from "./pages/Organisms/SubmitProjectPage";
-import Table from "./pages/Organisms/Table/Table";
+import Table from "../src/components/CommonPageSection/Table/Table";
 
 const App: React.FC = () => {
   return (
