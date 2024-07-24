@@ -20,7 +20,7 @@ export const ButtonWarraper = styled.div<Props>`
   }
 
   .Gradient_Default {
-    background: #14163b !important;
+    background: var(--primary-input-bg) !important;
   }
 
   .no-border {

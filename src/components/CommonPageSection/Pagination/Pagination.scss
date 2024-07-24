@@ -22,29 +22,9 @@
       opacity: 0.65;
     }
   }
-  .ant-pagination-jump-prev {
-    min-width: 30px;
-    height: 30px;
-  }
   .ant-pagination-jump-next {
-    min-width: 30px;
-    height: 30px;
-  }
-  // .ant-pagination-prev {
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  // }
-  // .ant-pagination-next {
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  // }
-  .ant-pagination-item-link {
-    .ant-pagination-item-container {
-      .ant-pagination-item-link-icon {
-        color: #c2c2c2;
-      }
+    li {
+      display: none;
     }
   }
 }

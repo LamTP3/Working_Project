@@ -26,4 +26,9 @@ export const CheckboxWarraper = styled.div<Props>`
     line-height: 19.26px;
     color: var(--text-color);
   }
+  .ant-checkbox-wrapper-checked {
+    .ant-checkbox + span {
+      color: white;
+    }
+  }
 `;

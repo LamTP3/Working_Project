@@ -8,7 +8,7 @@ function Action() {
   }
   return (
     <>
-      <div className="action-title">Action</div>
+      {/* <div className="action-title">Action</div> */}
       <div className="captcha">
         <ReCAPTCHA
           sitekey="6LfOmBUqAAAAAEfFypMWDPKZTNbdt-q2ymV1K-hV"
