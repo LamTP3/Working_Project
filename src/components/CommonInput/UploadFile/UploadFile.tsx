@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Image, Upload } from "antd";
 import type { GetProp, UploadFile, UploadProps } from "antd";
-import { UploadBoxIcon } from "../../Icon/index";
+
 import { UploadFileWarraper } from "./styled";
 import { UploadFileProps } from "./UploadFileType";
+import { UploadBoxIcon } from "../../../Icon";
 //FileType: Định nghĩa kiểu dữ liệu của file tải lên.
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
