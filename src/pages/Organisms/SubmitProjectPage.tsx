@@ -1,5 +1,6 @@
 import CollapseComponent from "../../components/CommonPageSection/Collapse/CollapseComponent";
 import Header from "../../components/CommonPageSection/Header/Header";
+import HeaderPage from "../HeaderPage";
 import Action from "./Section/Action/Action";
 import BasicInformation from "./Section/BasicInformation/BasicInformation";
 import Capital from "./Section/Capital/Capital";
@@ -13,6 +14,9 @@ function SubmitProjectPage() {
   return (
     <>
       <Header />
+      <div>
+        <HeaderPage />
+      </div>
       <div className="mt-5">
         <CollapseComponent title="Project Details" child={<ProjectDetails />} />
       </div>
