@@ -1,5 +1,5 @@
 import React from "react";
-// import SubmitProjectPage from "./pages/Organisms/SubmitProjectPage";
+import SubmitProjectPage from "./pages/Organisms/SubmitProjectPage";
 import Table from "./pages/Organisms/Table/Table";
 
 const App: React.FC = () => {
@@ -7,9 +7,9 @@ const App: React.FC = () => {
     <>
       <div className="bg">
         <div className="m-5 space-y-2 ">
-          {/* <div>
+          <div>
             <SubmitProjectPage />
-          </div> */}
+          </div>
           <div>
             <Table />
           </div>

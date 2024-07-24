@@ -6,6 +6,7 @@ import { Button, Dropdown } from "antd";
 import ModalComponents from "../../../components/Modal/ModalComponent";
 import { useState } from "react";
 import { ModalName } from "../../../components/Modal/ModalType";
+import PaginationComponent from "../../../components/Pagination/Pagination";
 const generateFakeData = () => {
   return Array.from({ length: 7 }, (_, index) => ({
     project: `Project ${index + 1}`,
@@ -121,6 +122,9 @@ function Table() {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="mt-5">
+        <PaginationComponent />
       </div>
     </>
   );
