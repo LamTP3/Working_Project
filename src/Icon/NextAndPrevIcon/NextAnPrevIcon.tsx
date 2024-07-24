@@ -29,7 +29,7 @@ const NextAnPrevIcon: React.FC<NextAnPrevIconProps> = ({ name }) => {
         </div>
       )}
       {name === "next" && (
-        <div>
+        <div className="mt-[3px]">
           <svg
             width="30"
             height="30"

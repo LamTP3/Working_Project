@@ -21,6 +21,8 @@ const ModalComponents: React.FC<ModalProps> = ({
         return "Confirm Approve";
       case "Reject":
         return "Confirm Reject";
+      case "Delete":
+        return "Do you want to delete Project 1 ?";
       default:
         return "";
     }
@@ -55,6 +57,27 @@ const ModalComponents: React.FC<ModalProps> = ({
               <ButtonComponent
                 background_color="Gradient_Danger"
                 button_content="Reject"
+                arrow_icon={false}
+                onClick={handleOk}
+                width="208px"
+              />
+              <ButtonComponent
+                background_color="Gradient_Default"
+                button_content="Cancel"
+                arrow_icon={false}
+                onClick={handleCancel}
+                width="208px"
+              />
+            </div>
+          </div>
+        );
+      case "Delete":
+        return (
+          <div className="footer-style">
+            <div className="footer-btn-style">
+              <ButtonComponent
+                background_color="Gradient_Danger"
+                button_content="Delete Project"
                 arrow_icon={false}
                 onClick={handleOk}
                 width="208px"
@@ -181,7 +204,7 @@ const ModalComponents: React.FC<ModalProps> = ({
       case "Reject":
         return (
           <div className="modal-content">
-            <Row gutter={[0, 30]}>
+            <Row gutter={[0, 20]}>
               <Col span={24}>
                 <div className="mt-3">
                   <LabelComponent label="Project" />

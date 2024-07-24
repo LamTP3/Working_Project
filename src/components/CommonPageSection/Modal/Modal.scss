@@ -1,9 +1,12 @@
 .modal-content {
   min-height: 150px;
+  padding-bottom: 20px;
+  border-top: 1.5px dashed var(--text-color);
+  border-bottom: 1.5px dashed var(--text-color);
 }
 .footer-style {
   height: 70px;
-  border-top: 1.5px dashed var(--text-color);
+
   position: relative;
   .footer-btn-style {
     display: flex;
@@ -28,7 +31,6 @@
   }
   .ant-modal-header {
     background-color: #24265b !important;
-    border-bottom: 1.5px dashed var(--text-color);
 
     .ant-modal-title {
       font-size: 24px;
@@ -44,7 +46,7 @@
       .project-style {
         margin-top: 8px;
         height: 71px;
-        background-color: #14163b;
+        background-color: var(--primary-input-bg);
         display: flex;
         align-items: center;
 
