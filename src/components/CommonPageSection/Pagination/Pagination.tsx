@@ -50,6 +50,7 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
       showLessItems
       jumpPrevIcon={<span>•••</span>}
       jumpNextIcon={<span>•••</span>}
+      align="end"
     />
   );
 };

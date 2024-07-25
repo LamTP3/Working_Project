@@ -14,6 +14,7 @@ const ModalComponents: React.FC<ModalProps> = ({
   handleOk,
   handleCancel,
   modal_name,
+  data,
 }) => {
   const getTitle = () => {
     switch (modal_name) {
@@ -101,7 +102,7 @@ const ModalComponents: React.FC<ModalProps> = ({
       case "Confirm":
         return (
           <div className="modal-content">
-            <Row gutter={[0, 30]}>
+            <Row gutter={[0, 10]}>
               <Col span={24}>
                 <div className="mt-3">
                   <LabelComponent label="Project" />
@@ -112,90 +113,36 @@ const ModalComponents: React.FC<ModalProps> = ({
                   </div>
                   <div>
                     <div className="modal-project-name-style">
-                      Arrow Markets
+                      {data?.basic_information.project_name}
                     </div>
                     <div className="modal-project-value-style">$ARROW</div>
                   </div>
                 </div>
               </Col>
               <Col span={24}>
-                <Row gutter={[20, 0]}>
-                  <Col span={24}>
-                    <LabelComponent label="Investment Round 1 *" />
-                  </Col>
-                  <Col span={12} className="mt-3">
-                    <DatePickerComponent
-                      disabled={false}
-                      width="100%"
-                      placeholder="03/36/2024 08:00"
-                    />
-                  </Col>
-                  <Col span={12} className="mt-3">
-                    <DatePickerComponent
-                      disabled={false}
-                      width="100%"
-                      placeholder="03/27/2024 08:25"
-                    />
-                  </Col>
-                </Row>
-              </Col>
-              <Col span={24}>
-                <Row gutter={[20, 0]}>
-                  <Col span={24}>
-                    <LabelComponent label="Investment Round 2 *" />
-                  </Col>
-                  <Col span={12} className="mt-3">
-                    <DatePickerComponent
-                      disabled={false}
-                      width="100%"
-                      placeholder="03/36/2024 08:00"
-                    />
-                  </Col>
-                  <Col span={12} className="mt-3">
-                    <DatePickerComponent
-                      disabled={false}
-                      width="100%"
-                      placeholder="03/27/2024 08:25"
-                    />
-                  </Col>
-                </Row>
-              </Col>
-              <Col span={24}>
-                <Row gutter={[20, 0]}>
-                  <Col span={24}>
-                    <LabelComponent label="Investment Round 3 *" />
-                  </Col>
-                  <Col span={12} className="mt-3">
-                    <DatePickerComponent
-                      disabled={false}
-                      width="100%"
-                      placeholder="03/36/2024 08:00"
-                    />
-                  </Col>
-                  <Col span={12} className="mt-3">
-                    <DatePickerComponent
-                      disabled={false}
-                      width="100%"
-                      placeholder="03/27/2024 08:25"
-                    />
-                  </Col>
-                </Row>
-              </Col>
-              <Col span={24}>
-                <Row gutter={[20, 0]}>
-                  <Col span={24}>
-                    <LabelComponent
-                      label="Investment Round 4 *"
-                      disabled={true}
-                    />
-                  </Col>
-                  <Col span={12} className="mt-3">
-                    <DatePickerComponent disabled={true} width="100%" />
-                  </Col>
-                  <Col span={12} className="mt-3">
-                    <DatePickerComponent disabled={true} width="100%" />
-                  </Col>
-                </Row>
+                {data?.capital.rounds.map((item, index) => {
+                  return (
+                    <Row gutter={[20, 0]} key={index}>
+                      <Col span={24} className="mt-4">
+                        <LabelComponent label={item.roundName} />
+                      </Col>
+                      <Col span={12} className="mt-3">
+                        <DatePickerComponent
+                          disabled={false}
+                          width="100%"
+                          value={item.startDate}
+                        />
+                      </Col>
+                      <Col span={12} className="mt-3">
+                        <DatePickerComponent
+                          disabled={false}
+                          width="100%"
+                          value={item.endDate}
+                        />
+                      </Col>
+                    </Row>
+                  );
+                })}
               </Col>
             </Row>
           </div>
