@@ -37,13 +37,11 @@ function Capital() {
             <Row key={index} className="mt-5" align="middle">
               <Col span={12}>
                 <DatePickerComponent
-                  width="300px"
                   disabled={!checkedOptions.includes(option.value)}
                 />
               </Col>
               <Col span={12}>
                 <DatePickerComponent
-                  width="300px"
                   disabled={!checkedOptions.includes(option.value)}
                 />
               </Col>

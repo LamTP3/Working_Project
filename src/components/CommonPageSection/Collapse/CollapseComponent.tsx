@@ -1,6 +1,5 @@
 import React from "react";
 import { Collapse } from "antd";
-
 import TabUpIcon from "../../../Icon/TabUpIcon/TabUpIcon";
 import { CollapseProps } from "./CollapseType";
 import { Warraper } from "./styled";
