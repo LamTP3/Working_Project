@@ -8,7 +8,8 @@ export interface Project {
   capital: Capital;
   public_token_sale: PublicTokenSale;
   status_of_partnerships: StatusOfPartnerships;
-  stautsId: number;
+  statusId: number;
+  reject_reason: string;
 }
 
 // Định nghĩa kiểu type cho basic_information

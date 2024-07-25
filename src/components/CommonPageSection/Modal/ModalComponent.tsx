@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal } from "antd";
 import { Col, Row } from "antd";
 
@@ -9,6 +9,7 @@ import LabelComponent from "../../CommonInput/Label/LabelComponent";
 import LogoComp from "../Logo/LogoComp";
 import DatePickerComponent from "../../CommonInput/DatePicker/DatePicker";
 import TextAreaComp from "../../CommonInput/InputComp/TextArea/TextAreaComp";
+
 const ModalComponents: React.FC<ModalProps> = ({
   open,
   handleOk,
@@ -16,6 +17,8 @@ const ModalComponents: React.FC<ModalProps> = ({
   modal_name,
   data,
 }) => {
+  const [rejectReason, setRejectReason] = useState("");
+
   const getTitle = () => {
     switch (modal_name) {
       case "Confirm":
@@ -28,6 +31,7 @@ const ModalComponents: React.FC<ModalProps> = ({
         return "";
     }
   };
+
   const getFooter = () => {
     switch (modal_name) {
       case "Confirm":
@@ -38,7 +42,7 @@ const ModalComponents: React.FC<ModalProps> = ({
                 background_color="Gradient"
                 button_content="Approve"
                 arrow_icon={false}
-                onClick={handleOk}
+                onClick={() => handleOk()} // Không truyền đối số cho Confirm
                 width="208px"
               />
               <ButtonComponent
@@ -59,7 +63,7 @@ const ModalComponents: React.FC<ModalProps> = ({
                 background_color="Gradient_Danger"
                 button_content="Reject"
                 arrow_icon={false}
-                onClick={handleOk}
+                onClick={() => handleOk(rejectReason)}
                 width="208px"
               />
               <ButtonComponent
@@ -80,7 +84,7 @@ const ModalComponents: React.FC<ModalProps> = ({
                 background_color="Gradient_Danger"
                 button_content="Delete Project"
                 arrow_icon={false}
-                onClick={handleOk}
+                onClick={() => handleOk()} // Không truyền đối số cho Delete
                 width="208px"
               />
               <ButtonComponent
@@ -97,6 +101,7 @@ const ModalComponents: React.FC<ModalProps> = ({
         return null;
     }
   };
+
   const getContent = () => {
     switch (modal_name) {
       case "Confirm":
@@ -120,29 +125,27 @@ const ModalComponents: React.FC<ModalProps> = ({
                 </div>
               </Col>
               <Col span={24}>
-                {data?.capital.rounds.map((item, index) => {
-                  return (
-                    <Row gutter={[20, 0]} key={index}>
-                      <Col span={24} className="mt-4">
-                        <LabelComponent label={item.roundName} />
-                      </Col>
-                      <Col span={12} className="mt-3">
-                        <DatePickerComponent
-                          disabled={false}
-                          width="100%"
-                          value={item.startDate}
-                        />
-                      </Col>
-                      <Col span={12} className="mt-3">
-                        <DatePickerComponent
-                          disabled={false}
-                          width="100%"
-                          value={item.endDate}
-                        />
-                      </Col>
-                    </Row>
-                  );
-                })}
+                {data?.capital.rounds.map((item, index) => (
+                  <Row gutter={[20, 0]} key={index}>
+                    <Col span={24} className="mt-4">
+                      <LabelComponent label={item.roundName} />
+                    </Col>
+                    <Col span={12} className="mt-3">
+                      <DatePickerComponent
+                        disabled={false}
+                        width="100%"
+                        value={item.startDate}
+                      />
+                    </Col>
+                    <Col span={12} className="mt-3">
+                      <DatePickerComponent
+                        disabled={false}
+                        width="100%"
+                        value={item.endDate}
+                      />
+                    </Col>
+                  </Row>
+                ))}
               </Col>
             </Row>
           </div>
@@ -172,7 +175,10 @@ const ModalComponents: React.FC<ModalProps> = ({
                 <LabelComponent label="Reason *" />
               </Col>
               <Col span={24}>
-                <TextAreaComp placeholder="Lorem.." />
+                <TextAreaComp
+                  placeholder="Enter reason here..."
+                  onChange={(e) => setRejectReason(e.target.value)}
+                />
               </Col>
             </Row>
           </div>
@@ -181,13 +187,13 @@ const ModalComponents: React.FC<ModalProps> = ({
         return null;
     }
   };
+
   return (
     <>
       <Modal
         open={open}
         title={getTitle()}
         centered
-        onOk={handleOk}
         onCancel={handleCancel}
         footer={getFooter()}
       >

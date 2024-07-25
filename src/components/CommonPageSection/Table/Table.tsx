@@ -38,7 +38,7 @@ function Table() {
     setModalName(modal_name);
   };
 
-  const handleOk = async () => {
+  const handleOk = async (rejectReason?: string) => {
     if (modalName === "Confirm" && selectedProject) {
       const updatedProject = { ...selectedProject, statusId: 1 };
       try {
@@ -46,19 +46,23 @@ function Table() {
           `http://localhost:9999/Project/${selectedProject.id}`,
           updatedProject
         );
-        console.log("Approve succsess");
+        console.log("Approve success");
       } catch (error) {
         console.error("Error updating project:", error);
       }
     }
     if (modalName === "Reject" && selectedProject) {
-      const updatedProject = { ...selectedProject, statusId: 2 };
+      const updatedProject = {
+        ...selectedProject,
+        statusId: 2,
+        reject_reason: rejectReason,
+      };
       try {
         await axios.put(
           `http://localhost:9999/Project/${selectedProject.id}`,
           updatedProject
         );
-        console.log("Reject  succsess");
+        console.log("Reject success");
       } catch (error) {
         console.error("Error updating project:", error);
       }
