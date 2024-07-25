@@ -12,7 +12,7 @@ const ProjectDetails = () => {
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col className="gutter-row" span={12}>
               <div>
-                <LabelComponent label="Project start date *" />
+                <LabelComponent label="Project start date" required />
               </div>
               <div className="mt-[8px]">
                 <DatePickerComponent placeholder="estimate" disabled={false} />
@@ -31,7 +31,7 @@ const ProjectDetails = () => {
           </div>
           <div className="mb-[30px]">
             <div>
-              <LabelComponent label="Project Description *" />
+              <LabelComponent label="Project Description" required />
             </div>
             <div className="mt-[8px]">
               <TextAreaComp placeholder="Describe the project, including the scope of the project and an explanation of how mature the project is." />
@@ -39,7 +39,7 @@ const ProjectDetails = () => {
           </div>
           <div className="mb-[30px]">
             <div>
-              <LabelComponent label="Ecosystem *" />
+              <LabelComponent label="Ecosystem" required />
             </div>
             <div className="mt-[8px]">
               <TextAreaComp placeholder="Describe the project ecosystem. Explain where the project is hosted, the token to be issued and the grants received." />
@@ -47,7 +47,7 @@ const ProjectDetails = () => {
           </div>
           <div className="mb-[30px]">
             <div>
-              <LabelComponent label="Describe Current Community *" />
+              <LabelComponent label="Describe Current Community" required />
             </div>
             <div className="mt-[8px]">
               <TextAreaComp placeholder="e.g. Provide details of what the current community consist of. e.g. 30,000 Twitter followers and 20,000 telegram members." />
@@ -55,7 +55,7 @@ const ProjectDetails = () => {
           </div>
           <div className="mb-[30px]">
             <div>
-              <LabelComponent label="Size of Existing Users *" />
+              <LabelComponent label="Size of Existing Users" required />
             </div>
             <div className="mt-[8px]">
               <TextAreaComp placeholder="Provide details of what the current community and user base consist of. e.g. Project currently has 4000 testnet users or project live with $100k TVL from 1000 wallets." />

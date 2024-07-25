@@ -14,7 +14,7 @@ function BasicInformation() {
                 <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                   <Col className="gutter-row " span={24}>
                     <div>
-                      <LabelComponent label="Project name *" />
+                      <LabelComponent label="Project name" required />
                     </div>
                     <div>
                       <InputComp placeholder="e.g.Bitcoin" />
@@ -22,7 +22,7 @@ function BasicInformation() {
                   </Col>
                   <Col className="gutter-row mt-8" span={24}>
                     <div>
-                      <LabelComponent label="Contact name *" />
+                      <LabelComponent label="Contact name" required />
                     </div>
 
                     <div>
@@ -33,7 +33,7 @@ function BasicInformation() {
               </Col>
               <Col className="gutter-row" span={12}>
                 <div>
-                  <LabelComponent label="Project Logo *" />
+                  <LabelComponent label="Project Logo" required />
                 </div>
                 <div>
                   <UploadFile
@@ -51,7 +51,10 @@ function BasicInformation() {
                 <Row>
                   <Col className="gutter-row " span={24}>
                     <div>
-                      <LabelComponent label="Contact Telegram Handle *" />
+                      <LabelComponent
+                        label="Contact Telegram Handle"
+                        required
+                      />
                     </div>
                     <div>
                       <InputComp placeholder="e.g.@johndoe" />
@@ -59,7 +62,7 @@ function BasicInformation() {
                   </Col>
                   <Col className="gutter-row mt-8" span={24}>
                     <div>
-                      <LabelComponent label="Email *" />
+                      <LabelComponent label="Email" required />
                     </div>
 
                     <div>
@@ -70,7 +73,7 @@ function BasicInformation() {
               </Col>
               <Col className="gutter-row" span={12}>
                 <div>
-                  <LabelComponent label="Project Cover " />
+                  <LabelComponent label="Project Cover" />
                 </div>
                 <div>
                   <UploadFile

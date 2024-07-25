@@ -13,6 +13,7 @@ const StatusOfPartnerships = () => {
 
   const handleCheckboxChange = (checkedValues: any) => {
     setCheckedOptions(checkedValues);
+    console.log("Check Option Partener Ship: ", checkedOptions);
   };
 
   return (

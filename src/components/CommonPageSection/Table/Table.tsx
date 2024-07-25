@@ -1,3 +1,4 @@
+import axios from "axios";
 import "./Table.scss";
 import { MoreIcon, ChainIcon } from "../../../Icon";
 import type { MenuProps } from "antd";
@@ -7,10 +8,10 @@ import { ModalName } from "../Modal/ModalType";
 import ModalComponents from "../Modal/ModalComponent";
 import LogoComp from "../Logo/LogoComp";
 import PaginationComponent from "../Pagination/Pagination";
-import axios from "axios";
 import { Project } from "../../../type/type";
 import { formatPrice } from "../../../helper/util";
-
+import { getAllProject } from "../../../service/service";
+import { toast } from "sonner";
 function Table() {
   const [data, setData] = useState<Project[]>([]);
   const [open, setOpen] = useState(false);
@@ -20,22 +21,60 @@ function Table() {
   const [selectedProject, setSelectedProject] = useState<Project | undefined>();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:9999/Project")
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the data!", error);
-      });
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const dataProject = await getAllProject();
+      setData(dataProject);
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+    }
+  };
 
   const handleOpen = (modal_name: ModalName) => {
     setOpen(true);
     setModalName(modal_name);
   };
 
-  const handleOk = () => {
+  const handleOk = async () => {
+    if (modalName === "Confirm" && selectedProject) {
+      const updatedProject = { ...selectedProject, statusId: 1 };
+      try {
+        await axios.put(
+          `http://localhost:9999/Project/${selectedProject.id}`,
+          updatedProject
+        );
+        console.log("Approve succsess");
+      } catch (error) {
+        console.error("Error updating project:", error);
+      }
+    }
+    if (modalName === "Reject" && selectedProject) {
+      const updatedProject = { ...selectedProject, statusId: 2 };
+      try {
+        await axios.put(
+          `http://localhost:9999/Project/${selectedProject.id}`,
+          updatedProject
+        );
+        console.log("Reject  succsess");
+      } catch (error) {
+        console.error("Error updating project:", error);
+      }
+    }
+    if (modalName === "Delete" && selectedProject) {
+      try {
+        // await axios.delete(
+        //   `http://localhost:9999/Project/${selectedProject.id}`
+        // );
+        toast.success("Delete Project success");
+        console.log("Delete success");
+      } catch (error) {
+        console.error("Error updating project:", error);
+      }
+    }
+    fetchData();
     setOpen(false);
   };
 
@@ -52,7 +91,7 @@ function Table() {
 
   const handleSelectProject = (item: Project) => {
     setSelectedProject(item);
-    console.log(item); // Log the selected project
+    console.log(item);
   };
 
   const paginatedData = data.slice(

@@ -1,5 +1,6 @@
 // Định nghĩa kiểu type cho toàn bộ Project sử dụng các kiểu type đã định nghĩa
 export interface Project {
+  id: string;
   basic_information: BasicInformation;
   project_detail: ProjectDetail;
   links: Links;
@@ -7,7 +8,7 @@ export interface Project {
   capital: Capital;
   public_token_sale: PublicTokenSale;
   status_of_partnerships: StatusOfPartnerships;
-  stausId: number;
+  stautsId: number;
 }
 
 // Định nghĩa kiểu type cho basic_information
