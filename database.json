@@ -1,0 +1,114 @@
+{
+   "Project_Tag":[
+    {
+        "label": "DeFi",
+        "value": "DeFi"
+    },
+    {
+        "label": "Launchpad",
+        "value": "Launchpad"
+    },
+    {
+        "label": "Crypto",
+        "value": "Crypto"
+    },
+    {
+        "label": "Blockchain",
+        "value": "Blockchain"
+    },
+    {
+        "label": "Token",
+        "value": "Token"
+    } 
+    ],
+    "Project": [
+        {
+            "basic_information": {
+                "project_name": "Project Name",
+                "contact_name":"",
+                "contact_telegram_handle":"",
+                "email":"",
+                "project_logo":"",
+                "project_cover":""
+                
+            },
+            "project_detail": {
+                "start_date":"",
+                "tags":[
+                    {
+                        "tag_name":"",
+                        "tag_value":""
+                    }
+                ],
+                "project_description": "",
+                "ecosystem": "",
+                "current_community": "",
+                "size_existing_user": ""
+            },
+            "links": {
+                "project_website":"",
+                "project_telegram": "",
+                "project_twitter": "",
+                "project_medium": "",
+                "project_other_link":""
+
+            },
+            "token_information":{
+                "token_name": "",
+                "token_symbol": "",
+                "token_contract_address": "",
+                "tokennomics":{
+    
+                }
+            },
+            "capital": {
+                "rounds": [
+                    {
+                        "roundName": "Investment Round 1",
+                        "startDate": "03/26/2024 08:00",
+                        "endDate": "03/27/2024 08:25"
+                    },
+                    {
+                        "roundName": "Investment Round 2",
+                        "startDate": "03/26/2024 08:00",
+                        "endDate": "03/27/2024 08:25"
+                    },
+                    {
+                        "roundName": "Investment Round 3",
+                        "startDate": "03/26/2024 08:00",
+                        "endDate": "03/27/2024 08:25"
+                    }              
+                ]
+            },
+            "public_token_sale": {
+                "total_amount":1000000,
+                "amount_through_Galaxy":500000,
+                "flexible_amount":true,
+                "planned_FDV":30000000,
+                "other_information":"",
+                "sale":""
+            },
+            "status_of_partnerships":[
+                {
+                    "label":"Have you engaged with Marketing Agencies",
+                    "value":true
+                }
+            ],
+            "stausId":0          
+        }
+    ],
+    "Project_Status":[
+        {
+            "id":0,
+            "value":"Pending"
+        },
+        {
+            "id":1,
+            "value":"Approve"
+        },
+        {
+            "id":2,
+            "value":"Reject"
+        }
+    ]
+}

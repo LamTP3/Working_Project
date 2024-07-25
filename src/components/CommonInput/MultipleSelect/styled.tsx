@@ -30,4 +30,11 @@ export const MultipleSelectWarraper = styled.div`
   .ant-select-arrow {
     display: none !important;
   }
+  .ant-select-multiple {
+    .ant-select-selection-placeholder {
+      color: #7d7e8d;
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
 `;

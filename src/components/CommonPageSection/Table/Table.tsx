@@ -2,31 +2,33 @@ import "./Table.scss";
 import { MoreIcon, ChainIcon } from "../../../Icon";
 import type { MenuProps } from "antd";
 import { Button, Dropdown } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ModalName } from "../Modal/ModalType";
 import ModalComponents from "../Modal/ModalComponent";
 import LogoComp from "../Logo/LogoComp";
 import PaginationComponent from "../Pagination/Pagination";
-
-const generateFakeData = () => {
-  return Array.from({ length: 100 }, (_, index) => ({
-    project: `Project ${index + 1}`,
-    content_project: `Symbol ${index + 1}`,
-    participants: null,
-    totalRaised: "$6,000,000",
-    currentPrice: null,
-    athSinceIdo: null,
-    day: "March 14th 2022",
-    datetime: "8:28 AM - UTC",
-  }));
-};
+import axios from "axios";
+import { Project } from "../../../type/type";
+import { formatPrice } from "../../../helper/util";
 
 function Table() {
-  const data = generateFakeData();
+  const [data, setData] = useState<Project[]>([]);
   const [open, setOpen] = useState(false);
   const [modalName, setModalName] = useState<ModalName>("Confirm");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
+  const [selectedProject, setSelectedProject] = useState<Project | undefined>();
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:9999/Project")
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the data!", error);
+      });
+  }, []);
 
   const handleOpen = (modal_name: ModalName) => {
     setOpen(true);
@@ -48,6 +50,11 @@ function Table() {
     }
   };
 
+  const handleSelectProject = (item: Project) => {
+    setSelectedProject(item);
+    console.log(item); // Log the selected project
+  };
+
   const paginatedData = data.slice(
     (currentPage - 1) * pageSize,
     currentPage * pageSize
@@ -56,14 +63,16 @@ function Table() {
   const items: MenuProps["items"] = [
     {
       key: "1",
-      label: <div className="text-[#fff]"> View detail</div>,
+      label: <div className="text-[#fff]">View detail</div>,
     },
     {
       key: "2",
       label: (
         <div
           className="text-right text-[#53FF50]"
-          onClick={() => handleOpen("Confirm")}
+          onClick={() => {
+            handleOpen("Confirm");
+          }}
         >
           Approve
         </div>
@@ -74,7 +83,9 @@ function Table() {
       label: (
         <div
           className="text-right text-[#FF5E5E]"
-          onClick={() => handleOpen("Reject")}
+          onClick={() => {
+            handleOpen("Reject");
+          }}
         >
           Reject
         </div>
@@ -85,7 +96,9 @@ function Table() {
       label: (
         <div
           className="text-right text-[#F4C349]"
-          onClick={() => handleOpen("Delete")}
+          onClick={() => {
+            handleOpen("Delete");
+          }}
         >
           Delete
         </div>
@@ -101,6 +114,7 @@ function Table() {
           handleOk={handleOk}
           handleCancel={handleCancel}
           modal_name={modalName}
+          data={selectedProject}
         />
       </div>
       <div>
@@ -126,25 +140,29 @@ function Table() {
                       <LogoComp size="small" />
                     </div>
                     <div>
-                      <div>{item.project}</div>
-                      <div className="table-text">{item.content_project}</div>
+                      <div>{item.basic_information.project_name}</div>
+                      <div className="table-text">--</div>
                     </div>
                   </div>
                 </td>
-                <td>{item.participants ? item.participants : "--"}</td>
-                <td>{item.totalRaised}</td>
-                <td>{item.currentPrice ? item.currentPrice : "--"}</td>
-                <td>{item.athSinceIdo ? item.athSinceIdo : "--"}</td>
+                <td>--</td>
+                <td>{formatPrice(item.public_token_sale.total_amount)}</td>
+                <td>--</td>
+                <td>--</td>
                 <td>
-                  <div>{item.day}</div>
-                  <div className="table-text">{item.datetime}</div>
+                  <div>March 14th 2022</div>
+                  <div className="table-text">8:28 AM - UTC</div>
                 </td>
                 <td>
                   <ChainIcon />
                 </td>
                 <td>
-                  <Dropdown menu={{ items }} placement="bottomRight">
-                    <Button>
+                  <Dropdown
+                    menu={{ items }}
+                    placement="bottomRight"
+                    trigger={["click"]}
+                  >
+                    <Button onClick={() => handleSelectProject(item)}>
                       <MoreIcon />
                     </Button>
                   </Dropdown>
