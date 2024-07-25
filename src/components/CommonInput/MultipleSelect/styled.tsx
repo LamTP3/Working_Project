@@ -5,11 +5,10 @@ export const MultipleSelectWarraper = styled.div`
     border: none !important;
     background-color: var(--primary-input-bg) !important;
     .ant-select-selection-overflow {
-      right: -20px !important;
       .ant-select-selection-item {
         background-color: #24265b !important;
         height: 23px;
-
+        margin-inline-start: 8px;
         .ant-select-selection-item-content {
           color: #fff;
           font-family: Inter;
