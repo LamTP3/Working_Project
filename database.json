@@ -1,27 +1,32 @@
 {
-   "Project_Tag":[
+  "Project_Tag": [
     {
-        "label": "DeFi",
-        "value": "DeFi"
+      "label": "DeFi",
+      "value": "DeFi",
+      "id": "26ea"
     },
     {
-        "label": "Launchpad",
-        "value": "Launchpad"
+      "label": "Launchpad",
+      "value": "Launchpad",
+      "id": "a417"
     },
     {
-        "label": "Crypto",
-        "value": "Crypto"
+      "label": "Crypto",
+      "value": "Crypto",
+      "id": "8f96"
     },
     {
-        "label": "Blockchain",
-        "value": "Blockchain"
+      "label": "Blockchain",
+      "value": "Blockchain",
+      "id": "fd07"
     },
     {
-        "label": "Token",
-        "value": "Token"
-    } 
-    ],
-    "Project": [
+      "label": "Token",
+      "value": "Token",
+      "id": "cbb1"
+    }
+  ],
+"Project": [
         {
             "basic_information": {
                 "project_name": "Project Name",
@@ -94,21 +99,21 @@
                     "value":true
                 }
             ],
-            "stausId":0          
+            "stautsId":0          
         }
     ],
-    "Project_Status":[
-        {
-            "id":0,
-            "value":"Pending"
-        },
-        {
-            "id":1,
-            "value":"Approve"
-        },
-        {
-            "id":2,
-            "value":"Reject"
-        }
-    ]
+  "Project_Status": [
+    {
+      "id": "0",
+      "value": "Pending"
+    },
+    {
+      "id": "1",
+      "value": "Approve"
+    },
+    {
+      "id": "2",
+      "value": "Reject"
+    }
+  ]
 }
