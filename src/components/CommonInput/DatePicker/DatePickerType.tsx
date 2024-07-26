@@ -3,4 +3,6 @@ export interface Props {
   width?: string;
   placeholder?: string;
   value?: string;
+  minDate?: boolean;
+  onChange?: (...args: any) => void;
 }
