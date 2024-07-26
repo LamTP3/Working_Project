@@ -1,7 +1,7 @@
 // Định nghĩa kiểu type cho toàn bộ Project sử dụng các kiểu type đã định nghĩa
 export interface Project {
   id: string;
-  basic_information: BasicInformation;
+  basic_information: BasicInformationValues;
   project_detail: ProjectDetail;
   links: Links;
   token_information: TokenInformation;
@@ -13,7 +13,7 @@ export interface Project {
 }
 
 // Định nghĩa kiểu type cho basic_information
-export type BasicInformation = {
+export type BasicInformationValues = {
   project_name: string;
   contact_name: string;
   contact_telegram_handle: string;

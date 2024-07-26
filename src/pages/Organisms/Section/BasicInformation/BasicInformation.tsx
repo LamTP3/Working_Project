@@ -2,8 +2,14 @@ import { Col, Row } from "antd";
 import LabelComponent from "../../../../components/CommonInput/Label/LabelComponent";
 import UploadFile from "../../../../components/CommonInput/UploadFile/UploadFile";
 import InputComp from "../../../../components/CommonInput/InputComp/Input/InputComp";
+import { FormikProps } from "formik";
+import { Project } from "../../../../type/type";
 
-function BasicInformation() {
+interface BasicInformationProps {
+  formik: FormikProps<Project>
+}
+
+const BasicInformation: React.FC<BasicInformationProps> = ({ formik }) => {
   return (
     <div>
       <div>
@@ -17,16 +23,30 @@ function BasicInformation() {
                       <LabelComponent label="Project name" required />
                     </div>
                     <div>
-                      <InputComp placeholder="e.g.Bitcoin" />
+                      <InputComp
+                        name="basic_information.project_name"
+                        placeholder="e.g.Bitcoin"
+                        value={formik.values.basic_information.project_name}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                      />
+                      {formik.touched.basic_information?.project_name && formik.errors.basic_information?.project_name ? (
+                        <div className="text-rose-700">{formik.errors.basic_information.project_name}</div>
+                      ) : null}
                     </div>
                   </Col>
                   <Col className="gutter-row mt-8" span={24}>
                     <div>
                       <LabelComponent label="Contact name" required />
                     </div>
-
                     <div>
-                      <InputComp placeholder="Name & Surname" />
+                      <InputComp
+                        name="basic_information.contact_name"
+                        placeholder="Name & Surname"
+                        value={formik.values.basic_information.contact_name}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                      />
                     </div>
                   </Col>
                 </Row>
@@ -57,7 +77,13 @@ function BasicInformation() {
                       />
                     </div>
                     <div>
-                      <InputComp placeholder="e.g.@johndoe" />
+                      <InputComp
+                        name="basic_information.contact_telegram_handle"
+                        placeholder="e.g.@johndoe"
+                        value={formik.values.basic_information.contact_telegram_handle}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                      />
                     </div>
                   </Col>
                   <Col className="gutter-row mt-8" span={24}>
@@ -66,7 +92,13 @@ function BasicInformation() {
                     </div>
 
                     <div>
-                      <InputComp placeholder="e.g.abc@abc.xyz" />
+                      <InputComp
+                        name=""
+                        placeholder="e.g.abc@abc.xyz"
+                        value={formik.values.basic_information.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                      />
                     </div>
                   </Col>
                 </Row>
