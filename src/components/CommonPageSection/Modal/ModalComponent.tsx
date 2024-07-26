@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { Modal } from "antd";
-import { Col, Row } from "antd";
+import React, { useState, useEffect } from "react";
+import { Modal, Row, Col } from "antd";
 import ButtonComponent from "../../CommonInput/Button/ButtonComponent";
 import { ModalProps } from "./ModalType";
 import LabelComponent from "../../CommonInput/Label/LabelComponent";
@@ -8,7 +7,9 @@ import LogoComp from "../Logo/LogoComp";
 import DatePickerComponent from "../../CommonInput/DatePicker/DatePicker";
 import TextAreaComp from "../../CommonInput/InputComp/TextArea/TextAreaComp";
 import "./Modal.scss";
+import dayjs from "dayjs";
 
+const dateFormat = "MM/DD/YYYY HH:mm";
 const ModalComponents: React.FC<ModalProps> = ({
   open,
   handleOk,
@@ -17,6 +18,33 @@ const ModalComponents: React.FC<ModalProps> = ({
   data,
 }) => {
   const [rejectReason, setRejectReason] = useState("");
+  const [rounds, setRounds] = useState(data?.capital.rounds || []);
+
+  useEffect(() => {
+    if (data?.capital.rounds) {
+      setRounds(data.capital.rounds);
+    }
+  }, [data]);
+
+  const handleDateChange = (
+    index: number,
+    field: "startDate" | "endDate",
+    value: any
+  ) => {
+    const updatedRounds = [...rounds];
+
+    // Kiểm tra giá trị của value và chuyển đổi nếu cần
+    const formattedValue = value ? dayjs(value).format(dateFormat) : null;
+
+    console.log("Formatted Date Change: ", formattedValue);
+
+    updatedRounds[index] = {
+      ...updatedRounds[index],
+      [field]: formattedValue,
+    };
+
+    setRounds(updatedRounds);
+  };
 
   const getTitle = () => {
     switch (modal_name) {
@@ -41,7 +69,7 @@ const ModalComponents: React.FC<ModalProps> = ({
                 background_color="Gradient"
                 button_content="Approve"
                 arrow_icon={false}
-                onClick={() => handleOk()}
+                onClick={() => handleOk(rounds)}
                 width="208px"
               />
               <ButtonComponent
@@ -124,7 +152,7 @@ const ModalComponents: React.FC<ModalProps> = ({
                 </div>
               </Col>
               <Col span={24}>
-                {data?.capital.rounds.map((item, index) => (
+                {rounds.map((item, index) => (
                   <Row gutter={[20, 0]} key={index}>
                     <Col span={24} className="mt-4">
                       <LabelComponent label={item.roundName} />
@@ -134,6 +162,9 @@ const ModalComponents: React.FC<ModalProps> = ({
                         disabled={false}
                         width="100%"
                         value={item.startDate}
+                        onChange={(date) =>
+                          handleDateChange(index, "startDate", date)
+                        }
                       />
                     </Col>
                     <Col span={12} className="mt-3">
@@ -141,6 +172,9 @@ const ModalComponents: React.FC<ModalProps> = ({
                         disabled={false}
                         width="100%"
                         value={item.endDate}
+                        onChange={(date) =>
+                          handleDateChange(index, "endDate", date)
+                        }
                       />
                     </Col>
                   </Row>
@@ -164,7 +198,7 @@ const ModalComponents: React.FC<ModalProps> = ({
                   </div>
                   <div>
                     <div className="modal-project-name-style">
-                      Arrow Markets
+                      {data?.basic_information.project_name}
                     </div>
                     <div className="modal-project-value-style">$ARROW</div>
                   </div>

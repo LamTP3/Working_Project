@@ -1,9 +1,9 @@
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Table.scss";
 import { MoreIcon, ChainIcon } from "../../../Icon";
 import type { MenuProps } from "antd";
 import { Button, Dropdown } from "antd";
-import { useState, useEffect } from "react";
 import { ModalName } from "../Modal/ModalType";
 import ModalComponents from "../Modal/ModalComponent";
 import LogoComp from "../Logo/LogoComp";
@@ -11,7 +11,8 @@ import PaginationComponent from "../Pagination/Pagination";
 import { Project } from "../../../type/type";
 import { formatPrice } from "../../../helper/util";
 import { getAllProject } from "../../../service/service";
-import { toast } from "sonner";
+import { toast } from "react-toastify";
+
 function Table() {
   const [data, setData] = useState<Project[]>([]);
   const [open, setOpen] = useState(false);
@@ -38,47 +39,49 @@ function Table() {
     setModalName(modal_name);
   };
 
-  const handleOk = async (rejectReason?: string) => {
-    if (modalName === "Confirm" && selectedProject) {
-      const updatedProject = { ...selectedProject, statusId: 1 };
+  const handleOk = async (rounds?: any[], rejectReason?: string) => {
+    if (selectedProject) {
+      let updatedProject = { ...selectedProject };
+
+      if (modalName === "Confirm" && rounds) {
+        updatedProject = {
+          ...updatedProject,
+          capital: { ...updatedProject.capital, rounds },
+        };
+      } else if (modalName === "Reject" && rejectReason) {
+        updatedProject = {
+          ...updatedProject,
+          statusId: 2,
+          reject_reason: rejectReason,
+        };
+      } else if (modalName === "Delete") {
+        try {
+          await axios.delete(
+            `http://localhost:9999/Project/${selectedProject.id}`
+          );
+          toast.success("Delete Project Success");
+          console.log("Delete success");
+          fetchData(); // Fetch data after deletion
+          setOpen(false);
+          return;
+        } catch (error) {
+          console.error("Error deleting project:", error);
+          return;
+        }
+      }
+
       try {
         await axios.put(
           `http://localhost:9999/Project/${selectedProject.id}`,
           updatedProject
         );
-        console.log("Approve success");
+        toast.success(`${modalName} Success`);
+        console.log(`${modalName} Success`);
+        fetchData();
       } catch (error) {
-        console.error("Error updating project:", error);
+        console.error(`Error updating project:`, error);
       }
     }
-    if (modalName === "Reject" && selectedProject) {
-      const updatedProject = {
-        ...selectedProject,
-        statusId: 2,
-        reject_reason: rejectReason,
-      };
-      try {
-        await axios.put(
-          `http://localhost:9999/Project/${selectedProject.id}`,
-          updatedProject
-        );
-        console.log("Reject success");
-      } catch (error) {
-        console.error("Error updating project:", error);
-      }
-    }
-    if (modalName === "Delete" && selectedProject) {
-      try {
-        // await axios.delete(
-        //   `http://localhost:9999/Project/${selectedProject.id}`
-        // );
-        toast.success("Delete Project success");
-        console.log("Delete success");
-      } catch (error) {
-        console.error("Error updating project:", error);
-      }
-    }
-    fetchData();
     setOpen(false);
   };
 
