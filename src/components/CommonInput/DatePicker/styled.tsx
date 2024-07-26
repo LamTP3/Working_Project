@@ -8,6 +8,7 @@ export const DatePickerWarraper = styled.div<Props>`
     border-radius: 5px;
     border: none;
     height: 40px;
+
     width: ${(props) => (props.$width ? props.$width : "80%")};
 
     opacity: ${(props) => (props.$disabled ? "0.3" : "1")};

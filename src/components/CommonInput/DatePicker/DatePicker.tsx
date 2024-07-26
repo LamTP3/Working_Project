@@ -46,6 +46,7 @@ const DatePickerComponent: React.FC<Props> = ({
           disabledDate={disabledDate}
           disabled={disabled}
           value={dayjsValue}
+          allowClear={false}
         />
       </DatePickerWarraper>
     </>
