@@ -6,9 +6,8 @@ import { Props } from "./DatePickerType";
 import { DateIcon } from "../../../Icon";
 import dayjs, { Dayjs } from "dayjs";
 import { CloseOutlined } from "@ant-design/icons";
-
+import { dateFormat } from "../../../helper/util";
 // Định dạng ngày giờ
-const dateFormat = "MM/DD/YYYY HH:mm";
 
 const DatePickerComponent: React.FC<Props> = ({
   disabled,
