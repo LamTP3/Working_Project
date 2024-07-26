@@ -1,61 +1,54 @@
-:root{
-    --header-bg-color: #2f3163;
-    --header-logout-btn-color: #24265b;
-    --white-color: #ffffff;
-    --grey-color: #9d9eaa;
-}
+.header-container {
+  background-color: var(--header-bg-color);
+  padding: 20px 0px 20px 0px;
+  color: var(--white-color);
+  .header-inner {
+    display: flex;
+    align-items: center;
+    padding: 0px 122px 0px 122px;
+    gap: 40px;
+    white-space: nowrap;
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
 
-.header-container{
-    background-color: var(--header-bg-color);
-    padding: 20px 0px 20px 0px;
-    color: var(--white-color);
-    .header-inner{
-        display: flex;
-        align-items: center;
-        padding: 0px 122px 0px 122px;
-        gap: 40px;
-        white-space: nowrap;
-        .header-left{
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            .header-logo-text{
-                font-weight: 700;
-                font-size: 24px;
-                line-height: 29.05px;
-            }
-        }
-        .header-mid{
-            width: 100%;
-            font-weight: 500;
-        }
-        .header-right{
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            .header-welcome{
-                display: flex;
-                gap: 5px;
-
-                .header-text{
-                    &-welcome{
-                        font-weight: 400;
-                        color: var(--grey-color);
-                    }
-                    &-name{
-                        font-weight: 500;
-                    }
-                }
-            }
-
-            .header-logout-btn{
-                color: var(--grey-color);
-                padding: 10px 24px 10px 24px;
-                border-radius: 100px;
-                background-color: var(--header-logout-btn-color);
-            }
-        }
+      .header-logo-text {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 29.05px;
+      }
     }
+    .header-mid {
+      width: 100%;
+      font-weight: 500;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .header-welcome {
+        display: flex;
+        gap: 5px;
+
+        .header-text {
+          &-welcome {
+            font-weight: 400;
+            color: var(--grey-color);
+          }
+          &-name {
+            font-weight: 500;
+          }
+        }
+      }
+
+      .header-logout-btn {
+        color: var(--grey-color);
+        padding: 10px 24px 10px 24px;
+        border-radius: 100px;
+        background-color: var(--header-logout-btn-color);
+      }
+    }
+  }
 }

@@ -5,7 +5,7 @@ export const Warraper = styled.div`
     background-color: #24265b !important;
     border: none;
     .ant-collapse-header-text {
-      color: white;
+      color: var(--white-color);
       font-size: 24px;
       font-weight: 700;
       line-height: 29.05px;
