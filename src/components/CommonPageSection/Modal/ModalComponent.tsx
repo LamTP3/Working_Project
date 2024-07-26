@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Modal } from "antd";
 import { Col, Row } from "antd";
-
-import "./Modal.scss";
 import ButtonComponent from "../../CommonInput/Button/ButtonComponent";
 import { ModalProps } from "./ModalType";
 import LabelComponent from "../../CommonInput/Label/LabelComponent";
 import LogoComp from "../Logo/LogoComp";
 import DatePickerComponent from "../../CommonInput/DatePicker/DatePicker";
 import TextAreaComp from "../../CommonInput/InputComp/TextArea/TextAreaComp";
+import "./Modal.scss";
 
 const ModalComponents: React.FC<ModalProps> = ({
   open,
@@ -42,7 +41,7 @@ const ModalComponents: React.FC<ModalProps> = ({
                 background_color="Gradient"
                 button_content="Approve"
                 arrow_icon={false}
-                onClick={() => handleOk()} // Không truyền đối số cho Confirm
+                onClick={() => handleOk()}
                 width="208px"
               />
               <ButtonComponent
@@ -84,7 +83,7 @@ const ModalComponents: React.FC<ModalProps> = ({
                 background_color="Gradient_Danger"
                 button_content="Delete Project"
                 arrow_icon={false}
-                onClick={() => handleOk()} // Không truyền đối số cho Delete
+                onClick={() => handleOk()}
                 width="208px"
               />
               <ButtonComponent
