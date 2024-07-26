@@ -8,8 +8,8 @@ import DatePickerComponent from "../../CommonInput/DatePicker/DatePicker";
 import TextAreaComp from "../../CommonInput/InputComp/TextArea/TextAreaComp";
 import "./Modal.scss";
 import dayjs from "dayjs";
+import { dateFormat } from "../../../helper/util";
 
-const dateFormat = "MM/DD/YYYY HH:mm";
 const ModalComponents: React.FC<ModalProps> = ({
   open,
   handleOk,
