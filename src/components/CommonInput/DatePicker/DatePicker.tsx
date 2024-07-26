@@ -4,6 +4,7 @@ import type { DatePickerProps } from "antd";
 import { DatePickerWarraper } from "./styled";
 import { Props } from "./DatePickerType";
 import { DateIcon } from "../../../Icon";
+import dayjs, { Dayjs } from "dayjs";
 
 // Định dạng ngày giờ
 const dateFormat = "MM/DD/YYYY HH:mm";
@@ -12,6 +13,7 @@ const DatePickerComponent: React.FC<Props> = ({
   disabled,
   width,
   placeholder,
+  value,
 }) => {
   const onChange: DatePickerProps["onChange"] = (date, dateStr) => {
     if (date) {
@@ -22,13 +24,14 @@ const DatePickerComponent: React.FC<Props> = ({
     }
   };
 
+  const dayjsValue = value ? dayjs(value, dateFormat) : undefined;
+
   // Hàm để vô hiệu hóa các ngày trước ngày hôm nay
-  const disabledDate = (current: Date) => {
+  const disabledDate = (current: Dayjs) => {
     // Lấy ngày hôm nay và đặt thời gian là 00:00:00
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const today = dayjs().startOf("day");
     // Không cho phép chọn ngày trước hôm nay
-    return current && current < today;
+    return current && current.isBefore(today);
   };
 
   return (
@@ -40,8 +43,10 @@ const DatePickerComponent: React.FC<Props> = ({
           placeholder={placeholder ? placeholder : "MM/dd/yyyy HH:mm"}
           suffixIcon={<DateIcon />}
           format={dateFormat}
-          disabledDate={(currentDate) => disabledDate(currentDate.toDate())} // Chuyển đổi moment object thành Date object
+          disabledDate={disabledDate}
           disabled={disabled}
+          value={dayjsValue}
+          allowClear={false}
         />
       </DatePickerWarraper>
     </>

@@ -1,39 +1,84 @@
+import axios from "axios";
 import "./Table.scss";
 import { MoreIcon, ChainIcon } from "../../../Icon";
 import type { MenuProps } from "antd";
 import { Button, Dropdown } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ModalName } from "../Modal/ModalType";
 import ModalComponents from "../Modal/ModalComponent";
 import LogoComp from "../Logo/LogoComp";
 import PaginationComponent from "../Pagination/Pagination";
-
-const generateFakeData = () => {
-  return Array.from({ length: 100 }, (_, index) => ({
-    project: `Project ${index + 1}`,
-    content_project: `Symbol ${index + 1}`,
-    participants: null,
-    totalRaised: "$6,000,000",
-    currentPrice: null,
-    athSinceIdo: null,
-    day: "March 14th 2022",
-    datetime: "8:28 AM - UTC",
-  }));
-};
-
+import { Project } from "../../../type/type";
+import { formatPrice } from "../../../helper/util";
+import { getAllProject } from "../../../service/service";
+import { toast } from "sonner";
 function Table() {
-  const data = generateFakeData();
+  const [data, setData] = useState<Project[]>([]);
   const [open, setOpen] = useState(false);
   const [modalName, setModalName] = useState<ModalName>("Confirm");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
+  const [selectedProject, setSelectedProject] = useState<Project | undefined>();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const dataProject = await getAllProject();
+      setData(dataProject);
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+    }
+  };
 
   const handleOpen = (modal_name: ModalName) => {
     setOpen(true);
     setModalName(modal_name);
   };
 
-  const handleOk = () => {
+  const handleOk = async (rejectReason?: string) => {
+    if (modalName === "Confirm" && selectedProject) {
+      const updatedProject = { ...selectedProject, statusId: 1 };
+      try {
+        await axios.put(
+          `http://localhost:9999/Project/${selectedProject.id}`,
+          updatedProject
+        );
+        console.log("Approve success");
+      } catch (error) {
+        console.error("Error updating project:", error);
+      }
+    }
+    if (modalName === "Reject" && selectedProject) {
+      const updatedProject = {
+        ...selectedProject,
+        statusId: 2,
+        reject_reason: rejectReason,
+      };
+      try {
+        await axios.put(
+          `http://localhost:9999/Project/${selectedProject.id}`,
+          updatedProject
+        );
+        console.log("Reject success");
+      } catch (error) {
+        console.error("Error updating project:", error);
+      }
+    }
+    if (modalName === "Delete" && selectedProject) {
+      try {
+        // await axios.delete(
+        //   `http://localhost:9999/Project/${selectedProject.id}`
+        // );
+        toast.success("Delete Project success");
+        console.log("Delete success");
+      } catch (error) {
+        console.error("Error updating project:", error);
+      }
+    }
+    fetchData();
     setOpen(false);
   };
 
@@ -48,6 +93,11 @@ function Table() {
     }
   };
 
+  const handleSelectProject = (item: Project) => {
+    setSelectedProject(item);
+    console.log(item);
+  };
+
   const paginatedData = data.slice(
     (currentPage - 1) * pageSize,
     currentPage * pageSize
@@ -56,14 +106,16 @@ function Table() {
   const items: MenuProps["items"] = [
     {
       key: "1",
-      label: <div className="text-[#fff]"> View detail</div>,
+      label: <div className="text-[#fff]">View detail</div>,
     },
     {
       key: "2",
       label: (
         <div
           className="text-right text-[#53FF50]"
-          onClick={() => handleOpen("Confirm")}
+          onClick={() => {
+            handleOpen("Confirm");
+          }}
         >
           Approve
         </div>
@@ -74,7 +126,9 @@ function Table() {
       label: (
         <div
           className="text-right text-[#FF5E5E]"
-          onClick={() => handleOpen("Reject")}
+          onClick={() => {
+            handleOpen("Reject");
+          }}
         >
           Reject
         </div>
@@ -85,7 +139,9 @@ function Table() {
       label: (
         <div
           className="text-right text-[#F4C349]"
-          onClick={() => handleOpen("Delete")}
+          onClick={() => {
+            handleOpen("Delete");
+          }}
         >
           Delete
         </div>
@@ -101,6 +157,7 @@ function Table() {
           handleOk={handleOk}
           handleCancel={handleCancel}
           modal_name={modalName}
+          data={selectedProject}
         />
       </div>
       <div>
@@ -126,25 +183,29 @@ function Table() {
                       <LogoComp size="small" />
                     </div>
                     <div>
-                      <div>{item.project}</div>
-                      <div className="table-text">{item.content_project}</div>
+                      <div>{item.basic_information.project_name}</div>
+                      <div className="table-text">--</div>
                     </div>
                   </div>
                 </td>
-                <td>{item.participants ? item.participants : "--"}</td>
-                <td>{item.totalRaised}</td>
-                <td>{item.currentPrice ? item.currentPrice : "--"}</td>
-                <td>{item.athSinceIdo ? item.athSinceIdo : "--"}</td>
+                <td>--</td>
+                <td>{formatPrice(item.public_token_sale.total_amount)}</td>
+                <td>--</td>
+                <td>--</td>
                 <td>
-                  <div>{item.day}</div>
-                  <div className="table-text">{item.datetime}</div>
+                  <div>March 14th 2022</div>
+                  <div className="table-text">8:28 AM - UTC</div>
                 </td>
                 <td>
                   <ChainIcon />
                 </td>
                 <td>
-                  <Dropdown menu={{ items }} placement="bottomRight">
-                    <Button>
+                  <Dropdown
+                    menu={{ items }}
+                    placement="bottomRight"
+                    trigger={["click"]}
+                  >
+                    <Button onClick={() => handleSelectProject(item)}>
                       <MoreIcon />
                     </Button>
                   </Dropdown>

@@ -14,7 +14,10 @@ function PublicTokenSale() {
       <Row>
         <Col span={12} className="pr-9">
           <div>
-            <LabelComponent label="Total amount to be raised from public token sales? *" />
+            <LabelComponent
+              label="Total amount to be raised from public token sales?"
+              required
+            />
           </div>
           <div>
             <InputComp placeholder="$1,000,000" />
@@ -22,7 +25,10 @@ function PublicTokenSale() {
         </Col>
         <Col span={12} className="pr-9">
           <div>
-            <LabelComponent label="Preferred amount to be raised through GalaxyPad? *" />
+            <LabelComponent
+              label="Preferred amount to be raised through GalaxyPad?"
+              required
+            />
           </div>
           <div>
             <InputComp placeholder="$500,000" />
@@ -30,7 +36,10 @@ function PublicTokenSale() {
         </Col>
         <Col span={12} className="pr-9 mt-5">
           <div>
-            <LabelComponent label="Are you flexible with the amounts? *" />
+            <LabelComponent
+              label="Are you flexible with the amounts? "
+              required
+            />
           </div>
           <div>
             <RadioComponent options={radioOptions} />
@@ -38,7 +47,10 @@ function PublicTokenSale() {
         </Col>
         <Col span={12} className="pr-9 mt-5">
           <div>
-            <LabelComponent label="Planned FDV of tokens at launch? *" />
+            <LabelComponent
+              label="Planned FDV of tokens at launch? "
+              required
+            />
           </div>
           <div>
             <InputComp placeholder="$30,000,000" />

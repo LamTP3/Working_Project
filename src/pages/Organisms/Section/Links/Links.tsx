@@ -12,7 +12,7 @@ const Links = () => {
             <Col className="gutter-row pr-5" span={12}>
               <div className="mb-[30px]">
                 <div>
-                  <LabelComponent label="Project start date *" />
+                  <LabelComponent label="Project start date" required />
                 </div>
                 <div>
                   <InputComp placeholder="e.g. https://abc.io" />
@@ -20,7 +20,7 @@ const Links = () => {
               </div>
               <div>
                 <div>
-                  <LabelComponent label="Project Twitter *" />
+                  <LabelComponent label="Project Twitter" required />
                 </div>
                 <div>
                   <InputComp placeholder="e.g. https://twitter.com/abc" />
@@ -30,7 +30,7 @@ const Links = () => {
             <Col className="gutter-row pl-5" span={12}>
               <div className="mb-[30px]">
                 <div>
-                  <LabelComponent label="Project Telegram *" />
+                  <LabelComponent label="Project Telegram" required />
                 </div>
                 <div>
                   <InputComp placeholder="e.g. https://t.me/abc" />
