@@ -72,7 +72,7 @@ const TokenInformation = () => {
                   <div className="mb-2">
                     <LabelComponent label="Token Symbol " required />
                   </div>
-                  <div className="max-w-[170px]">
+                  <div className="max-w-[180px]">
                     <InputComp placeholder="e.g. BTC" />
                   </div>
                 </div>

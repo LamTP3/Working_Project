@@ -7,17 +7,20 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "json-server --watch database.json -p 9999"
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.7",
     "antd": "^5.19.2",
     "axios": "^1.7.2",
     "dayjs": "^1.11.12",
+    "formik": "^2.4.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-toastify": "^10.0.5",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
