@@ -31,7 +31,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({ formik }) => {
                         onBlur={formik.handleBlur}
                       />
                       {formik.touched.basic_information?.project_name && formik.errors.basic_information?.project_name ? (
-                        <div className="text-rose-700">{formik.errors.basic_information.project_name}</div>
+                        <div className="text-red-600">{formik.errors.basic_information.project_name}</div>
                       ) : null}
                     </div>
                   </Col>
@@ -47,6 +47,9 @@ const BasicInformation: React.FC<BasicInformationProps> = ({ formik }) => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                       />
+                      {formik.touched.basic_information?.contact_name && formik.errors.basic_information?.contact_name ? (
+                        <div className="text-red-600">{formik.errors.basic_information.contact_name}</div>
+                      ) : null}
                     </div>
                   </Col>
                 </Row>
@@ -85,6 +88,9 @@ const BasicInformation: React.FC<BasicInformationProps> = ({ formik }) => {
                         onBlur={formik.handleBlur}
                       />
                     </div>
+                    {formik.touched.basic_information?.contact_telegram_handle && formik.errors.basic_information?.contact_telegram_handle ? (
+                      <div className="text-red-600">{formik.errors.basic_information.contact_telegram_handle}</div>
+                    ) : null}
                   </Col>
                   <Col className="gutter-row mt-8" span={24}>
                     <div>
@@ -93,12 +99,15 @@ const BasicInformation: React.FC<BasicInformationProps> = ({ formik }) => {
 
                     <div>
                       <InputComp
-                        name=""
+                        name="basic_information.email"
                         placeholder="e.g.abc@abc.xyz"
                         value={formik.values.basic_information.email}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                       />
+                      {formik.touched.basic_information?.email && formik.errors.basic_information?.email ? (
+                      <div className="text-red-600">{formik.errors.basic_information.email}</div>
+                    ) : null}
                     </div>
                   </Col>
                 </Row>

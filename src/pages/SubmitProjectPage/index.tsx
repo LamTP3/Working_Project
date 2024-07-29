@@ -42,7 +42,7 @@ const initialValues: Project = {
     token_name: '',
     token_symbol: '',
     token_contract_address: '',
-    tokennomics: {},
+    tokennomics: [],
   },
   capital: {
     rounds: [],
@@ -60,14 +60,41 @@ const initialValues: Project = {
   reject_reason: '',
 }
 
-const validationSchema =  Yup.object({
+const validationSchema = Yup.object({
   basic_information: Yup.object({
     project_name: Yup.string().required('Required!'),
     contact_name: Yup.string().required('Required!'),
-    contact_telegram_handle: Yup.string().required('Required!'),
-    email: Yup.string().required('Required!'),
-    project_logo: Yup.string().required('Required!'),
-    project_cover: Yup.string().required('Required!')
+    contact_telegram_handle: Yup.string().required('Required!').matches(/^(?:@)?[a-zA-Z0-9_]{5,32}$/, "Please enter a valid telegram account!"),
+    email: Yup.string().required('Required!').matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Please enter a valid email!"),
+    project_logo: Yup.string().required('Required!')
+  }),
+
+  project_detail: Yup.object({
+    start_date: Yup.string().required('Required!'),
+    project_description: Yup.string().required('Required!'),
+    ecosystem: Yup.string().required('Required!'),
+    current_community: Yup.string().required('Required!'),
+    size_existing_user: Yup.string().required('Required!')
+  }),
+
+  links: Yup.object({
+    project_website: Yup.string().required('Required!').matches(/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/, "Please enter a valid website!"),
+    project_telegram: Yup.string().required('Required!').matches(/^(?:@|(?:https?:\/\/)?t(?:elegram)?\.me\/)([\w\d_]{5,})$/, "Please enter a valid telegram link!"),
+    project_twitter: Yup.string().required('Required!').matches(/(https:\/\/twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))/, "Please enter a valid twitter link!"),
+    project_medium: Yup.string().required('Required!').matches(/https:\/\/medium\.com\/@[\w-]+/, "Please enter a valid medium link!"),
+    project_other_link: Yup.string().required('Required!').matches(/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/, "Please enter a valid Link!")
+  }),
+
+  token_information: Yup.object({
+    token_name: Yup.string().required('Required'),
+    token_symbol: Yup.string().required('Required').max(3, "Please enter a valid token symbol eg. ETH, BTC, APR ...!"),
+    token_contract_address: Yup.string().required('Required').matches(/^0x[a-fA-F0-9]{40}$/, "Please enter a valid token contract address!")
+  }),
+
+  public_token_sale: Yup.object({
+    total_amount: Yup.number().required('Required'),
+    amount_through_Galaxy: Yup.number().required('Required'),
+    planned_FDV: Yup.number().required('Required')
   })
 })
 
@@ -91,35 +118,40 @@ const SubmitProjectPage = () => {
         <form onSubmit={formik.handleSubmit}>
           <div className="mt-5">
             <CollapseComponent
-            title="Basic Information"
-            child={<BasicInformation formik={formik}/>}
-          />
+              title="Basic Information"
+              child={<BasicInformation formik={formik} />}
+            />
           </div>
 
           <div className="mt-5">
             <CollapseComponent
               title="Project Details"
-              child={<ProjectDetails />}
+              child={<ProjectDetails formik={formik} />}
             />
           </div>
 
           <div className="mt-5">
-            <CollapseComponent title="Links" child={<Links />} />
+            <CollapseComponent
+              title="Links"
+              child={<Links formik={formik} />} />
           </div>
 
           <div className="mt-5">
             <CollapseComponent
               title="Token Information"
-              child={<TokenInformation />}
+              child={<TokenInformation formik={formik}/>}
             />
           </div>
           <div className="mt-5">
-            <CollapseComponent title="Capital" child={<Capital />} />
+            <CollapseComponent
+              title="Capital"
+              child={<Capital />}
+            />
           </div>
           <div className="mt-5">
             <CollapseComponent
               title="Public Token Sale"
-              child={<PublicTokenSale />}
+              child={<PublicTokenSale formik={formik}/>}
             />
           </div>
           <div className="mt-5">

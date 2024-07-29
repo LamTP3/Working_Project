@@ -4,8 +4,15 @@ import LabelComponent from "../../../../components/CommonInput/Label/LabelCompon
 import InputComp from "../../../../components/CommonInput/InputComp/Input/InputComp";
 import InputNumberComp from "../../../../components/CommonInput/InputComp/InputNumber/InputNumberComp";
 import IconButtonComp from "../../../../components/CommonInput/IconButton/IconButtonComp";
+import { FormikProps } from "formik";
+import { Project } from "../../../../type/type";
+import React from "react";
 
-const TokenInformation = () => {
+interface TokenInformationProps {
+  formik: FormikProps<Project>
+}
+
+const TokenInformation: React.FC<TokenInformationProps> = ({ formik }) => {
   const tokennomics = [
     {
       label: "Seed",
@@ -65,7 +72,16 @@ const TokenInformation = () => {
                     <LabelComponent label="Token name " required />
                   </div>
                   <div>
-                    <InputComp placeholder="e.g. Bitcoin" />
+                    <InputComp
+                      name="token_information.token_name"
+                      placeholder="e.g. Bitcoin"
+                      value={formik.values.token_information.token_name}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                    {formik.touched.token_information?.token_name && formik.errors.token_information?.token_name ? (
+                      <div className="text-red-600">{formik.errors.token_information.token_name}</div>
+                    ) : null}
                   </div>
                 </div>
                 <div>
@@ -73,7 +89,16 @@ const TokenInformation = () => {
                     <LabelComponent label="Token Symbol " required />
                   </div>
                   <div className="max-w-[180px]">
-                    <InputComp placeholder="e.g. BTC" />
+                    <InputComp
+                      name="token_information.token_symbol"
+                      placeholder="e.g. BTC"
+                      value={formik.values.token_information.token_symbol}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                    {formik.touched.token_information?.token_symbol && formik.errors.token_information?.token_symbol ? (
+                      <div className="text-red-600">{formik.errors.token_information.token_symbol}</div>
+                    ) : null}
                   </div>
                 </div>
               </div>
@@ -84,7 +109,16 @@ const TokenInformation = () => {
                   <LabelComponent label="Token contract address" required />
                 </div>
                 <div>
-                  <InputComp placeholder="e.g. https://twitter.com/abc" />
+                  <InputComp
+                    name="token_information.token_contract_address"
+                    placeholder="e.g. 0xc0f2...84d215"
+                    value={formik.values.token_information.token_contract_address}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                  {formik.touched.token_information?.token_contract_address && formik.errors.token_information?.token_contract_address ? (
+                    <div className="text-red-600">{formik.errors.token_information.token_contract_address}</div>
+                  ) : null}
                 </div>
               </div>
             </Col>
@@ -96,7 +130,16 @@ const TokenInformation = () => {
             <Row>
               <Col className="gutter-row flex gap-5" span={24}>
                 <div className="w-full">
-                  <InputComp defaultValue={item.label} />
+                  <InputComp
+                    name="token_information.tokennomics[0].tokennomics_Title"
+                    defaultValue={item.label}
+                    // value={formik.values.token_information.tokennomics[0].tokennomics_Title}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                  {/* {formik.touched.token_information?.token_contract_address && formik.errors.token_information?.token_contract_address ? (
+                    <div className="text-red-600">{formik.errors.token_information.token_contract_address}</div>
+                  ) : null} */}
                 </div>
                 <div className="max-w-[130px]">
                   <InputNumberComp
