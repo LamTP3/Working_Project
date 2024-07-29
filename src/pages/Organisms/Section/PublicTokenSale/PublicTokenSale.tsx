@@ -3,8 +3,14 @@ import LabelComponent from "../../../../components/CommonInput/Label/LabelCompon
 import InputComp from "../../../../components/CommonInput/InputComp/Input/InputComp";
 import RadioComponent from "../../../../components/CommonInput/Radio/RadioComponent";
 import TextAreaComp from "../../../../components/CommonInput/InputComp/TextArea/TextAreaComp";
+import { FormikProps } from "formik";
+import { Project } from "../../../../type/type";
 
-function PublicTokenSale() {
+interface PublicTokenSaleProps {
+  formik: FormikProps<Project>
+}
+
+const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ formik }) => {
   const radioOptions = [
     { label: "Yes", value: 1 },
     { label: "No", value: 2 },
@@ -20,7 +26,16 @@ function PublicTokenSale() {
             />
           </div>
           <div>
-            <InputComp placeholder="$1,000,000" />
+            <InputComp
+              name="public_token_sale.total_amount"
+              placeholder="$1,000,000"
+              value={formik.values.public_token_sale.total_amount}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.public_token_sale?.total_amount && formik.errors.public_token_sale?.total_amount ? (
+              <div className="text-red-600">{formik.errors.public_token_sale.total_amount}</div>
+            ) : null}
           </div>
         </Col>
         <Col span={12} className="pr-9">
@@ -31,7 +46,16 @@ function PublicTokenSale() {
             />
           </div>
           <div>
-            <InputComp placeholder="$500,000" />
+            <InputComp
+              name="public_token_sale.amount_through_Galaxy"
+              placeholder="$500,000"
+              value={formik.values.public_token_sale.amount_through_Galaxy}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.public_token_sale?.amount_through_Galaxy && formik.errors.public_token_sale?.amount_through_Galaxy ? (
+              <div className="text-red-600">{formik.errors.public_token_sale.amount_through_Galaxy}</div>
+            ) : null}
           </div>
         </Col>
         <Col span={12} className="pr-9 mt-5">
@@ -53,7 +77,16 @@ function PublicTokenSale() {
             />
           </div>
           <div>
-            <InputComp placeholder="$30,000,000" />
+            <InputComp
+              name="public_token_sale.planned_FDV"
+              placeholder="$30,000,000"
+              value={formik.values.public_token_sale.planned_FDV}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.public_token_sale?.planned_FDV && formik.errors.public_token_sale?.planned_FDV ? (
+              <div className="text-red-600">{formik.errors.public_token_sale.planned_FDV}</div>
+            ) : null}
           </div>
         </Col>
       </Row>
@@ -63,7 +96,13 @@ function PublicTokenSale() {
             <LabelComponent label="Other information" />
           </div>
           <div>
-            <TextAreaComp placeholder="Provide any information that helps us understand any expectations that you have." />
+            <TextAreaComp
+              name="public_token_sale.other_information"
+              placeholder="Provide any information that helps us understand any expectations that you have."
+              value={formik.values.public_token_sale.other_information}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
           </div>
         </Col>
         <Col span={24} className="mt-5 pr-9">
@@ -71,7 +110,13 @@ function PublicTokenSale() {
             <LabelComponent label="When do you want to conduct the sale?" />
           </div>
           <div>
-            <InputComp placeholder="Provide any information that helps us understand any expectations that you have." />
+            <InputComp
+              name="public_token_sale.sale"
+              placeholder="Provide any information that helps us understand any expectations that you have."
+              value={formik.values.public_token_sale.sale}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
           </div>
         </Col>
       </Row>

@@ -2,9 +2,9 @@
 export interface Project {
   id: string;
   basic_information: BasicInformationValues;
-  project_detail: ProjectDetail;
-  links: Links;
-  token_information: TokenInformation;
+  project_detail: ProjectDetailValues;
+  links: LinksValues;
+  token_information: TokenInformationValues;
   capital: Capital;
   public_token_sale: PublicTokenSale;
   status_of_partnerships: StatusOfPartnerships;
@@ -23,7 +23,7 @@ export type BasicInformationValues = {
 };
 
 // Định nghĩa kiểu type cho project_detail
-export type ProjectDetail = {
+export type ProjectDetailValues = {
   start_date: string;
   tags: Array<{
     tag_name: string;
@@ -36,7 +36,7 @@ export type ProjectDetail = {
 };
 
 // Định nghĩa kiểu type cho links
-export type Links = {
+export type LinksValues = {
   project_website: string;
   project_telegram: string;
   project_twitter: string;
@@ -45,11 +45,14 @@ export type Links = {
 };
 
 // Định nghĩa kiểu type cho token_information
-export type TokenInformation = {
+export type TokenInformationValues = {
   token_name: string;
   token_symbol: string;
   token_contract_address: string;
-  tokennomics: Record<string, any>;
+  tokennomics: Array<{
+    tokennomics_Title: string;
+    tokennomics_value: number;
+  }>;
 };
 
 // Định nghĩa kiểu type cho capital

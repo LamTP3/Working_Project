@@ -60,7 +60,9 @@
         "token_name": "",
         "token_symbol": "",
         "token_contract_address": "",
-        "tokennomics": {}
+        "tokennomics": [
+          
+        ]
       },
       "capital": {
         "rounds": [
