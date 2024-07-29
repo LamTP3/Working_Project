@@ -35,9 +35,6 @@ const ModalComponents: React.FC<ModalProps> = ({
 
     // Kiểm tra giá trị của value và chuyển đổi nếu cần
     const formattedValue = value ? dayjs(value).format(dateFormat) : null;
-
-    console.log("Formatted Date Change: ", formattedValue);
-
     updatedRounds[index] = {
       ...updatedRounds[index],
       [field]: formattedValue,
@@ -161,20 +158,30 @@ const ModalComponents: React.FC<ModalProps> = ({
                       <DatePickerComponent
                         disabled={false}
                         width="100%"
-                        value={item.startDate}
+                        value={
+                          dayjs(item.startDate).isValid()
+                            ? dayjs(item.startDate)
+                            : null
+                        }
                         onChange={(date) =>
                           handleDateChange(index, "startDate", date)
                         }
+                        maxDate={dayjs(item.endDate)}
                       />
                     </Col>
                     <Col span={12} className="mt-3">
                       <DatePickerComponent
                         disabled={false}
                         width="100%"
-                        value={item.endDate}
+                        value={
+                          dayjs(item.endDate).isValid()
+                            ? dayjs(item.endDate)
+                            : null
+                        }
                         onChange={(date) =>
                           handleDateChange(index, "endDate", date)
                         }
+                        minDate={dayjs(item.startDate).add(1, "days")}
                       />
                     </Col>
                   </Row>

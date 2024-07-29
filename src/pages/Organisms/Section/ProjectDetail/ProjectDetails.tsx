@@ -5,9 +5,10 @@ import MultipleSelect from "../../../../components/CommonInput/MultipleSelect/Mu
 import TextAreaComp from "../../../../components/CommonInput/InputComp/TextArea/TextAreaComp";
 import { FormikProps } from "formik";
 import { Project } from "../../../../type/type";
+import dayjs from "dayjs";
 
 interface ProjectDetailProps {
-  formik: FormikProps<Project>
+  formik: FormikProps<Project>;
 }
 
 const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
@@ -25,12 +26,49 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
                   name="project_detail.start_date"
                   placeholder="estimate"
                   disabled={false}
-                  value={formik.values.project_detail.start_date}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
+                  value={
+                    formik.values.project_detail.start_date
+                      ? dayjs(formik.values.project_detail.start_date)
+                      : null
+                  }
+                  onChange={(date) => {
+                    if (date) {
+                      const formattedDate = date.format("MM/DD/YYYY HH:mm");
+                      console.log(formattedDate);
+                      formik.setFieldValue(
+                        "project_detail.start_date",
+                        formattedDate
+                      );
+                    } else {
+                      formik.setFieldValue("project_detail.start_date", "");
+                    }
+                  }}
+                  onBlur={() => {
+                    console.log("Blur Event Triggered");
+                    formik.setTouched({
+                      ...formik.touched,
+                      project_detail: {
+                        ...formik.touched.project_detail,
+                        start_date: true,
+                      },
+                    });
+                  }}
                 />
-                {formik.touched.project_detail?.start_date && formik.errors.project_detail?.start_date ? (
-                  <div className="text-red-600">{formik.errors.project_detail.start_date}</div>
+                <>
+                  {console.log(
+                    "Touched: ",
+                    formik.touched.project_detail?.start_date
+                  )}
+                  {console.log(
+                    "Error: ",
+                    formik.errors.project_detail?.start_date
+                  )}
+                </>
+                {formik.touched.project_detail?.start_date &&
+                formik.errors.project_detail?.start_date ? (
+                  <div className="text-red-600">
+                    {formik.errors.project_detail.start_date}
+                  </div>
                 ) : null}
               </div>
             </Col>
@@ -39,9 +77,7 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
         <Col className="gutter-row" span={24}>
           <div className="mb-[30px]">
             <div>
-              <LabelComponent
-                label="Project tags"
-              />
+              <LabelComponent label="Project tags" />
             </div>
             <div className="mt-[8px]">
               <MultipleSelect />
@@ -59,8 +95,11 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.touched.project_detail?.project_description && formik.errors.project_detail?.project_description ? (
-                <div className="text-red-600">{formik.errors.project_detail.project_description}</div>
+              {formik.touched.project_detail?.project_description &&
+              formik.errors.project_detail?.project_description ? (
+                <div className="text-red-600">
+                  {formik.errors.project_detail.project_description}
+                </div>
               ) : null}
             </div>
           </div>
@@ -76,8 +115,11 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.touched.project_detail?.ecosystem && formik.errors.project_detail?.ecosystem ? (
-                <div className="text-red-600">{formik.errors.project_detail.ecosystem}</div>
+              {formik.touched.project_detail?.ecosystem &&
+              formik.errors.project_detail?.ecosystem ? (
+                <div className="text-red-600">
+                  {formik.errors.project_detail.ecosystem}
+                </div>
               ) : null}
             </div>
           </div>
@@ -93,8 +135,11 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.touched.project_detail?.current_community && formik.errors.project_detail?.current_community ? (
-                <div className="text-red-600">{formik.errors.project_detail.current_community}</div>
+              {formik.touched.project_detail?.current_community &&
+              formik.errors.project_detail?.current_community ? (
+                <div className="text-red-600">
+                  {formik.errors.project_detail.current_community}
+                </div>
               ) : null}
             </div>
           </div>
@@ -110,8 +155,11 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.touched.project_detail?.size_existing_user && formik.errors.project_detail?.size_existing_user ? (
-                <div className="text-red-600">{formik.errors.project_detail.size_existing_user}</div>
+              {formik.touched.project_detail?.size_existing_user &&
+              formik.errors.project_detail?.size_existing_user ? (
+                <div className="text-red-600">
+                  {formik.errors.project_detail.size_existing_user}
+                </div>
               ) : null}
             </div>
           </div>

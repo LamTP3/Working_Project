@@ -34,7 +34,7 @@ function Capital() {
         </Col>
         <Col span={16}>
           {options.map((option, index) => (
-            <Row key={index} className="mt-5" align="middle">
+            <Row key={index} className="mt-5" align="middle" gutter={[40, 0]}>
               <Col span={12}>
                 <DatePickerComponent
                   disabled={!checkedOptions.includes(option.value)}

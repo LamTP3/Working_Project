@@ -68,7 +68,7 @@
         "rounds": [
           {
             "roundName": "Investment Round 1",
-            "startDate": null,
+            "startDate":"03/26/2024 08:00",
             "endDate": "03/27/2024 08:25"
           },
           {

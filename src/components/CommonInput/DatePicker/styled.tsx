@@ -1,6 +1,5 @@
 import styled from "styled-components";
 type Props = {
-  $width?: string;
   $disabled?: boolean;
 };
 export const DatePickerWarraper = styled.div<Props>`
@@ -9,7 +8,7 @@ export const DatePickerWarraper = styled.div<Props>`
     border: none;
     height: 40px;
 
-    width: ${(props) => (props.$width ? props.$width : "80%")};
+    width: 100%;
 
     opacity: ${(props) => (props.$disabled ? "0.3" : "1")};
     .ant-picker-clear {
