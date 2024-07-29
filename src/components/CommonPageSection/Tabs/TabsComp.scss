@@ -1,18 +1,17 @@
-@import url(../InputComp/InputComp.scss);
-
 .tabs-custom{
     .ant-tabs-nav::before{
         border: none !important;
     }
     .ant-tabs-nav-wrap{
-
+        background: var(--primary-input-bg);
+        border-radius: 5px;
         .ant-tabs-tab{
             background: var(--primary-input-bg);
             color: var(--gray-color);
-            font-weight: bold;
+            font-size: 16px;
+            font-weight: 600;
             margin: 0;
-            padding-left: 15px;
-            padding-right: 15px;
+            padding: 12px 32px 12px 32px;
 
             &:first-child {
                 border-top-left-radius: 5px;

@@ -1,6 +1,5 @@
 import HeaderPage from "../HeaderPage";
 import * as Yup from 'yup';
-import Header from "../../components/CommonPageSection/Header/Header";
 import CollapseComponent from "../../components/CommonPageSection/Collapse/CollapseComponent";
 import BasicInformation from "../Organisms/Section/BasicInformation/BasicInformation";
 import ProjectDetails from "../Organisms/Section/ProjectDetail/ProjectDetails";
@@ -109,9 +108,8 @@ const SubmitProjectPage = () => {
 
   return (
     <>
-      <Header />
-      <div className="max-w-[976px] mt-[50px] mr-auto ml-auto">
-        <div>
+      <div className="max-w-[1000px] mt-[50px] mr-auto ml-auto">
+        <div className="mb-12">
           <HeaderPage />
         </div>
 
