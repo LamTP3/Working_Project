@@ -1,11 +1,15 @@
 import React from "react";
 import SubmitProjectPage from "./pages/SubmitProjectPage/index";
-import Table from "./components/CommonPageSection/Table/Table";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const App: React.FC = () => {
-  return (
-    <>
+import Header from "./components/CommonPageSection/Header/Header";
+import { Outlet } from "react-router";
+import ProjectListPage from "./pages/ProjectListPage";
+
+const Layout = () => {
+  return(
+    <div>
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -19,8 +23,35 @@ const App: React.FC = () => {
         transition={Bounce}
         theme="light"
       />
-      <SubmitProjectPage />
-      <Table />
+      <Header />
+      <Outlet />
+    </div>
+  )
+}
+
+
+const App: React.FC = () => {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        { index: true, element: <SubmitProjectPage /> },
+        {
+          path: "submit",
+          element: <SubmitProjectPage />,
+        },
+        {
+          path: "list",
+          element: <ProjectListPage />,
+        }
+      ],
+    },
+  ]);
+
+  return (
+    <>
+      <RouterProvider router={router}/>
     </>
   );
 };
