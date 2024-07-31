@@ -79,3 +79,8 @@ export type StatusOfPartnerships = Array<{
   label: string;
   value: boolean;
 }>;
+
+export type Project_Status = {
+  id: string;
+  value: string;
+};

@@ -60,15 +60,13 @@
         "token_name": "",
         "token_symbol": "BTC",
         "token_contract_address": "",
-        "tokennomics": [
-          
-        ]
+        "tokennomics": []
       },
       "capital": {
         "rounds": [
           {
             "roundName": "Investment Round 1",
-            "startDate":"03/26/2024 08:00",
+            "startDate": "03/26/2024 08:00",
             "endDate": "03/27/2024 08:25"
           },
           {
@@ -97,8 +95,9 @@
           "value": true
         }
       ],
-      "statusId": 1,
-      "reject_reason": "Test"
+      "statusId": 0,
+      "reject_reason": "Test",
+      "id": "6933"
     },
     {
       "basic_information": {
@@ -133,9 +132,7 @@
         "token_name": "",
         "token_symbol": "ETH",
         "token_contract_address": "",
-        "tokennomics": [
-          
-        ]
+        "tokennomics": []
       },
       "capital": {
         "rounds": [
@@ -170,8 +167,9 @@
           "value": true
         }
       ],
-      "statusId": 1,
-      "reject_reason": "Test"
+      "statusId": 0,
+      "reject_reason": "Test",
+      "id": "2558"
     },
     {
       "basic_information": {
@@ -206,9 +204,7 @@
         "token_name": "",
         "token_symbol": "USDT",
         "token_contract_address": "",
-        "tokennomics": [
-          
-        ]
+        "tokennomics": []
       },
       "capital": {
         "rounds": [
@@ -243,8 +239,9 @@
           "value": true
         }
       ],
-      "statusId": 1,
-      "reject_reason": "Test"
+      "statusId": 0,
+      "reject_reason": "Test",
+      "id": "3237"
     },
     {
       "basic_information": {
@@ -279,9 +276,7 @@
         "token_name": "",
         "token_symbol": "BNB",
         "token_contract_address": "",
-        "tokennomics": [
-          
-        ]
+        "tokennomics": []
       },
       "capital": {
         "rounds": [
@@ -316,8 +311,9 @@
           "value": true
         }
       ],
-      "statusId": 1,
-      "reject_reason": "Test"
+      "statusId": 2,
+      "reject_reason": "Test",
+      "id": "3d6a"
     },
     {
       "basic_information": {
@@ -352,9 +348,7 @@
         "token_name": "",
         "token_symbol": "SOL",
         "token_contract_address": "",
-        "tokennomics": [
-          
-        ]
+        "tokennomics": []
       },
       "capital": {
         "rounds": [
@@ -390,7 +384,8 @@
         }
       ],
       "statusId": 1,
-      "reject_reason": "Test"
+      "reject_reason": "Test",
+      "id": "d14f"
     },
     {
       "basic_information": {
@@ -425,9 +420,7 @@
         "token_name": "",
         "token_symbol": "USDC",
         "token_contract_address": "",
-        "tokennomics": [
-          
-        ]
+        "tokennomics": []
       },
       "capital": {
         "rounds": [
@@ -462,8 +455,9 @@
           "value": true
         }
       ],
-      "statusId": 1,
-      "reject_reason": "Test"
+      "statusId": 0,
+      "reject_reason": "Test",
+      "id": "bed8"
     },
     {
       "basic_information": {
@@ -498,9 +492,7 @@
         "token_name": "",
         "token_symbol": "XRP",
         "token_contract_address": "",
-        "tokennomics": [
-          
-        ]
+        "tokennomics": []
       },
       "capital": {
         "rounds": [
@@ -535,8 +527,9 @@
           "value": true
         }
       ],
-      "statusId": 1,
-      "reject_reason": "Test"
+      "statusId": 0,
+      "reject_reason": "Test",
+      "id": "4ff7"
     },
     {
       "basic_information": {
@@ -571,9 +564,7 @@
         "token_name": "",
         "token_symbol": "DOGE",
         "token_contract_address": "",
-        "tokennomics": [
-          
-        ]
+        "tokennomics": []
       },
       "capital": {
         "rounds": [
@@ -609,7 +600,8 @@
         }
       ],
       "statusId": 1,
-      "reject_reason": "Test"
+      "reject_reason": "Test",
+      "id": "eee5"
     },
     {
       "basic_information": {
@@ -644,9 +636,7 @@
         "token_name": "",
         "token_symbol": "TON",
         "token_contract_address": "",
-        "tokennomics": [
-          
-        ]
+        "tokennomics": []
       },
       "capital": {
         "rounds": [
@@ -682,7 +672,8 @@
         }
       ],
       "statusId": 1,
-      "reject_reason": "Test"
+      "reject_reason": "Test",
+      "id": "d99a"
     },
     {
       "basic_information": {
@@ -717,9 +708,7 @@
         "token_name": "",
         "token_symbol": "ADA",
         "token_contract_address": "",
-        "tokennomics": [
-          
-        ]
+        "tokennomics": []
       },
       "capital": {
         "rounds": [
@@ -754,8 +743,9 @@
           "value": true
         }
       ],
-      "statusId": 1,
-      "reject_reason": "Test"
+      "statusId": 0,
+      "reject_reason": "Test",
+      "id": "4648"
     },
     {
       "basic_information": {
@@ -790,15 +780,13 @@
         "token_name": "",
         "token_symbol": "NEIRO",
         "token_contract_address": "",
-        "tokennomics": [
-          
-        ]
+        "tokennomics": []
       },
       "capital": {
         "rounds": [
           {
             "roundName": "Investment Round 1",
-            "startDate": "03/26/2024 08:00",
+            "startDate": "03/15/2024 08:00",
             "endDate": "03/27/2024 08:25"
           },
           {
@@ -827,11 +815,11 @@
           "value": true
         }
       ],
-      "statusId": 1,
-      "reject_reason": "Test"
+      "statusId": 0,
+      "reject_reason": "Test",
+      "id": "892e"
     }
   ],
-  
   "Project_Status": [
     {
       "id": "0",
