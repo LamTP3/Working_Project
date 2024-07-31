@@ -11,6 +11,7 @@ import StatusOfPartnerships from "../Organisms/Section/Status of Partnerships/St
 import Action from "../Organisms/Section/Action/Action";
 import { useFormik, FormikProps } from "formik";
 import { Project } from "../../type/type";
+import ButtonComponent from "../../components/CommonInput/Button/ButtonComponent";
 
 const initialValues: Project = {
   id: '',
@@ -41,7 +42,17 @@ const initialValues: Project = {
     token_name: '',
     token_symbol: '',
     token_contract_address: '',
-    tokennomics: [],
+    tokennomics: [
+      { tokennomics_Title: 'Seed', tokennomics_value: 5.0 },
+      { tokennomics_Title: 'Partners & Advisors', tokennomics_value: 5.0 },
+      { tokennomics_Title: 'Team & Development', tokennomics_value: 10.0 },
+      { tokennomics_Title: 'Community & Ecosystem Growth', tokennomics_value: 25.0 },
+      { tokennomics_Title: 'Reserve', tokennomics_value: 1.85 },
+      { tokennomics_Title: 'Liquidity', tokennomics_value: 15.0 },
+      { tokennomics_Title: 'Public Round', tokennomics_value: 3.15 },
+      { tokennomics_Title: 'Staking Rewards', tokennomics_value: 25.0 },
+      { tokennomics_Title: 'Mining Rewards', tokennomics_value: 10.0 }
+    ],
   },
   capital: {
     rounds: [],
@@ -81,7 +92,7 @@ const validationSchema = Yup.object({
     project_telegram: Yup.string().required('Required!').matches(/^(?:@|(?:https?:\/\/)?t(?:elegram)?\.me\/)([\w\d_]{5,})$/, "Please enter a valid telegram link!"),
     project_twitter: Yup.string().required('Required!').matches(/(https:\/\/twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))/, "Please enter a valid twitter link!"),
     project_medium: Yup.string().required('Required!').matches(/https:\/\/medium\.com\/@[\w-]+/, "Please enter a valid medium link!"),
-    project_other_link: Yup.string().required('Required!').matches(/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/, "Please enter a valid Link!")
+    project_other_link: Yup.string().matches(/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/, "Please enter a valid Link!")
   }),
 
   token_information: Yup.object({
@@ -103,6 +114,7 @@ const SubmitProjectPage = () => {
     validationSchema,
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
+      console.log(values)
     },
   });
 
@@ -137,7 +149,7 @@ const SubmitProjectPage = () => {
           <div className="mt-5">
             <CollapseComponent
               title="Token Information"
-              child={<TokenInformation formik={formik}/>}
+              child={<TokenInformation formik={formik} />}
             />
           </div>
           <div className="mt-5">
@@ -149,7 +161,7 @@ const SubmitProjectPage = () => {
           <div className="mt-5">
             <CollapseComponent
               title="Public Token Sale"
-              child={<PublicTokenSale formik={formik}/>}
+              child={<PublicTokenSale formik={formik} />}
             />
           </div>
           <div className="mt-5">
@@ -160,6 +172,14 @@ const SubmitProjectPage = () => {
           </div>
           <div className="mt-5">
             <Action />
+          </div>
+          <div className="mt-5">
+            <ButtonComponent
+              htmlType="submit"
+              button_content="Submit Information"
+              arrow_icon={true}
+              background_color="Gradient"
+            />
           </div>
         </form>
       </div>

@@ -10,7 +10,7 @@ interface TabsCompProp extends TabsProps {
 }
 
 const TabsComp: React.FC<TabsCompProp> = (props) => {
-    // const [size, setSize] = useState<SizeType>('small');
+    const [size, setSize] = useState<SizeType>('small');
     return (
         <Tabs {...props} className='tabs-custom' />
     )
