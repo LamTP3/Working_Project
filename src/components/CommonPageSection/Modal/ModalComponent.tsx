@@ -144,7 +144,9 @@ const ModalComponents: React.FC<ModalProps> = ({
                     <div className="modal-project-name-style">
                       {data?.basic_information.project_name}
                     </div>
-                    <div className="modal-project-value-style">$ARROW</div>
+                    <div className="modal-project-value-style">
+                      {data?.token_information.token_symbol}
+                    </div>
                   </div>
                 </div>
               </Col>
@@ -207,7 +209,9 @@ const ModalComponents: React.FC<ModalProps> = ({
                     <div className="modal-project-name-style">
                       {data?.basic_information.project_name}
                     </div>
-                    <div className="modal-project-value-style">$ARROW</div>
+                    <div className="modal-project-value-style">
+                      {data?.token_information.token_symbol}
+                    </div>
                   </div>
                 </div>
               </Col>

@@ -17,9 +17,9 @@ const TokenInformation: React.FC<TokenInformationProps> = ({ formik }) => {
     <div>
       <Row>
         <Col className="gutter-row mb-[30px]" span={24}>
-          <Row>
-            <Col className="gutter-row pr-5" span={12}>
-              <div className="flex gap-2">
+          <Row gutter={[40, 0]}>
+            <Col className="gutter-row " span={12}>
+              <div className="flex gap-[20px]">
                 <div className="w-full">
                   <div className="mb-2">
                     <LabelComponent label="Token name " required />
@@ -62,7 +62,7 @@ const TokenInformation: React.FC<TokenInformationProps> = ({ formik }) => {
                 </div>
               </div>
             </Col>
-            <Col className="gutter-row pl-5" span={12}>
+            <Col className="gutter-row " span={12}>
               <div>
                 <div className="mb-2">
                   <LabelComponent label="Token contract address" required />

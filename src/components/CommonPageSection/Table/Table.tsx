@@ -61,7 +61,7 @@ function Table() {
           );
           toast.success("Delete Project Success");
           console.log("Delete success");
-          fetchData(); // Fetch data after deletion
+          fetchData();
           setOpen(false);
           return;
         } catch (error) {
@@ -187,7 +187,9 @@ function Table() {
                     </div>
                     <div>
                       <div>{item.basic_information.project_name}</div>
-                      <div className="table-text">--</div>
+                      <div className="table-text">
+                        {item.token_information.token_symbol}
+                      </div>
                     </div>
                   </div>
                 </td>

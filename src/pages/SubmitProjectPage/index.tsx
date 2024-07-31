@@ -61,10 +61,10 @@ const initialValues: Project = {
     rounds: [],
   },
   public_token_sale: {
-    total_amount: 0,
-    amount_through_Galaxy: 0,
+    total_amount: undefined,
+    amount_through_Galaxy: undefined,
     flexible_amount: false,
-    planned_FDV: 0,
+    planned_FDV: undefined,
     other_information: "",
     sale: "",
   },
@@ -164,7 +164,7 @@ const SubmitProjectPage = () => {
 
   return (
     <>
-      <div className="max-w-[1000px] mt-[50px] mr-auto ml-auto">
+      <div className="lg:mx-[200px] my-[50px] mx-[50px]">
         <div className="mb-12">
           <HeaderPage />
         </div>
