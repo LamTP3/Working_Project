@@ -55,14 +55,14 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
                   }}
                 />
                 <>
-                  {console.log(
+                  {/* {console.log(
                     "Touched: ",
                     formik.touched.project_detail?.start_date
                   )}
                   {console.log(
                     "Error: ",
                     formik.errors.project_detail?.start_date
-                  )}
+                  )} */}
                 </>
                 {formik.touched.project_detail?.start_date &&
                 formik.errors.project_detail?.start_date ? (

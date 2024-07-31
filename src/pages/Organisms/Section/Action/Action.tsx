@@ -26,15 +26,6 @@ function Action() {
           onChange={onChange}
           theme="dark"
         />
-        <div className="mt-5">
-          <ButtonComponent
-            button_content="Submit Information"
-            arrow_icon={true}
-            background_color="Gradient"
-            // disabled={!isCaptchaVerified}
-            // type="submit"
-          />
-        </div>
       </div>
     </>
   );

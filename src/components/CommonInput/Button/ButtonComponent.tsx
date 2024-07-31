@@ -1,19 +1,25 @@
 import React from "react";
-import { Button } from "antd";
-import { ButtonProps } from "./ButtonType";
+import { Button, ButtonProps } from "antd";
 import { ButtonWarraper } from "./styled";
 import { ArrowIcon } from "../../../Icon";
-const ButtonComponent: React.FC<ButtonProps> = ({
-  background_color,
-  button_content,
-  arrow_icon,
-  onClick,
-  width,
-}) => {
+
+interface ButtonCompProps extends ButtonProps {
+  background_color: string,
+  button_content: string
+  arrow_icon: boolean,
+  width?: string,
+  buttonType?: "button" | "submit",
+  onClick?: () => void
+}
+
+const ButtonComponent: React.FC<ButtonCompProps> = (props) => {
+  const { background_color, button_content,buttonType, arrow_icon, onClick, width, ...rest } = props;
+
   return (
     <div>
       <ButtonWarraper $width={width}>
         <Button
+          {...rest}
           type="primary"
           className={`no-border ${background_color}`}
           onClick={onClick}

@@ -4,7 +4,7 @@ import LabelComponent from "../../../../components/CommonInput/Label/LabelCompon
 import InputComp from "../../../../components/CommonInput/InputComp/Input/InputComp";
 import InputNumberComp from "../../../../components/CommonInput/InputComp/InputNumber/InputNumberComp";
 import IconButtonComp from "../../../../components/CommonInput/IconButton/IconButtonComp";
-import { FormikProps } from "formik";
+import { FormikProps, FieldArray } from "formik";
 import { Project } from "../../../../type/type";
 import React from "react";
 
@@ -13,53 +13,6 @@ interface TokenInformationProps {
 }
 
 const TokenInformation: React.FC<TokenInformationProps> = ({ formik }) => {
-  const tokennomics = [
-    {
-      label: "Seed",
-      percent: 5.0,
-      btn: "disable",
-    },
-    {
-      label: "Partners & Advisors",
-      percent: 5.0,
-      btn: "disable",
-    },
-    {
-      label: "Team & Development",
-      percent: 10.0,
-      btn: "disable",
-    },
-    {
-      label: "Community & Ecosystem Growth",
-      percent: 25.0,
-      btn: "disable",
-    },
-    {
-      label: "Reserve",
-      percent: 1.85,
-      btn: "disable",
-    },
-    {
-      label: "Liquidity",
-      percent: 15.0,
-      btn: "disable",
-    },
-    {
-      label: "Public Round",
-      percent: 3.15,
-      btn: "disable",
-    },
-    {
-      label: "Staking Rewards",
-      percent: 25.0,
-      btn: "disable",
-    },
-    {
-      label: "Private Round",
-      percent: 5.0,
-      btn: "disable",
-    },
-  ];
   return (
     <div>
       <Row>
@@ -125,34 +78,39 @@ const TokenInformation: React.FC<TokenInformationProps> = ({ formik }) => {
           </Row>
         </Col>
         <LabelComponent label="Tokenomics *" />
-        {tokennomics.map((item, index) => (
+        {formik.values.token_information.tokennomics.map((item, index) => (
           <Col key={index} className="gutter-row mb-[15px] mt-2" span={24}>
             <Row>
               <Col className="gutter-row flex gap-5" span={24}>
                 <div className="w-full">
                   <InputComp
-                    name="token_information.tokennomics[0].tokennomics_Title"
-                    defaultValue={item.label}
-                    // value={formik.values.token_information.tokennomics[0].tokennomics_Title}
+                    name={`token_information.tokennomics[${index}].tokennomics_Title`}
+                    placeholder="Title"
+                    value={item.tokennomics_Title}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                  {/* {formik.touched.token_information?.token_contract_address && formik.errors.token_information?.token_contract_address ? (
-                    <div className="text-red-600">{formik.errors.token_information.token_contract_address}</div>
-                  ) : null} */}
+                  {formik.touched.token_information?.tokennomics && formik.errors.token_information?.tokennomics ? (
+                    <div className="text-red-600">{(formik.errors.token_information.tokennomics as any)[index]?.tokennomics_Title}</div>
+                  ) : null}
                 </div>
                 <div className="max-w-[130px]">
                   <InputNumberComp
-                    defaultValue={item.percent}
+                    name={`token_information.tokennomics[${index}].tokennomics_value`}
+                    value={item.tokennomics_value}
                     step={0.01}
                     unit="%"
+                    onChange={value => formik.setFieldValue(`token_information.tokennomics[${index}].tokennomics_value`, value)}
+                    onBlur={formik.handleBlur}
                   />
+                  {formik.touched.token_information?.tokennomics && formik.errors.token_information?.tokennomics ? (
+                    <div className="text-red-600">{(formik.errors.token_information.tokennomics as any)[index]?.tokennomics_value}</div>
+                  ) : null}
                 </div>
                 <div>
                   <IconButtonComp
                     icon={<MinusOutlined />}
                     size="large"
-                    disabled
                   />
                 </div>
               </Col>
