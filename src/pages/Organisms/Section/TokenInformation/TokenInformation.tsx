@@ -4,12 +4,12 @@ import LabelComponent from "../../../../components/CommonInput/Label/LabelCompon
 import InputComp from "../../../../components/CommonInput/InputComp/Input/InputComp";
 import InputNumberComp from "../../../../components/CommonInput/InputComp/InputNumber/InputNumberComp";
 import IconButtonComp from "../../../../components/CommonInput/IconButton/IconButtonComp";
-import { FormikProps, FieldArray } from "formik";
+import { FormikProps } from "formik";
 import { Project } from "../../../../type/type";
 import React from "react";
 
 interface TokenInformationProps {
-  formik: FormikProps<Project>
+  formik: FormikProps<Project>;
 }
 
 const TokenInformation: React.FC<TokenInformationProps> = ({ formik }) => {
@@ -32,8 +32,11 @@ const TokenInformation: React.FC<TokenInformationProps> = ({ formik }) => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    {formik.touched.token_information?.token_name && formik.errors.token_information?.token_name ? (
-                      <div className="text-red-600">{formik.errors.token_information.token_name}</div>
+                    {formik.touched.token_information?.token_name &&
+                    formik.errors.token_information?.token_name ? (
+                      <div className="text-red-600">
+                        {formik.errors.token_information.token_name}
+                      </div>
                     ) : null}
                   </div>
                 </div>
@@ -49,8 +52,11 @@ const TokenInformation: React.FC<TokenInformationProps> = ({ formik }) => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    {formik.touched.token_information?.token_symbol && formik.errors.token_information?.token_symbol ? (
-                      <div className="text-red-600">{formik.errors.token_information.token_symbol}</div>
+                    {formik.touched.token_information?.token_symbol &&
+                    formik.errors.token_information?.token_symbol ? (
+                      <div className="text-red-600">
+                        {formik.errors.token_information.token_symbol}
+                      </div>
                     ) : null}
                   </div>
                 </div>
@@ -65,12 +71,17 @@ const TokenInformation: React.FC<TokenInformationProps> = ({ formik }) => {
                   <InputComp
                     name="token_information.token_contract_address"
                     placeholder="e.g. 0xc0f2...84d215"
-                    value={formik.values.token_information.token_contract_address}
+                    value={
+                      formik.values.token_information.token_contract_address
+                    }
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                  {formik.touched.token_information?.token_contract_address && formik.errors.token_information?.token_contract_address ? (
-                    <div className="text-red-600">{formik.errors.token_information.token_contract_address}</div>
+                  {formik.touched.token_information?.token_contract_address &&
+                  formik.errors.token_information?.token_contract_address ? (
+                    <div className="text-red-600">
+                      {formik.errors.token_information.token_contract_address}
+                    </div>
                   ) : null}
                 </div>
               </div>
@@ -90,8 +101,15 @@ const TokenInformation: React.FC<TokenInformationProps> = ({ formik }) => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                  {formik.touched.token_information?.tokennomics && formik.errors.token_information?.tokennomics ? (
-                    <div className="text-red-600">{(formik.errors.token_information.tokennomics as any)[index]?.tokennomics_Title}</div>
+                  {formik.touched.token_information?.tokennomics &&
+                  formik.errors.token_information?.tokennomics ? (
+                    <div className="text-red-600">
+                      {
+                        (formik.errors.token_information.tokennomics as any)[
+                          index
+                        ]?.tokennomics_Title
+                      }
+                    </div>
                   ) : null}
                 </div>
                 <div className="max-w-[130px]">
@@ -100,18 +118,27 @@ const TokenInformation: React.FC<TokenInformationProps> = ({ formik }) => {
                     value={item.tokennomics_value}
                     step={0.01}
                     unit="%"
-                    onChange={value => formik.setFieldValue(`token_information.tokennomics[${index}].tokennomics_value`, value)}
+                    onChange={(value) =>
+                      formik.setFieldValue(
+                        `token_information.tokennomics[${index}].tokennomics_value`,
+                        value
+                      )
+                    }
                     onBlur={formik.handleBlur}
                   />
-                  {formik.touched.token_information?.tokennomics && formik.errors.token_information?.tokennomics ? (
-                    <div className="text-red-600">{(formik.errors.token_information.tokennomics as any)[index]?.tokennomics_value}</div>
+                  {formik.touched.token_information?.tokennomics &&
+                  formik.errors.token_information?.tokennomics ? (
+                    <div className="text-red-600">
+                      {
+                        (formik.errors.token_information.tokennomics as any)[
+                          index
+                        ]?.tokennomics_value
+                      }
+                    </div>
                   ) : null}
                 </div>
                 <div>
-                  <IconButtonComp
-                    icon={<MinusOutlined />}
-                    size="large"
-                  />
+                  <IconButtonComp icon={<MinusOutlined />} size="large" />
                 </div>
               </Col>
             </Row>
