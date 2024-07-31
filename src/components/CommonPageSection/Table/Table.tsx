@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import "./Table.scss";
 import { MoreIcon, ChainIcon } from "../../../Icon";
@@ -10,29 +10,18 @@ import LogoComp from "../Logo/LogoComp";
 import PaginationComponent from "../Pagination/Pagination";
 import { Project } from "../../../type/type";
 import { formatPrice } from "../../../helper/util";
-import { getAllProject } from "../../../service/service";
 import { toast } from "react-toastify";
 
-function Table() {
-  const [data, setData] = useState<Project[]>([]);
+interface TableProps {
+  data: Project[];
+}
+
+function Table({ data }: TableProps) {
   const [open, setOpen] = useState(false);
   const [modalName, setModalName] = useState<ModalName>("Confirm");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [selectedProject, setSelectedProject] = useState<Project | undefined>();
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const dataProject = await getAllProject();
-      setData(dataProject);
-    } catch (error) {
-      console.error("Error fetching projects:", error);
-    }
-  };
 
   const handleOpen = (modal_name: ModalName) => {
     setOpen(true);
@@ -61,7 +50,6 @@ function Table() {
           );
           toast.success("Delete Project Success");
           console.log("Delete success");
-          fetchData(); // Fetch data after deletion
           setOpen(false);
           return;
         } catch (error) {
@@ -77,7 +65,6 @@ function Table() {
         );
         toast.success(`${modalName} Success`);
         console.log(`${modalName} Success`);
-        fetchData();
       } catch (error) {
         console.error(`Error updating project:`, error);
       }
@@ -187,7 +174,9 @@ function Table() {
                     </div>
                     <div>
                       <div>{item.basic_information.project_name}</div>
-                      <div className="table-text">--</div>
+                      <div className="table-text">
+                        {item.token_information.token_symbol}
+                      </div>
                     </div>
                   </div>
                 </td>

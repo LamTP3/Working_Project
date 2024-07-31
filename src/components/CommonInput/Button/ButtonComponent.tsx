@@ -2,18 +2,26 @@ import React from "react";
 import { Button, ButtonProps } from "antd";
 import { ButtonWarraper } from "./styled";
 import { ArrowIcon } from "../../../Icon";
-
+type BackgroundColor = "Gradient" | "Gradient_Danger" | "Gradient_Default";
 interface ButtonCompProps extends ButtonProps {
-  background_color: string,
-  button_content: string
-  arrow_icon: boolean,
-  width?: string,
-  buttonType?: "button" | "submit",
-  onClick?: () => void
+  background_color: BackgroundColor;
+  button_content: string;
+  arrow_icon: boolean;
+  width?: string;
+  buttonType?: "button" | "submit";
+  onClick?: () => void;
 }
 
 const ButtonComponent: React.FC<ButtonCompProps> = (props) => {
-  const { background_color, button_content,buttonType, arrow_icon, onClick, width, ...rest } = props;
+  const {
+    background_color,
+    button_content,
+    buttonType,
+    arrow_icon,
+    onClick,
+    width,
+    ...rest
+  } = props;
 
   return (
     <div>

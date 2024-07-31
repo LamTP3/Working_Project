@@ -1,23 +1,17 @@
 import ReCAPTCHA from "react-google-recaptcha";
 import "./Action.scss";
-import ButtonComponent from "../../../../components/CommonInput/Button/ButtonComponent";
 
-// interface ActionProps {
-//   onCaptchaChange: (value: boolean) => void;
-//   isCaptchaVerified: boolean;
-// }
+interface ActionProps {
+  onCaptchaChange: (value: any) => void;
+}
 
-
-
-function Action() {
-  // function handleCaptchaChange(value: any) {
-  //   onCaptchaChange(!!value);
-  // }
-
+function Action({ onCaptchaChange }: ActionProps) {
   // Hàm xử lý khi CAPTCHA được xác thực
   function onChange(value: any) {
     console.log("Captcha value:", value);
+    onCaptchaChange(value);
   }
+
   return (
     <>
       <div className="captcha">

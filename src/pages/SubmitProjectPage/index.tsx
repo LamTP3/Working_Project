@@ -1,3 +1,4 @@
+import { useState } from "react";
 import HeaderPage from "../HeaderPage";
 import * as Yup from "yup";
 import CollapseComponent from "../../components/CommonPageSection/Collapse/CollapseComponent";
@@ -13,6 +14,7 @@ import { useFormik, FormikProps } from "formik";
 import { Project } from "../../type/type";
 import ButtonComponent from "../../components/CommonInput/Button/ButtonComponent";
 
+// Giá trị khởi tạo cho toàn bộ form
 const initialValues: Project = {
   id: "",
   basic_information: {
@@ -61,10 +63,10 @@ const initialValues: Project = {
     rounds: [],
   },
   public_token_sale: {
-    total_amount: 0,
-    amount_through_Galaxy: 0,
+    total_amount: undefined,
+    amount_through_Galaxy: undefined,
     flexible_amount: false,
-    planned_FDV: 0,
+    planned_FDV: undefined,
     other_information: "",
     sale: "",
   },
@@ -73,6 +75,7 @@ const initialValues: Project = {
   reject_reason: "",
 };
 
+// Schema xác thực cho form
 const validationSchema = Yup.object({
   basic_information: Yup.object({
     project_name: Yup.string().required("Required!"),
@@ -125,10 +128,10 @@ const validationSchema = Yup.object({
         /https:\/\/medium\.com\/@[\w-]+/,
         "Please enter a valid medium link!"
       ),
-    project_other_link: Yup.string().matches(
-      /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
-      "Please enter a valid Link!"
-    ),
+    // project_other_link: Yup.string().matches(
+    //   /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
+    //   "Please enter a valid Link!"
+    // ),
   }),
 
   token_information: Yup.object({
@@ -152,6 +155,9 @@ const validationSchema = Yup.object({
 });
 
 const SubmitProjectPage = () => {
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
+
+  // Sử dụng Formik để quản lý form
   const formik: FormikProps<Project> = useFormik<Project>({
     initialValues,
     validationSchema,
@@ -162,14 +168,42 @@ const SubmitProjectPage = () => {
     },
   });
 
+  // Hàm xử lý submit
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    formik.validateForm().then(() => {
+      if (formik.isValid && captchaValue) {
+        formik.handleSubmit();
+      } else {
+        if (!captchaValue) {
+          alert("Please complete the CAPTCHA");
+        } else {
+          alert("Please fill in all required fields");
+          // Đánh dấu tất cả các trường là đã chạm vào
+          const createTouchedObject = (values: any) => {
+            return Object.keys(values).reduce((acc: any, key: string) => {
+              acc[key] =
+                typeof values[key] === "object" && !Array.isArray(values[key])
+                  ? createTouchedObject(values[key])
+                  : true;
+              return acc;
+            }, {});
+          };
+
+          formik.setTouched(createTouchedObject(formik.values));
+        }
+      }
+    });
+  };
+
   return (
     <>
-      <div className="max-w-[1000px] mt-[50px] mr-auto ml-auto">
+      <div className="lg:mx-[200px] my-[50px] mx-[50px]">
         <div className="mb-12">
           <HeaderPage />
         </div>
 
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="mt-5">
             <CollapseComponent
               title="Basic Information"
@@ -213,7 +247,7 @@ const SubmitProjectPage = () => {
             />
           </div>
           <div className="mt-5">
-            <Action />
+            <Action onCaptchaChange={setCaptchaValue} />
           </div>
           <div className="mt-5">
             <ButtonComponent

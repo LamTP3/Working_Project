@@ -66,10 +66,10 @@ export type Capital = {
 
 // Định nghĩa kiểu type cho public_token_sale
 export type PublicTokenSale = {
-  total_amount: number;
-  amount_through_Galaxy: number;
+  total_amount?: number;
+  amount_through_Galaxy?: number;
   flexible_amount: boolean;
-  planned_FDV: number;
+  planned_FDV?: number;
   other_information: string;
   sale: string;
 };
@@ -79,3 +79,8 @@ export type StatusOfPartnerships = Array<{
   label: string;
   value: boolean;
 }>;
+
+export type Project_Status = {
+  id: string;
+  value: string;
+};
