@@ -1,154 +1,37 @@
-import { useState } from "react";
-import axios from "axios";
-import "./Table.scss";
-import { MoreIcon, ChainIcon } from "../../../Icon";
-import type { MenuProps } from "antd";
 import { Button, Dropdown } from "antd";
-import { ModalName } from "../Modal/ModalType";
-import ModalComponents from "../Modal/ModalComponent";
-import LogoComp from "../Logo/LogoComp";
-import PaginationComponent from "../Pagination/Pagination";
+import { MoreIcon, ChainIcon } from "../../../Icon";
+import { MenuProps } from "antd";
 import { Project } from "../../../type/type";
 import { formatPrice } from "../../../helper/util";
-import { toast } from "react-toastify";
+import PaginationComponent from "../Pagination/Pagination";
+import "./Table.scss";
+import { ModalName } from "../Modal/ModalType";
+import LogoComp from "../Logo/LogoComp";
+
 interface TableProps {
   data: Project[];
+  onOpenModal: (modal_name: ModalName) => void;
+  onSelectProject: (item: Project) => void;
+  onPageChange: (page: number, size?: number) => void;
+  currentPage: number;
+  pageSize: number;
+  dropdownItems: MenuProps["items"];
 }
 
-function Table({ data }: TableProps) {
-  const [open, setOpen] = useState(false);
-  const [modalName, setModalName] = useState<ModalName>("Confirm");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
-  const [selectedProject, setSelectedProject] = useState<Project | undefined>();
-
-  const handleOpen = (modal_name: ModalName) => {
-    setOpen(true);
-    setModalName(modal_name);
-  };
-
-  const handleOk = async (rounds?: any[], rejectReason?: string) => {
-    if (selectedProject) {
-      let updatedProject = { ...selectedProject };
-
-      if (modalName === "Confirm" && rounds) {
-        updatedProject = {
-          ...updatedProject,
-          capital: { ...updatedProject.capital, rounds },
-        };
-      } else if (modalName === "Reject" && rejectReason) {
-        updatedProject = {
-          ...updatedProject,
-          statusId: 2,
-          reject_reason: rejectReason,
-        };
-      } else if (modalName === "Delete") {
-        try {
-          await axios.delete(
-            `http://localhost:9999/Project/${selectedProject.id}`
-          );
-          toast.success("Delete Project Success");
-          console.log("Delete success");
-          setOpen(false);
-          return;
-        } catch (error) {
-          console.error("Error deleting project:", error);
-          return;
-        }
-      }
-
-      try {
-        await axios.put(
-          `http://localhost:9999/Project/${selectedProject.id}`,
-          updatedProject
-        );
-        toast.success(`${modalName} Success`);
-        console.log(`${modalName} Success`);
-      } catch (error) {
-        console.error(`Error updating project:`, error);
-      }
-    }
-    setOpen(false);
-  };
-
-  const handleCancel = () => {
-    setOpen(false);
-  };
-
-  const handlePageChange = (page: number, size?: number) => {
-    setCurrentPage(page);
-    if (size) {
-      setPageSize(size);
-    }
-  };
-
+function Table({
+  data,
+  onSelectProject,
+  onPageChange,
+  currentPage,
+  pageSize,
+  dropdownItems,
+}: TableProps) {
   const handleSelectProject = (item: Project) => {
-    setSelectedProject(item);
-    console.log(item);
+    onSelectProject(item);
   };
-
-  const paginatedData = data.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize
-  );
-
-  const items: MenuProps["items"] = [
-    {
-      key: "1",
-      label: <div className="text-[#fff]">View detail</div>,
-    },
-    {
-      key: "2",
-      label: (
-        <div
-          className="text-right text-[#53FF50]"
-          onClick={() => {
-            handleOpen("Confirm");
-          }}
-        >
-          Approve
-        </div>
-      ),
-    },
-    {
-      key: "3",
-      label: (
-        <div
-          className="text-right text-[#FF5E5E]"
-          onClick={() => {
-            handleOpen("Reject");
-          }}
-        >
-          Reject
-        </div>
-      ),
-    },
-    {
-      key: "4",
-      label: (
-        <div
-          className="text-right text-[#F4C349]"
-          onClick={() => {
-            handleOpen("Delete");
-          }}
-        >
-          Delete
-        </div>
-      ),
-    },
-  ];
 
   return (
     <>
-      <div>
-        <ModalComponents
-          open={open}
-          handleOk={handleOk}
-          handleCancel={handleCancel}
-          modal_name={modalName}
-          data={selectedProject}
-        />
-      </div>
       <div>
         <table className="table-content">
           <thead>
@@ -164,14 +47,14 @@ function Table({ data }: TableProps) {
             </tr>
           </thead>
           <tbody>
-            {paginatedData.map((item, index) => (
+            {data.map((item, index) => (
               <tr key={index}>
                 <td>
                   <div className="project-table-style">
                     <div style={{ width: "40px", height: "40px" }}>
                       {item?.basic_information.project_logo ? (
                         <img
-                          src={data[0].basic_information.project_logo}
+                          src={item.basic_information.project_logo}
                           width={"100%"}
                           height={"100%"}
                         />
@@ -200,7 +83,7 @@ function Table({ data }: TableProps) {
                 </td>
                 <td>
                   <Dropdown
-                    menu={{ items }}
+                    menu={{ items: dropdownItems }}
                     placement="bottomRight"
                     trigger={["click"]}
                   >
@@ -220,7 +103,7 @@ function Table({ data }: TableProps) {
           total={data.length}
           current={currentPage}
           pageSize={pageSize}
-          onChange={handlePageChange}
+          onChange={onPageChange}
         />
       </div>
     </>

@@ -14,7 +14,6 @@ import { useFormik, FormikProps } from "formik";
 import { Project } from "../../type/type";
 import ButtonComponent from "../../components/CommonInput/Button/ButtonComponent";
 
-// Giá trị khởi tạo cho toàn bộ form
 const initialValues: Project = {
   id: "",
   basic_information: {
@@ -75,7 +74,6 @@ const initialValues: Project = {
   reject_reason: "",
 };
 
-// Schema xác thực cho form
 const validationSchema = Yup.object({
   basic_information: Yup.object({
     project_name: Yup.string().required("Required!"),

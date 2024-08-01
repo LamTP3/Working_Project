@@ -33,7 +33,6 @@ const ModalComponents: React.FC<ModalProps> = ({
   ) => {
     const updatedRounds = [...rounds];
 
-    // Kiểm tra giá trị của value và chuyển đổi nếu cần
     const formattedValue = value ? dayjs(value).format(dateFormat) : null;
     updatedRounds[index] = {
       ...updatedRounds[index],
