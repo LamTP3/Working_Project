@@ -11,7 +11,6 @@ import PaginationComponent from "../Pagination/Pagination";
 import { Project } from "../../../type/type";
 import { formatPrice } from "../../../helper/util";
 import { toast } from "react-toastify";
-
 interface TableProps {
   data: Project[];
 }
@@ -169,8 +168,16 @@ function Table({ data }: TableProps) {
               <tr key={index}>
                 <td>
                   <div className="project-table-style">
-                    <div>
-                      <LogoComp size="small" />
+                    <div style={{ width: "40px", height: "40px" }}>
+                      {item?.basic_information.project_logo ? (
+                        <img
+                          src={data[0].basic_information.project_logo}
+                          width={"100%"}
+                          height={"100%"}
+                        />
+                      ) : (
+                        <LogoComp size="small" />
+                      )}
                     </div>
                     <div>
                       <div>{item.basic_information.project_name}</div>
@@ -207,6 +214,7 @@ function Table({ data }: TableProps) {
           </tbody>
         </table>
       </div>
+
       <div className="mt-5">
         <PaginationComponent
           total={data.length}

@@ -92,7 +92,7 @@ const validationSchema = Yup.object({
         /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
         "Please enter a valid email!"
       ),
-    // project_logo: Yup.string().required("Required!"),
+    project_logo: Yup.string().required("Required!"),
   }),
 
   project_detail: Yup.object({

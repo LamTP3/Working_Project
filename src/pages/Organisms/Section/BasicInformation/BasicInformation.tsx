@@ -69,7 +69,20 @@ const BasicInformation: React.FC<BasicInformationProps> = ({ formik }) => {
                     width="137px"
                     height="137px"
                     label="Drag and drop an image file here or click"
+                    value={formik.values.basic_information.project_logo}
+                    onChange={(value) =>
+                      formik.setFieldValue(
+                        "basic_information.project_logo",
+                        value
+                      )
+                    }
                   />
+                  {formik.touched.basic_information?.project_logo &&
+                  formik.errors.basic_information?.project_logo ? (
+                    <div className="text-red-600">
+                      {formik.errors.basic_information.project_logo}
+                    </div>
+                  ) : null}
                 </div>
               </Col>
             </Row>
@@ -140,7 +153,20 @@ const BasicInformation: React.FC<BasicInformationProps> = ({ formik }) => {
                     width="468px"
                     height="137px"
                     label="Drag and drop an image/video file here or click"
+                    value={formik.values.basic_information.project_cover}
+                    onChange={(value) =>
+                      formik.setFieldValue(
+                        "basic_information.project_cover",
+                        value
+                      )
+                    }
                   />
+                  {formik.touched.basic_information?.project_cover &&
+                  formik.errors.basic_information?.project_cover ? (
+                    <div className="text-red-600">
+                      {formik.errors.basic_information.project_cover}
+                    </div>
+                  ) : null}
                 </div>
               </Col>
             </Row>
