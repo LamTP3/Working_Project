@@ -138,7 +138,7 @@
         "rounds": [
           {
             "roundName": "Investment Round 1",
-            "startDate": "03/26/2024 08:00",
+            "startDate": "03/13/2024 08:00",
             "endDate": "03/27/2024 08:25"
           },
           {
@@ -154,7 +154,7 @@
         ]
       },
       "public_token_sale": {
-        "total_amount": 1000000,
+        "total_amount": 2000000,
         "amount_through_Galaxy": 500000,
         "flexible_amount": true,
         "planned_FDV": 30000000,
@@ -167,7 +167,7 @@
           "value": true
         }
       ],
-      "statusId": 0,
+      "statusId": 1,
       "reject_reason": "Test",
       "id": "2558"
     },
@@ -210,7 +210,7 @@
         "rounds": [
           {
             "roundName": "Investment Round 1",
-            "startDate": "03/26/2024 08:00",
+            "startDate": "02/14/2024 08:00",
             "endDate": "03/27/2024 08:25"
           },
           {
@@ -226,7 +226,7 @@
         ]
       },
       "public_token_sale": {
-        "total_amount": 1000000,
+        "total_amount": 6800000,
         "amount_through_Galaxy": 500000,
         "flexible_amount": true,
         "planned_FDV": 30000000,
@@ -298,7 +298,7 @@
         ]
       },
       "public_token_sale": {
-        "total_amount": 1000000,
+        "total_amount": 3200000,
         "amount_through_Galaxy": 500000,
         "flexible_amount": true,
         "planned_FDV": 30000000,
@@ -370,7 +370,7 @@
         ]
       },
       "public_token_sale": {
-        "total_amount": 1000000,
+        "total_amount": 14300000,
         "amount_through_Galaxy": 500000,
         "flexible_amount": true,
         "planned_FDV": 30000000,
@@ -442,7 +442,7 @@
         ]
       },
       "public_token_sale": {
-        "total_amount": 1000000,
+        "total_amount": 8100000,
         "amount_through_Galaxy": 500000,
         "flexible_amount": true,
         "planned_FDV": 30000000,
@@ -514,7 +514,7 @@
         ]
       },
       "public_token_sale": {
-        "total_amount": 1000000,
+        "total_amount": 5700000,
         "amount_through_Galaxy": 500000,
         "flexible_amount": true,
         "planned_FDV": 30000000,
@@ -658,7 +658,7 @@
         ]
       },
       "public_token_sale": {
-        "total_amount": 1000000,
+        "total_amount": 2100000,
         "amount_through_Galaxy": 500000,
         "flexible_amount": true,
         "planned_FDV": 30000000,
@@ -671,8 +671,8 @@
           "value": true
         }
       ],
-      "statusId": 1,
-      "reject_reason": "Test",
+      "statusId": 2,
+      "reject_reason": "Somthing Wrong",
       "id": "d99a"
     },
     {
@@ -730,7 +730,7 @@
         ]
       },
       "public_token_sale": {
-        "total_amount": 1000000,
+        "total_amount": 5400000,
         "amount_through_Galaxy": 500000,
         "flexible_amount": true,
         "planned_FDV": 30000000,
@@ -802,7 +802,7 @@
         ]
       },
       "public_token_sale": {
-        "total_amount": 1000000,
+        "total_amount": 1800000,
         "amount_through_Galaxy": 500000,
         "flexible_amount": true,
         "planned_FDV": 30000000,
@@ -815,8 +815,8 @@
           "value": true
         }
       ],
-      "statusId": 0,
-      "reject_reason": "Test",
+      "statusId": 1,
+      "reject_reason": "Test 1/8",
       "id": "892e"
     }
   ],

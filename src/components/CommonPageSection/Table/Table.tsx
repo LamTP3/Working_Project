@@ -27,6 +27,7 @@ function Table({
   dropdownItems,
 }: TableProps) {
   const handleSelectProject = (item: Project) => {
+    console.log("Selected Project: ", item)
     onSelectProject(item);
   };
 
