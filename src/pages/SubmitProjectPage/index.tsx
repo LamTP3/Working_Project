@@ -249,7 +249,6 @@ const SubmitProjectPage = () => {
           </div>
           <div className="mt-5">
             <ButtonComponent
-              htmlType="submit"
               button_content="Submit Information"
               arrow_icon={true}
               background_color="Gradient"
