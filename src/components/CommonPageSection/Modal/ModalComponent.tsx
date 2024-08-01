@@ -138,7 +138,17 @@ const ModalComponents: React.FC<ModalProps> = ({
                 </div>
                 <div className="project-style">
                   <div className="logo-style">
-                    <LogoComp size="small" />
+                    <div style={{ width: "45px", height: "45px" }}>
+                      {data?.basic_information.project_logo ? (
+                        <img
+                          src={data?.basic_information.project_logo}
+                          width={"100%"}
+                          height={"100%"}
+                        />
+                      ) : (
+                        <LogoComp size="small" />
+                      )}
+                    </div>
                   </div>
                   <div>
                     <div className="modal-project-name-style">
@@ -203,7 +213,17 @@ const ModalComponents: React.FC<ModalProps> = ({
                 </div>
                 <div className="project-style">
                   <div className="logo-style">
-                    <LogoComp size="small" />
+                    <div style={{ width: "45px", height: "45px" }}>
+                      {data?.basic_information.project_logo ? (
+                        <img
+                          src={data?.basic_information.project_logo}
+                          width={"100%"}
+                          height={"100%"}
+                        />
+                      ) : (
+                        <LogoComp size="small" />
+                      )}
+                    </div>
                   </div>
                   <div>
                     <div className="modal-project-name-style">
