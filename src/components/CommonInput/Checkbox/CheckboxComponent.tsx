@@ -7,15 +7,22 @@ const CheckboxComponent: React.FC<CheckBoxProps> = ({
   optionsData,
   useCricle,
   onChange,
+  value,
   height,
+  disabled,
+  ...props
 }) => {
+
   return (
     <>
-      <CheckboxWarraper $circle={useCricle} $heightElement={height}>
+      <CheckboxWarraper $circle={useCricle} $heightElement={height} $disabled={disabled}>
         <Checkbox.Group
           options={optionsData}
           defaultValue={[optionsData[0]?.value]}
+          value={value}
           onChange={onChange}
+          disabled={disabled}
+          {...props}
         />
       </CheckboxWarraper>
     </>

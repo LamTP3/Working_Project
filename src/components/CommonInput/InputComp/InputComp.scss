@@ -30,3 +30,9 @@
 .textarea-custom {
   resize: none !important;
 }
+.ant-input-outlined[disabled] {
+  background-color: var(--primary-input-bg) !important;
+  opacity: 0.5;
+  color: var(--gray-color) !important;
+  border: none;
+}

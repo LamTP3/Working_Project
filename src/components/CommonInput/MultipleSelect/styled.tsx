@@ -1,7 +1,10 @@
 import styled from "styled-components";
-
-export const MultipleSelectWarraper = styled.div`
+type Props = {
+  $disabled?: boolean;
+}
+export const MultipleSelectWarraper = styled.div<Props>`
   .ant-select-selector {
+  opacity: ${(props) => (props.$disabled ? "0.5" : "1")};
     border: none !important;
     background-color: var(--primary-input-bg) !important;
     .ant-select-selection-overflow {

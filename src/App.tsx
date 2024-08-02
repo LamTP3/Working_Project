@@ -6,9 +6,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/CommonPageSection/Header/Header";
 import { Outlet } from "react-router";
 import ProjectListPage from "./pages/ProjectListPage";
-
+import ProjectDetail from "./pages/ProjectListPage/ProjectDetail/ProjectDetail";
 const Layout = () => {
-  return(
+  return (
     <div>
       <ToastContainer
         position="top-right"
@@ -45,13 +45,17 @@ const App: React.FC = () => {
           path: "list",
           element: <ProjectListPage />,
         }
+        , {
+          path: "detail",
+          element: <ProjectDetail />,
+        }
       ],
     },
   ]);
 
   return (
     <>
-      <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </>
   );
 };

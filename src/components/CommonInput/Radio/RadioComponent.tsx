@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import type { RadioChangeEvent } from "antd";
+import type { RadioChangeEvent, RadioGroupProps } from "antd";
 import { Radio } from "antd";
-import "./RadioComponent.scss";
+import { StyledRadio } from "./styled";
 
-interface RadioComponentProps {
+interface RadioComponentProps extends RadioGroupProps {
   options: { label: string; value: number }[];
 }
 
-const RadioComponent: React.FC<RadioComponentProps> = ({ options }) => {
+const RadioComponent: React.FC<RadioComponentProps> = ({ options, ...props }) => {
   const [value, setValue] = useState<number>(options[0]?.value || 1);
 
   const onChange = (e: RadioChangeEvent) => {
@@ -16,13 +16,15 @@ const RadioComponent: React.FC<RadioComponentProps> = ({ options }) => {
   };
 
   return (
-    <Radio.Group onChange={onChange} value={value}>
-      {options.map((option) => (
-        <Radio key={option.value} value={option.value}>
-          {option.label}
-        </Radio>
-      ))}
-    </Radio.Group>
+    <StyledRadio $diabled={props.disabled}>
+      <Radio.Group onChange={onChange} value={value} {...props}>
+        {options.map((option) => (
+          <Radio key={option.value} value={option.value}>
+            {option.label}
+          </Radio>
+        ))}
+      </Radio.Group>
+    </StyledRadio>
   );
 };
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 type Props = {
   $circle: boolean;
   $heightElement?: boolean;
+  $disabled?: boolean;
 };
 export const CheckboxWarraper = styled.div<Props>`
   .ant-checkbox-wrapper {
@@ -28,7 +29,12 @@ export const CheckboxWarraper = styled.div<Props>`
   }
   .ant-checkbox-wrapper-checked {
     .ant-checkbox + span {
-      color: white;
+      color: ${(props) => (props.$disabled ? "var(--text-color)" : "var(--white-color)")};
     }
+
   }
+    :where(.css-dev-only-do-not-override-1uq9j6g).ant-checkbox-disabled .ant-checkbox-inner:after {
+    border-color: var(--text-color) !important;
+}
+
 `;

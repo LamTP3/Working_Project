@@ -151,7 +151,6 @@ const validationSchema = Yup.object({
 const SubmitProjectPage = () => {
   const [captchaValue, setCaptchaValue] = useState<string | null>(null);
 
-  // Sử dụng Formik để quản lý form
   const formik: FormikProps<Project> = useFormik<Project>({
     initialValues,
     validationSchema,
@@ -162,7 +161,6 @@ const SubmitProjectPage = () => {
     },
   });
 
-  // Hàm xử lý submit
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     formik.validateForm().then(() => {
@@ -202,6 +200,7 @@ const SubmitProjectPage = () => {
             <CollapseComponent
               title="Basic Information"
               child={<BasicInformation formik={formik} />}
+              active
             />
           </div>
 

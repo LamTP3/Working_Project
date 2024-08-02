@@ -11,15 +11,17 @@ import TabsComp from "../../components/CommonPageSection/Tabs/TabsComp";
 import LogoComp from "../../components/CommonPageSection/Logo/LogoComp";
 import Table from "../../components/CommonPageSection/Table/Table";
 import { Project, Project_Status } from "../../type/type";
-import { dateFormat } from "../../helper/util";
+import { dateFormat, formatPrice } from "../../helper/util";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { MenuProps } from "antd/lib";
 import { useFormik } from "formik";
-import { Col, Row } from "antd";
+import { Button, Col, Dropdown, Row } from "antd";
 import * as Yup from "yup"
 import axios from "axios";
 import dayjs from "dayjs";
+import { ChainIcon, MoreIcon } from "../../Icon";
 
 interface Round {
   roundName: string;
@@ -34,6 +36,7 @@ interface ConfirmFormValues {
 interface RejectFormValues {
   rejectReason: string;
 }
+
 const ProjectListPage = () => {
   const [data, setData] = useState<Project[]>([]);
   const [status, setStatus] = useState<Project_Status[]>([]);
@@ -45,6 +48,7 @@ const ProjectListPage = () => {
   const [activeTab, setActiveTab] = useState("1");
   const [rounds, setRounds] = useState<Round[]>([
   ]);
+  const navigate = useNavigate();
 
   const initialValuesReject: RejectFormValues = {
     rejectReason: "",
@@ -84,6 +88,7 @@ const ProjectListPage = () => {
     validationSchema: validationSchemaConfirm,
     onSubmit: async (value) => {
       console.log("Submit value: ", value)
+      handleOk(value.rounds)
     },
     enableReinitialize: true,
   })
@@ -190,7 +195,7 @@ const ProjectListPage = () => {
                 background_color="Gradient"
                 button_content="Approve"
                 arrow_icon={false}
-                onClick={() => handleOk(rounds)}
+                onClick={() => formikConfirm.handleSubmit()}
                 width="208px"
               />
               <ButtonComponent
@@ -296,11 +301,6 @@ const ProjectListPage = () => {
                         name={`rounds.${index}.startDate`}
                         disabled={false}
                         width="100%"
-                        // value={
-                        //   dayjs(item.startDate).isValid()
-                        //     ? dayjs(item.startDate)
-                        //     : null
-                        // }
                         value={formikConfirm?.values?.rounds[index]?.startDate ? dayjs(formikConfirm.values.rounds[index].startDate) : null}
                         onChange={(date) =>
                           handleDateChange(index, "startDate", date)
@@ -309,18 +309,17 @@ const ProjectListPage = () => {
                         key={`startDate-${index}`}
 
                       />
-                      {/* {formikConfirm.errors.rounds &&
+                      {formikConfirm.errors.rounds &&
                         Array.isArray(formikConfirm.errors.rounds) &&
-                        formikConfirm.errors.rounds[index] &&
-                        formikConfirm.errors.rounds[index].startDate &&
-                        formikConfirm.touched.rounds &&
-                        Array.isArray(formikConfirm.touched.rounds) &&
-                        formikConfirm.touched.rounds[index] &&
-                        formikConfirm.touched.rounds[index].startDate && (
-                          <div className="error-message">
-                            {formikConfirm.errors.rounds[index].startDate}
-                          </div>
-                        )} */}
+                        typeof formikConfirm.errors.rounds[index] === "object" &&
+                        formikConfirm.errors.rounds[index]?.startDate ? (
+                        <div className="text-red-600">
+                          {
+                            formikConfirm.errors.rounds[index]
+                              ?.startDate as string
+                          }
+                        </div>
+                      ) : null}
 
                     </Col>
                     <Col span={12} className="mt-3">
@@ -328,8 +327,10 @@ const ProjectListPage = () => {
                         disabled={false}
                         width="100%"
                         value={
-                          dayjs(item.endDate).isValid()
-                            ? dayjs(item.endDate)
+                          formikConfirm?.values?.rounds[index]?.endDate
+                            ? dayjs(
+                              formikConfirm.values.rounds[index].endDate
+                            )
                             : null
                         }
                         onChange={(date) =>
@@ -339,16 +340,17 @@ const ProjectListPage = () => {
                         key={`endDate-${index}`}
                       />
 
-                      {/* {formikConfirm.errors.rounds &&
-                        formikConfirm.errors.rounds[index] &&
-                        formikConfirm.errors.rounds[index].endDate &&
-                        formikConfirm.touched.rounds &&
-                        formikConfirm.touched.rounds[index] &&
-                        formikConfirm.touched.rounds[index].endDate && (
-                          <div className="error-message">
-                            {formikConfirm.errors.rounds[index].endDate}
-                          </div>
-                        )} */}
+                      {formikConfirm.errors.rounds &&
+                        Array.isArray(formikConfirm.errors.rounds) &&
+                        typeof formikConfirm.errors.rounds[index] === "object" &&
+                        formikConfirm.errors.rounds[index]?.endDate ? (
+                        <div className="text-red-600">
+                          {
+                            formikConfirm.errors.rounds[index]
+                              ?.endDate as string
+                          }
+                        </div>
+                      ) : null}
                     </Col>
                   </Row>
                 ))}
@@ -468,7 +470,7 @@ const ProjectListPage = () => {
     const baseItems: MenuProps["items"] = [
       {
         key: "1",
-        label: <div className="text-[#fff]">View detail</div>,
+        label: <div className="text-[#fff]" onClick={() => navigate(`/detail`, { state: { project: selectedProject } })}>View detail</div>,
       },
       {
         key: "2",
@@ -515,6 +517,76 @@ const ProjectListPage = () => {
     return baseItems;
   };
 
+  const TableHead = (
+    <>
+      <tr>
+        <th>Project</th>
+        <th>Participants</th>
+        <th>Total Raised</th>
+        <th>Current Price</th>
+        <th>Ath Since Ido</th>
+        <th>Ended In</th>
+        <th>Chain</th>
+        <th></th>
+      </tr>
+    </>
+  )
+
+  const TableBody = (data: any) => {
+    return (
+      <>
+        {data.map((item: any, index: any) => (
+          <tr key={index}>
+            <td>
+              <div className="project-table-style">
+                <div style={{ width: "40px", height: "40px" }}>
+                  {item?.basic_information.project_logo ? (
+                    <img
+                      src={item.basic_information.project_logo}
+                      width={"100%"}
+                      height={"100%"}
+                    />
+                  ) : (
+                    <LogoComp size="small" />
+                  )}
+                </div>
+                <div>
+                  <div>{item.basic_information.project_name}</div>
+                  <div className="table-text">
+                    {item.token_information.token_symbol}
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>--</td>
+            <td>{formatPrice(item.public_token_sale.total_amount)}</td>
+            <td>--</td>
+            <td>--</td>
+            <td>
+              <div>March 14th 2022</div>
+              <div className="table-text">8:28 AM - UTC</div>
+            </td>
+            <td>
+              <ChainIcon />
+            </td>
+            <td>
+              <Dropdown
+                menu={{ items: getMenuItems() }}
+                placement="bottomRight"
+                trigger={["click"]}
+              >
+                <Button onClick={() => setSelectedProject(item)}>
+                  <MoreIcon />
+                </Button>
+              </Dropdown>
+            </td>
+          </tr>
+        ))}
+      </>
+    )
+
+  }
+
   const tabs = [
     {
       key: "1",
@@ -523,10 +595,11 @@ const ProjectListPage = () => {
         <Table
           data={getFilteredData("Pending")}
           onOpenModal={handleOpenModal}
-          onSelectProject={setSelectedProject}
           onPageChange={handlePageChange}
           currentPage={currentPage}
           pageSize={pageSize}
+          TableHead={TableHead}
+          TableBody={TableBody}
           dropdownItems={getMenuItems()}
         />
       ),
@@ -538,11 +611,12 @@ const ProjectListPage = () => {
         <Table
           data={getFilteredData("Approve")}
           onOpenModal={handleOpenModal}
-          onSelectProject={setSelectedProject}
           onPageChange={handlePageChange}
           currentPage={currentPage}
           pageSize={pageSize}
           dropdownItems={getMenuItems()}
+          TableHead={TableHead}
+          TableBody={TableBody}
         />
       ),
     },
@@ -553,15 +627,18 @@ const ProjectListPage = () => {
         <Table
           data={getFilteredData("Reject")}
           onOpenModal={handleOpenModal}
-          onSelectProject={setSelectedProject}
           onPageChange={handlePageChange}
           currentPage={currentPage}
           pageSize={pageSize}
           dropdownItems={getMenuItems()}
+          TableHead={TableHead}
+          TableBody={TableBody}
         />
       ),
     },
   ];
+
+
 
   return (
     <div className="mr-auto ml-auto max-w-[1196px]">
