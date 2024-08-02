@@ -126,10 +126,6 @@ const validationSchema = Yup.object({
         /https:\/\/medium\.com\/@[\w-]+/,
         "Please enter a valid medium link!"
       ),
-    // project_other_link: Yup.string().matches(
-    //   /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
-    //   "Please enter a valid Link!"
-    // ),
   }),
 
   token_information: Yup.object({
@@ -249,6 +245,7 @@ const SubmitProjectPage = () => {
           </div>
           <div className="mt-5">
             <ButtonComponent
+              htmlType="submit"
               button_content="Submit Information"
               arrow_icon={true}
               background_color="Gradient"

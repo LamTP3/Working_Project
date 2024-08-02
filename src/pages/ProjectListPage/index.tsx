@@ -1,25 +1,39 @@
-import { useState, useEffect } from "react";
+import BreadCrumbComp from "../../components/CommonPageSection/BreadCrumb/BreadCrumbComp";
+import ModalComponents from "../../components/CommonPageSection/Modal/ModalComponent";
+import TextAreaComp from "../../components/CommonInput/InputComp/TextArea/TextAreaComp";
+import DatePickerComponent from "../../components/CommonInput/DatePicker/DatePicker";
+import ButtonComponent from "../../components/CommonInput/Button/ButtonComponent";
+import { ModalName } from "../../components/CommonPageSection/Modal/ModalType";
+import LabelComponent from "../../components/CommonInput/Label/LabelComponent";
+import { getAllProject, getAllProjectStatus } from "../../service/service";
 import SearchComp from "../../components/CommonInput/Search/SearchComp";
 import TabsComp from "../../components/CommonPageSection/Tabs/TabsComp";
-import Table from "../../components/CommonPageSection/Table/Table";
-import BreadCrumbComp from "../../components/CommonPageSection/BreadCrumb/BreadCrumbComp";
-import { Project, Project_Status } from "../../type/type";
-import { getAllProject, getAllProjectStatus } from "../../service/service";
-import { ModalName } from "../../components/CommonPageSection/Modal/ModalType";
-import ModalComponents from "../../components/CommonPageSection/Modal/ModalComponent";
-import { toast } from "react-toastify";
-import axios from "axios";
-import { MenuProps } from "antd/lib";
-import dayjs from "dayjs";
-import { dateFormat } from "../../helper/util";
-import ButtonComponent from "../../components/CommonInput/Button/ButtonComponent";
-import { Col, Row } from "antd";
-import LabelComponent from "../../components/CommonInput/Label/LabelComponent";
 import LogoComp from "../../components/CommonPageSection/Logo/LogoComp";
-import DatePickerComponent from "../../components/CommonInput/DatePicker/DatePicker";
-import TextAreaComp from "../../components/CommonInput/InputComp/TextArea/TextAreaComp";
-import * as Yup from "yup"
+import Table from "../../components/CommonPageSection/Table/Table";
+import { Project, Project_Status } from "../../type/type";
+import { dateFormat } from "../../helper/util";
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import { MenuProps } from "antd/lib";
 import { useFormik } from "formik";
+import { Col, Row } from "antd";
+import * as Yup from "yup"
+import axios from "axios";
+import dayjs from "dayjs";
+
+interface Round {
+  roundName: string;
+  startDate: string;
+  endDate: string;
+}
+
+interface ConfirmFormValues {
+  rounds: { startDate: string; endDate: string }[];
+}
+
+interface RejectFormValues {
+  rejectReason: string;
+}
 const ProjectListPage = () => {
   const [data, setData] = useState<Project[]>([]);
   const [status, setStatus] = useState<Project_Status[]>([]);
@@ -29,15 +43,34 @@ const ProjectListPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [activeTab, setActiveTab] = useState("1");
-  const [rejectReason, setRejectReason] = useState("");
-  const [rounds, setRounds] = useState(selectedProject?.capital.rounds || []);
-  const initialValues = {
+  const [rounds, setRounds] = useState<Round[]>([
+  ]);
+
+  const initialValuesReject: RejectFormValues = {
+    rejectReason: "",
+  }
+
+  const validationSchemaReject = Yup.object({
+    rejectReason: Yup.string().required("Reason is required"),
+  })
+
+  const formikReject = useFormik({
+    initialValues: initialValuesReject,
+    validationSchema: validationSchemaReject,
+    onSubmit: async (value) => {
+      handleOk([], value.rejectReason)
+      console.log("Submit value: ", value)
+    }
+  })
+
+  const initialValuesConfirm: ConfirmFormValues = {
     rounds: rounds.map((round) => ({
-      startDate: dayjs(round.startDate).isValid() ? dayjs(round.startDate) : null,
-      endDate: dayjs(round.endDate).isValid() ? dayjs(round.endDate) : null,
+      startDate: round.startDate,
+      endDate: round.endDate,
     })),
   };
-  const validationSchema = Yup.object({
+
+  const validationSchemaConfirm = Yup.object({
     rounds: Yup.array().of(
       Yup.object({
         startDate: Yup.string().required("Start date is required"),
@@ -45,19 +78,24 @@ const ProjectListPage = () => {
       })
     ),
   });
-  const formik = useFormik({
-    initialValues,
-    validationSchema,
+
+  const formikConfirm = useFormik({
+    initialValues: initialValuesConfirm,
+    validationSchema: validationSchemaConfirm,
     onSubmit: async (value) => {
       console.log("Submit value: ", value)
-    }
+    },
+    enableReinitialize: true,
   })
 
   useEffect(() => {
     if (selectedProject) {
-      setRounds(selectedProject.capital.rounds || []);
+      const projectRounds = selectedProject.capital.rounds || [];
+      setRounds(projectRounds);
     }
   }, [selectedProject]);
+
+
 
   const fetchDataProject = async () => {
     try {
@@ -68,6 +106,7 @@ const ProjectListPage = () => {
       console.error("Error fetching data:", error);
     }
   };
+
   const fetchDataProjectStatus = async () => {
     try {
       const dataProjectStatus = await getAllProjectStatus();
@@ -76,6 +115,7 @@ const ProjectListPage = () => {
       console.error("Error fetching data:", error);
     }
   }
+
   useEffect(() => {
     fetchDataProject();
     fetchDataProjectStatus();
@@ -171,7 +211,7 @@ const ProjectListPage = () => {
                 background_color="Gradient_Danger"
                 button_content="Reject"
                 arrow_icon={false}
-                onClick={() => handleOk([], rejectReason)}
+                onClick={() => formikReject.handleSubmit()}
                 width="208px"
               />
               <ButtonComponent
@@ -228,9 +268,10 @@ const ProjectListPage = () => {
                           src={selectedProject?.basic_information.project_logo}
                           width={"100%"}
                           height={"100%"}
+                          key={selectedProject?.basic_information.project_logo}
                         />
                       ) : (
-                        <LogoComp size="small" />
+                        <LogoComp size="small" key="logo" />
                       )}
                     </div>
                   </div>
@@ -252,18 +293,35 @@ const ProjectListPage = () => {
                     </Col>
                     <Col span={12} className="mt-3">
                       <DatePickerComponent
+                        name={`rounds.${index}.startDate`}
                         disabled={false}
                         width="100%"
-                        value={
-                          dayjs(item.startDate).isValid()
-                            ? dayjs(item.startDate)
-                            : null
-                        }
+                        // value={
+                        //   dayjs(item.startDate).isValid()
+                        //     ? dayjs(item.startDate)
+                        //     : null
+                        // }
+                        value={formikConfirm?.values?.rounds[index]?.startDate ? dayjs(formikConfirm.values.rounds[index].startDate) : null}
                         onChange={(date) =>
                           handleDateChange(index, "startDate", date)
                         }
                         maxDate={dayjs(item.endDate).subtract(1, 'day')}
+                        key={`startDate-${index}`}
+
                       />
+                      {/* {formikConfirm.errors.rounds &&
+                        Array.isArray(formikConfirm.errors.rounds) &&
+                        formikConfirm.errors.rounds[index] &&
+                        formikConfirm.errors.rounds[index].startDate &&
+                        formikConfirm.touched.rounds &&
+                        Array.isArray(formikConfirm.touched.rounds) &&
+                        formikConfirm.touched.rounds[index] &&
+                        formikConfirm.touched.rounds[index].startDate && (
+                          <div className="error-message">
+                            {formikConfirm.errors.rounds[index].startDate}
+                          </div>
+                        )} */}
+
                     </Col>
                     <Col span={12} className="mt-3">
                       <DatePickerComponent
@@ -278,7 +336,19 @@ const ProjectListPage = () => {
                           handleDateChange(index, "endDate", date)
                         }
                         minDate={dayjs(item.startDate).add(1, "days")}
+                        key={`endDate-${index}`}
                       />
+
+                      {/* {formikConfirm.errors.rounds &&
+                        formikConfirm.errors.rounds[index] &&
+                        formikConfirm.errors.rounds[index].endDate &&
+                        formikConfirm.touched.rounds &&
+                        formikConfirm.touched.rounds[index] &&
+                        formikConfirm.touched.rounds[index].endDate && (
+                          <div className="error-message">
+                            {formikConfirm.errors.rounds[index].endDate}
+                          </div>
+                        )} */}
                     </Col>
                   </Row>
                 ))}
@@ -303,9 +373,10 @@ const ProjectListPage = () => {
                           src={selectedProject?.basic_information.project_logo}
                           width={"100%"}
                           height={"100%"}
+                          key={selectedProject?.basic_information.project_logo}
                         />
                       ) : (
-                        <LogoComp size="small" />
+                        <LogoComp size="small" key="logo" />
                       )}
                     </div>
                   </div>
@@ -324,9 +395,20 @@ const ProjectListPage = () => {
               </Col>
               <Col span={24}>
                 <TextAreaComp
+                  name="rejectReason"
                   placeholder="Enter reason here..."
-                  onChange={(e) => setRejectReason(e.target.value)}
+                  onChange={(e) => {
+                    formikReject.setFieldValue("rejectReason", e.target.value);
+                  }}
+                  onBlur={formikReject.handleBlur}
+                  value={formikReject.values.rejectReason}
+                  key="rejectReason"
                 />
+                {formikReject.touched.rejectReason && formikReject.errors.rejectReason ? (
+                  <div className="text-red-600">
+                    {formikReject.errors.rejectReason}
+                  </div>
+                ) : null}
               </Col>
             </Row>
           </div>
