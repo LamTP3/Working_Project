@@ -137,17 +137,14 @@
       "capital": {
         "rounds": [
           {
-            "roundName": "Investment Round 1",
             "startDate": "03/26/2024 08:00",
             "endDate": "03/27/2024 08:25"
           },
           {
-            "roundName": "Investment Round 2",
             "startDate": "03/26/2024 08:00",
             "endDate": "03/27/2024 08:25"
           },
           {
-            "roundName": "Investment Round 3",
             "startDate": "03/26/2024 08:00",
             "endDate": "03/27/2024 08:25"
           }
@@ -167,7 +164,7 @@
           "value": true
         }
       ],
-      "statusId": 1,
+      "statusId": 0,
       "reject_reason": "Test",
       "id": "2558"
     },
@@ -671,7 +668,7 @@
           "value": true
         }
       ],
-      "statusId": 2,
+      "statusId": 0,
       "reject_reason": "Somthing Wrong",
       "id": "d99a"
     },
@@ -713,17 +710,14 @@
       "capital": {
         "rounds": [
           {
-            "roundName": "Investment Round 1",
             "startDate": "03/17/2024 08:00",
             "endDate": "03/27/2024 08:25"
           },
           {
-            "roundName": "Investment Round 2",
             "startDate": "03/12/2024 08:00",
             "endDate": "03/27/2024 08:25"
           },
           {
-            "roundName": "Investment Round 3",
             "startDate": "03/01/2024 08:00",
             "endDate": "03/27/2024 08:25"
           }
@@ -743,7 +737,7 @@
           "value": true
         }
       ],
-      "statusId": 1,
+      "statusId": 0,
       "reject_reason": "Test",
       "id": "4648"
     },
@@ -815,8 +809,8 @@
           "value": true
         }
       ],
-      "statusId": 0,
-      "reject_reason": "Test 1/8",
+      "statusId": 2,
+      "reject_reason": "Something Wrong",
       "id": "892e"
     }
   ],

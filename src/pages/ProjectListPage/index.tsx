@@ -84,6 +84,7 @@ const ProjectListPage = () => {
     validationSchema: validationSchemaConfirm,
     onSubmit: async (value) => {
       console.log("Submit value: ", value)
+      handleOk(value.rounds)
     },
     enableReinitialize: true,
   })
@@ -190,7 +191,7 @@ const ProjectListPage = () => {
                 background_color="Gradient"
                 button_content="Approve"
                 arrow_icon={false}
-                onClick={() => handleOk(rounds)}
+                onClick={() => formikConfirm.handleSubmit()}
                 width="208px"
               />
               <ButtonComponent
@@ -296,11 +297,6 @@ const ProjectListPage = () => {
                         name={`rounds.${index}.startDate`}
                         disabled={false}
                         width="100%"
-                        // value={
-                        //   dayjs(item.startDate).isValid()
-                        //     ? dayjs(item.startDate)
-                        //     : null
-                        // }
                         value={formikConfirm?.values?.rounds[index]?.startDate ? dayjs(formikConfirm.values.rounds[index].startDate) : null}
                         onChange={(date) =>
                           handleDateChange(index, "startDate", date)
@@ -309,18 +305,19 @@ const ProjectListPage = () => {
                         key={`startDate-${index}`}
 
                       />
-                      {/* {formikConfirm.errors.rounds &&
+
+
+                      {formikConfirm.errors.rounds &&
                         Array.isArray(formikConfirm.errors.rounds) &&
-                        formikConfirm.errors.rounds[index] &&
-                        formikConfirm.errors.rounds[index].startDate &&
-                        formikConfirm.touched.rounds &&
-                        Array.isArray(formikConfirm.touched.rounds) &&
-                        formikConfirm.touched.rounds[index] &&
-                        formikConfirm.touched.rounds[index].startDate && (
-                          <div className="error-message">
-                            {formikConfirm.errors.rounds[index].startDate}
-                          </div>
-                        )} */}
+                        typeof formikConfirm.errors.rounds[index] === "object" &&
+                        formikConfirm.errors.rounds[index]?.startDate ? (
+                        <div className="text-red-600">
+                          {
+                            formikConfirm.errors.rounds[index]
+                              ?.startDate as string
+                          }
+                        </div>
+                      ) : null}
 
                     </Col>
                     <Col span={12} className="mt-3">
@@ -328,8 +325,10 @@ const ProjectListPage = () => {
                         disabled={false}
                         width="100%"
                         value={
-                          dayjs(item.endDate).isValid()
-                            ? dayjs(item.endDate)
+                          formikConfirm?.values?.rounds[index]?.endDate
+                            ? dayjs(
+                              formikConfirm.values.rounds[index].endDate
+                            )
                             : null
                         }
                         onChange={(date) =>
@@ -339,16 +338,17 @@ const ProjectListPage = () => {
                         key={`endDate-${index}`}
                       />
 
-                      {/* {formikConfirm.errors.rounds &&
-                        formikConfirm.errors.rounds[index] &&
-                        formikConfirm.errors.rounds[index].endDate &&
-                        formikConfirm.touched.rounds &&
-                        formikConfirm.touched.rounds[index] &&
-                        formikConfirm.touched.rounds[index].endDate && (
-                          <div className="error-message">
-                            {formikConfirm.errors.rounds[index].endDate}
-                          </div>
-                        )} */}
+                      {formikConfirm.errors.rounds &&
+                        Array.isArray(formikConfirm.errors.rounds) &&
+                        typeof formikConfirm.errors.rounds[index] === "object" &&
+                        formikConfirm.errors.rounds[index]?.endDate ? (
+                        <div className="text-red-600">
+                          {
+                            formikConfirm.errors.rounds[index]
+                              ?.endDate as string
+                          }
+                        </div>
+                      ) : null}
                     </Col>
                   </Row>
                 ))}
