@@ -19,7 +19,7 @@ const getBase64 = (file: FileType): Promise<string> =>
 
 const UploadFile: React.FC<
   UploadFileProps & { value?: string; onChange?: (value: string) => void }
-> = ({ width, height, label, value, onChange, ...restProps }) => {
+> = ({ width, height, label, value, onChange, disabled, ...restProps }) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [fileList, setFileList] = useState<UploadFile[]>([]);
@@ -62,7 +62,7 @@ const UploadFile: React.FC<
   const uploadButton = (
     <button style={{ border: 0, background: "none" }} type="button">
       <UploadBoxIcon />
-      <div style={{ marginTop: 8 }} className="text-style">
+      <div style={{ marginTop: 8 }} className="text-style" >
         {label}
       </div>
     </button>
@@ -70,13 +70,14 @@ const UploadFile: React.FC<
 
   return (
     <>
-      <UploadFileWarraper $width={`${width}`} $height={`${height}`}>
+      <UploadFileWarraper $width={`${width}`} $height={`${height}`} $disabled={disabled} >
         <Upload
           listType="picture-card"
           fileList={fileList}
           onPreview={handlePreview}
           onChange={handleChange}
           beforeUpload={beforeUpload}
+          disabled={disabled}
           {...restProps}
         >
           {fileList.length >= 1 ? null : uploadButton}

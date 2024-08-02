@@ -33,6 +33,7 @@ export const DatePickerWarraper = styled.div<Props>`
     color: var(--gray-color) !important;
   }
   span.anticon {
+  display: ${(props) => (props.$disabled ? "none" : "block")};
     svg {
       path {
         fill: white;

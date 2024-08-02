@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Select } from "antd";
+import { Select, SelectProps } from "antd";
 import axios from "axios";
 import { MultipleSelectWarraper } from "./styled";
 const handleChange = (value: string[]) => {
@@ -25,8 +25,10 @@ const fetchData = async (): Promise<OptionType[]> => {
     return [];
   }
 };
-
-const MultipleSelect: React.FC = () => {
+interface MultipleSelectProps extends SelectProps {
+  value: string[];
+}
+const MultipleSelect: React.FC<MultipleSelectProps> = ({ value, disabled, ...props }) => {
   const [options, setOptions] = useState<OptionType[]>([]);
 
   useEffect(() => {
@@ -39,13 +41,16 @@ const MultipleSelect: React.FC = () => {
   }, []);
 
   return (
-    <MultipleSelectWarraper>
+    <MultipleSelectWarraper $disabled={disabled}>
       <Select
         mode="multiple"
         style={{ width: "100%", height: "40px" }}
         placeholder="Select one or more tags"
         onChange={handleChange}
         options={options}
+        value={value}
+        disabled={disabled}
+        {...props}
       />
     </MultipleSelectWarraper>
   );

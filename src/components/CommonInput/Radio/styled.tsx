@@ -1,3 +1,9 @@
+import styled from "styled-components";
+type RadioProps = {
+    $diabled?: boolean;
+}
+
+export const StyledRadio = styled.div<RadioProps>`
 .ant-radio-wrapper {
   .ant-radio-inner {
     border: 1px solid var(--text-color) !important;
@@ -40,3 +46,9 @@
     display: none;
   }
 }
+  
+.ant-radio-group {
+  opacity: ${(props) => (props.$diabled ? "0.5" : "1")};
+}
+
+`

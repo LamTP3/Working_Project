@@ -3,11 +3,16 @@ import styled from "styled-components";
 type Props = {
   $width?: string;
   $height?: string;
+  $disabled?: boolean;
 };
 export const UploadFileWarraper = styled.div<Props>`
+.ant-upload-disabled {
+opacity: 0.5;
+}
   .ant-upload-list-item-container {
     height: 137px !important;
     width: 137px !important;
+    opacity: ${(props) => (props?.$disabled ? "0.5" : "1")};
     .ant-upload-list-item-thumbnail {
       font-size: 20px;
       font-weight: 600;
