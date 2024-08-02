@@ -3,11 +3,12 @@ import { Collapse } from "antd";
 import TabUpIcon from "../../../Icon/TabUpIcon/TabUpIcon";
 import { CollapseProps } from "./CollapseType";
 import { Warraper } from "./styled";
-const CollapseComponent: React.FC<CollapseProps> = ({ title, child }) => {
+const CollapseComponent: React.FC<CollapseProps> = ({ title, child, active }) => {
   return (
     <>
       <Warraper>
         <Collapse
+          defaultActiveKey={active ? ['1'] : undefined}
           items={[
             {
               key: "1",
