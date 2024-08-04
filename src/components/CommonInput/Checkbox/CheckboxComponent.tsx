@@ -18,8 +18,8 @@ const CheckboxComponent: React.FC<CheckBoxProps> = ({
       <CheckboxWarraper $circle={useCricle} $heightElement={height} $disabled={disabled}>
         <Checkbox.Group
           options={optionsData}
-          defaultValue={[optionsData[0]?.value]}
-          value={value}
+          defaultValue={value ? value : [optionsData[0]?.value]}
+
           onChange={onChange}
           disabled={disabled}
           {...props}

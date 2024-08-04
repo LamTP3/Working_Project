@@ -18,6 +18,7 @@ export const CheckboxWarraper = styled.div<Props>`
     border-radius: ${(props) => (props.$circle === true ? "50px" : "4px")};
   }
   .ant-checkbox-inner::after {
+   border-color: var(--text-color) !important;
     inset-inline-start: 29% !important;
   }
   .ant-checkbox + span {
