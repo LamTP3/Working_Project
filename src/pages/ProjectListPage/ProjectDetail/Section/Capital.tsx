@@ -8,6 +8,7 @@ interface Props {
 }
 
 const Capital = ({ data }: Props) => {
+
     const options = data.capital.rounds.map((round: any, index: number) => ({
         label: round.roundName,
         value: (index + 1).toString()

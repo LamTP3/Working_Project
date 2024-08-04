@@ -44,7 +44,7 @@
             "tag_value": "Launchpad"
           },
           {
-                        "tag_name": "DeFi",
+            "tag_name": "DeFi",
             "tag_value": "DeFi"
           }
         ],
@@ -67,19 +67,19 @@
         "tokennomics": [
           {
             "tokennomics_title": "Seed",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Partners & Advisors",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Team & Development",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           },
           {
             "tokennomics_title": "Community & Ecosystem Growth",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Reserve",
@@ -87,7 +87,7 @@
           },
           {
             "tokennomics_title": "Liquidity",
-            "tokennomics_value": 15.0
+            "tokennomics_value": 15
           },
           {
             "tokennomics_title": "Public Round",
@@ -95,11 +95,11 @@
           },
           {
             "tokennomics_title": "Staking Rewards",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Mining Rewards",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           }
         ]
       },
@@ -151,13 +151,13 @@
       },
       "project_detail": {
         "start_date": "03/17/2024 08:00",
-      "tags": [
+        "tags": [
           {
             "tag_name": "Launchpad",
             "tag_value": "Launchpad"
           },
           {
-                        "tag_name": "DeFi",
+            "tag_name": "DeFi",
             "tag_value": "DeFi"
           }
         ],
@@ -180,19 +180,19 @@
         "tokennomics": [
           {
             "tokennomics_title": "Seed",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Partners & Advisors",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Team & Development",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           },
           {
             "tokennomics_title": "Community & Ecosystem Growth",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Reserve",
@@ -200,7 +200,7 @@
           },
           {
             "tokennomics_title": "Liquidity",
-            "tokennomics_value": 15.0
+            "tokennomics_value": 15
           },
           {
             "tokennomics_title": "Public Round",
@@ -208,25 +208,28 @@
           },
           {
             "tokennomics_title": "Staking Rewards",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Mining Rewards",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           }
         ]
       },
       "capital": {
         "rounds": [
           {
-            "startDate": "03/21/2024 08:00",
+            "roundName": "Investment Round 1",
+            "startDate": "03/26/2024 08:00",
             "endDate": "03/27/2024 08:25"
           },
           {
-            "startDate": "01/11/2024 08:00",
-            "endDate": "03/28/2024 08:25"
+            "roundName": "Investment Round 2",
+            "startDate": "03/26/2024 08:00",
+            "endDate": "03/27/2024 08:25"
           },
           {
+            "roundName": "Investment Round 3",
             "startDate": "03/26/2024 08:00",
             "endDate": "03/27/2024 08:25"
           }
@@ -261,13 +264,13 @@
       },
       "project_detail": {
         "start_date": "03/17/2024 08:00",
-      "tags": [
+        "tags": [
           {
             "tag_name": "Launchpad",
             "tag_value": "Launchpad"
           },
           {
-                        "tag_name": "DeFi",
+            "tag_name": "DeFi",
             "tag_value": "DeFi"
           }
         ],
@@ -290,19 +293,19 @@
         "tokennomics": [
           {
             "tokennomics_title": "Seed",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Partners & Advisors",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Team & Development",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           },
           {
             "tokennomics_title": "Community & Ecosystem Growth",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Reserve",
@@ -310,7 +313,7 @@
           },
           {
             "tokennomics_title": "Liquidity",
-            "tokennomics_value": 15.0
+            "tokennomics_value": 15
           },
           {
             "tokennomics_title": "Public Round",
@@ -318,11 +321,11 @@
           },
           {
             "tokennomics_title": "Staking Rewards",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Mining Rewards",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           }
         ]
       },
@@ -374,13 +377,13 @@
       },
       "project_detail": {
         "start_date": "03/17/2024 08:00",
-      "tags": [
+        "tags": [
           {
             "tag_name": "Launchpad",
             "tag_value": "Launchpad"
           },
           {
-                        "tag_name": "DeFi",
+            "tag_name": "DeFi",
             "tag_value": "DeFi"
           }
         ],
@@ -403,19 +406,19 @@
         "tokennomics": [
           {
             "tokennomics_title": "Seed",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Partners & Advisors",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Team & Development",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           },
           {
             "tokennomics_title": "Community & Ecosystem Growth",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Reserve",
@@ -423,7 +426,7 @@
           },
           {
             "tokennomics_title": "Liquidity",
-            "tokennomics_value": 15.0
+            "tokennomics_value": 15
           },
           {
             "tokennomics_title": "Public Round",
@@ -431,11 +434,11 @@
           },
           {
             "tokennomics_title": "Staking Rewards",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Mining Rewards",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           }
         ]
       },
@@ -487,13 +490,13 @@
       },
       "project_detail": {
         "start_date": "03/17/2024 08:00",
-      "tags": [
+        "tags": [
           {
             "tag_name": "Launchpad",
             "tag_value": "Launchpad"
           },
           {
-                        "tag_name": "DeFi",
+            "tag_name": "DeFi",
             "tag_value": "DeFi"
           }
         ],
@@ -516,19 +519,19 @@
         "tokennomics": [
           {
             "tokennomics_title": "Seed",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Partners & Advisors",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Team & Development",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           },
           {
             "tokennomics_title": "Community & Ecosystem Growth",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Reserve",
@@ -536,7 +539,7 @@
           },
           {
             "tokennomics_title": "Liquidity",
-            "tokennomics_value": 15.0
+            "tokennomics_value": 15
           },
           {
             "tokennomics_title": "Public Round",
@@ -544,11 +547,11 @@
           },
           {
             "tokennomics_title": "Staking Rewards",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Mining Rewards",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           }
         ]
       },
@@ -600,13 +603,13 @@
       },
       "project_detail": {
         "start_date": "03/17/2024 08:00",
-      "tags": [
+        "tags": [
           {
             "tag_name": "Launchpad",
             "tag_value": "Launchpad"
           },
           {
-                        "tag_name": "DeFi",
+            "tag_name": "DeFi",
             "tag_value": "DeFi"
           }
         ],
@@ -629,19 +632,19 @@
         "tokennomics": [
           {
             "tokennomics_title": "Seed",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Partners & Advisors",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Team & Development",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           },
           {
             "tokennomics_title": "Community & Ecosystem Growth",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Reserve",
@@ -649,7 +652,7 @@
           },
           {
             "tokennomics_title": "Liquidity",
-            "tokennomics_value": 15.0
+            "tokennomics_value": 15
           },
           {
             "tokennomics_title": "Public Round",
@@ -657,11 +660,11 @@
           },
           {
             "tokennomics_title": "Staking Rewards",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Mining Rewards",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           }
         ]
       },
@@ -713,13 +716,13 @@
       },
       "project_detail": {
         "start_date": "03/17/2024 08:00",
-      "tags": [
+        "tags": [
           {
             "tag_name": "Launchpad",
             "tag_value": "Launchpad"
           },
           {
-                        "tag_name": "DeFi",
+            "tag_name": "DeFi",
             "tag_value": "DeFi"
           }
         ],
@@ -742,19 +745,19 @@
         "tokennomics": [
           {
             "tokennomics_title": "Seed",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Partners & Advisors",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Team & Development",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           },
           {
             "tokennomics_title": "Community & Ecosystem Growth",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Reserve",
@@ -762,7 +765,7 @@
           },
           {
             "tokennomics_title": "Liquidity",
-            "tokennomics_value": 15.0
+            "tokennomics_value": 15
           },
           {
             "tokennomics_title": "Public Round",
@@ -770,11 +773,11 @@
           },
           {
             "tokennomics_title": "Staking Rewards",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Mining Rewards",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           }
         ]
       },
@@ -826,13 +829,13 @@
       },
       "project_detail": {
         "start_date": "03/17/2024 08:00",
-      "tags": [
+        "tags": [
           {
             "tag_name": "Launchpad",
             "tag_value": "Launchpad"
           },
           {
-                        "tag_name": "DeFi",
+            "tag_name": "DeFi",
             "tag_value": "DeFi"
           }
         ],
@@ -855,19 +858,19 @@
         "tokennomics": [
           {
             "tokennomics_title": "Seed",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Partners & Advisors",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Team & Development",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           },
           {
             "tokennomics_title": "Community & Ecosystem Growth",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Reserve",
@@ -875,7 +878,7 @@
           },
           {
             "tokennomics_title": "Liquidity",
-            "tokennomics_value": 15.0
+            "tokennomics_value": 15
           },
           {
             "tokennomics_title": "Public Round",
@@ -883,11 +886,11 @@
           },
           {
             "tokennomics_title": "Staking Rewards",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Mining Rewards",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           }
         ]
       },
@@ -939,13 +942,13 @@
       },
       "project_detail": {
         "start_date": "03/17/2024 08:00",
-      "tags": [
+        "tags": [
           {
             "tag_name": "Launchpad",
             "tag_value": "Launchpad"
           },
           {
-                        "tag_name": "DeFi",
+            "tag_name": "DeFi",
             "tag_value": "DeFi"
           }
         ],
@@ -968,19 +971,19 @@
         "tokennomics": [
           {
             "tokennomics_title": "Seed",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Partners & Advisors",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Team & Development",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           },
           {
             "tokennomics_title": "Community & Ecosystem Growth",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Reserve",
@@ -988,7 +991,7 @@
           },
           {
             "tokennomics_title": "Liquidity",
-            "tokennomics_value": 15.0
+            "tokennomics_value": 15
           },
           {
             "tokennomics_title": "Public Round",
@@ -996,11 +999,11 @@
           },
           {
             "tokennomics_title": "Staking Rewards",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Mining Rewards",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           }
         ]
       },
@@ -1052,13 +1055,13 @@
       },
       "project_detail": {
         "start_date": "03/17/2024 08:00",
-      "tags": [
+        "tags": [
           {
             "tag_name": "Launchpad",
             "tag_value": "Launchpad"
           },
           {
-                        "tag_name": "DeFi",
+            "tag_name": "DeFi",
             "tag_value": "DeFi"
           }
         ],
@@ -1081,19 +1084,19 @@
         "tokennomics": [
           {
             "tokennomics_title": "Seed",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Partners & Advisors",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Team & Development",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           },
           {
             "tokennomics_title": "Community & Ecosystem Growth",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Reserve",
@@ -1101,7 +1104,7 @@
           },
           {
             "tokennomics_title": "Liquidity",
-            "tokennomics_value": 15.0
+            "tokennomics_value": 15
           },
           {
             "tokennomics_title": "Public Round",
@@ -1109,11 +1112,11 @@
           },
           {
             "tokennomics_title": "Staking Rewards",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Mining Rewards",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           }
         ]
       },
@@ -1162,13 +1165,13 @@
       },
       "project_detail": {
         "start_date": "03/17/2024 08:00",
-      "tags": [
+        "tags": [
           {
             "tag_name": "Launchpad",
             "tag_value": "Launchpad"
           },
           {
-                        "tag_name": "DeFi",
+            "tag_name": "DeFi",
             "tag_value": "DeFi"
           }
         ],
@@ -1191,19 +1194,19 @@
         "tokennomics": [
           {
             "tokennomics_title": "Seed",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Partners & Advisors",
-            "tokennomics_value": 5.0
+            "tokennomics_value": 5
           },
           {
             "tokennomics_title": "Team & Development",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           },
           {
             "tokennomics_title": "Community & Ecosystem Growth",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Reserve",
@@ -1211,7 +1214,7 @@
           },
           {
             "tokennomics_title": "Liquidity",
-            "tokennomics_value": 15.0
+            "tokennomics_value": 15
           },
           {
             "tokennomics_title": "Public Round",
@@ -1219,11 +1222,11 @@
           },
           {
             "tokennomics_title": "Staking Rewards",
-            "tokennomics_value": 25.0
+            "tokennomics_value": 25
           },
           {
             "tokennomics_title": "Mining Rewards",
-            "tokennomics_value": 10.0
+            "tokennomics_value": 10
           }
         ]
       },
