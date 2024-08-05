@@ -26,7 +26,7 @@ const fetchData = async (): Promise<OptionType[]> => {
   }
 };
 interface MultipleSelectProps extends SelectProps {
-  value: string[];
+  value?: string[];
 }
 const MultipleSelect: React.FC<MultipleSelectProps> = ({ value, disabled, ...props }) => {
   const [options, setOptions] = useState<OptionType[]>([]);

@@ -1,15 +1,23 @@
 import "./Header.scss";
 import LogoComp from "../Logo/LogoComp";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <div className="header-container">
       <div className="header-inner">
-        <div className="header-left">
+        <Link to="/" className="header-left cursor-pointer">
           <LogoComp size="medium" />
           <h2 className="header-logo-text">Galaxy Pad</h2>
+        </Link>
+        {/* <div className="header-left">
+          <LogoComp size="medium" />
+          <h2 className="header-logo-text">Galaxy Pad</h2>
+        </div> */}
+        <div className="header-mid flex">
+          <div className="mr-3 cursor-pointer">projects</div>
+          <Link className="cursor-pointer" to="/list">Come to List</Link>
         </div>
-        <div className="header-mid">projects</div>
         <div className="header-right">
           <div className="header-welcome">
             <p className="header-text-welcome">Welcome</p>

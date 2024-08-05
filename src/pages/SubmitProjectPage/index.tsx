@@ -234,7 +234,9 @@ const SubmitProjectPage = () => {
             />
           </div>
           <div className="mt-5">
-            <CollapseComponent title="Capital" child={<Capital />} />
+            <CollapseComponent
+              title="Capital"
+              child={<Capital formik={formik} />} />
           </div>
           <div className="mt-5">
             <CollapseComponent
@@ -245,7 +247,7 @@ const SubmitProjectPage = () => {
           <div className="mt-5">
             <CollapseComponent
               title="Status of Partnerships"
-              child={<StatusOfPartnerships />}
+              child={<StatusOfPartnerships formik={formik} />}
             />
           </div>
           <div className="mt-5">
