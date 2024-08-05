@@ -69,7 +69,7 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
               <LabelComponent label="Project tags" />
             </div>
             <div className="mt-[8px]">
-              <MultipleSelect />
+              <MultipleSelect name="formik.values.project_detail.tags" onChange={formik.handleChange} />
             </div>
           </div>
           <div className="mb-[30px]">
