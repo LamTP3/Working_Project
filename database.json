@@ -131,7 +131,7 @@
         "1",
         "2"
       ],
-      "statusId": 1,
+      "statusId": 0,
       "reject_reason": "Somthing wrong",
       "id": "6933"
     },
@@ -242,7 +242,7 @@
         "1",
         "2"
       ],
-      "statusId": 2,
+      "statusId": 0,
       "reject_reason": "Somthing wrong",
       "id": "174"
     },
@@ -325,17 +325,14 @@
       "capital": {
         "rounds": [
           {
-            "roundName": "Investment Round 1",
             "startDate": "03/26/2024 08:00",
             "endDate": "03/27/2024 08:25"
           },
           {
-            "roundName": "Investment Round 2",
             "startDate": "03/26/2024 08:00",
             "endDate": "03/27/2024 08:25"
           },
           {
-            "roundName": "Investment Round 3",
             "startDate": "03/26/2024 08:00",
             "endDate": "03/27/2024 08:25"
           }

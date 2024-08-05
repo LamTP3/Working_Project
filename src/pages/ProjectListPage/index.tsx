@@ -11,14 +11,14 @@ import TabsComp from "../../components/CommonPageSection/Tabs/TabsComp";
 import LogoComp from "../../components/CommonPageSection/Logo/LogoComp";
 import Table from "../../components/CommonPageSection/Table/Table";
 import { Project, Project_Status } from "../../type/type";
-import { dateFormat, formatPrice } from "../../helper/util";
+import { formatPrice } from "../../helper/util";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { MenuProps } from "antd/lib";
 import { useFormik } from "formik";
 import { Button, Col, Dropdown, Row } from "antd";
-import * as Yup from "yup"
+import * as Yup from "yup";
 import axios from "axios";
 import dayjs from "dayjs";
 import { ChainIcon, MoreIcon } from "../../Icon";
@@ -30,7 +30,7 @@ interface Round {
 }
 
 interface ConfirmFormValues {
-  rounds: { startDate: string; endDate: string }[];
+  rounds: { roundName: string; startDate: string; endDate: string }[];
 }
 
 interface RejectFormValues {
@@ -46,29 +46,29 @@ const ProjectListPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [activeTab, setActiveTab] = useState("1");
-  const [rounds, setRounds] = useState<Round[]>([
-  ]);
+  const [rounds, setRounds] = useState<Round[]>([]);
   const navigate = useNavigate();
 
   const initialValuesReject: RejectFormValues = {
     rejectReason: "",
-  }
+  };
 
   const validationSchemaReject = Yup.object({
     rejectReason: Yup.string().required("Reason is required"),
-  })
+  });
 
   const formikReject = useFormik({
     initialValues: initialValuesReject,
     validationSchema: validationSchemaReject,
     onSubmit: async (value) => {
-      handleOk([], value.rejectReason)
-      console.log("Submit value: ", value)
-    }
-  })
+      handleOk([], value.rejectReason);
+      console.log("Submit value: ", value);
+    },
+  });
 
   const initialValuesConfirm: ConfirmFormValues = {
     rounds: rounds.map((round) => ({
+      roundName: round.roundName,
       startDate: round.startDate,
       endDate: round.endDate,
     })),
@@ -87,11 +87,11 @@ const ProjectListPage = () => {
     initialValues: initialValuesConfirm,
     validationSchema: validationSchemaConfirm,
     onSubmit: async (value) => {
-      console.log("Submit value: ", value)
-      handleOk(value.rounds)
+      console.log("Submit value: ", value);
+      handleOk(value.rounds);
     },
     enableReinitialize: true,
-  })
+  });
 
   useEffect(() => {
     if (selectedProject) {
@@ -104,7 +104,6 @@ const ProjectListPage = () => {
     try {
       const dataProject = await getAllProject();
       setData(dataProject.reverse());
-
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -117,13 +116,12 @@ const ProjectListPage = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  }
+  };
 
   useEffect(() => {
     fetchDataProject();
     fetchDataProjectStatus();
   }, []);
-
 
   const handleOk = async (rounds?: any[], rejectReason?: string) => {
     if (selectedProject) {
@@ -289,7 +287,7 @@ const ProjectListPage = () => {
                 </div>
               </Col>
               <Col span={24}>
-                {rounds.map((item, index) => (
+                {formikConfirm?.values?.rounds.map((item, index) => (
                   <Row gutter={[20, 0]} key={index}>
                     <Col span={24} className="mt-4">
                       <LabelComponent label={item.roundName} />
@@ -299,26 +297,54 @@ const ProjectListPage = () => {
                         name={`rounds.${index}.startDate`}
                         disabled={false}
                         width="100%"
-                        value={formikConfirm?.values?.rounds[index]?.startDate ? dayjs(formikConfirm.values.rounds[index].startDate) : null}
-                        onChange={(date) =>
-                          handleDateChange(index, "startDate", date)
+                        value={
+                          formikConfirm?.values?.rounds[index]?.startDate
+                            ? dayjs(
+                                formikConfirm.values.rounds[index].startDate
+                              )
+                            : null
                         }
-                        maxDate={dayjs(item.endDate).subtract(1, 'day')}
-                        key={`startDate-${index}`}
-
-                      />
-                      {formikConfirm.errors.rounds &&
-                        Array.isArray(formikConfirm.errors.rounds) &&
-                        typeof formikConfirm.errors.rounds[index] === "object" &&
-                        formikConfirm.errors.rounds[index]?.startDate ? (
-                        <div className="text-red-600">
-                          {
-                            formikConfirm.errors.rounds[index]
-                              ?.startDate as string
+                        onChange={(date) => {
+                          if (date) {
+                            const formattedDate =
+                              date.format("MM/DD/YYYY HH:mm");
+                            console.log(formattedDate);
+                            formikConfirm.setFieldValue(
+                              `rounds.${index}.startDate`,
+                              formattedDate
+                            );
+                          } else {
+                            formikConfirm.setFieldValue(
+                              `rounds.${index}.startDate`,
+                              ""
+                            );
                           }
+                        }}
+                        onBlur={() => {
+                          const touchedRounds = formikConfirm.touched.rounds
+                            ? [...formikConfirm.touched.rounds]
+                            : [];
+                          if (!touchedRounds[index]) {
+                            touchedRounds[index] = {};
+                          }
+                          touchedRounds[index].startDate = true;
+
+                          formikConfirm.setTouched({
+                            ...formikConfirm.touched,
+                            rounds: touchedRounds,
+                          });
+                        }}
+                        maxDate={dayjs(item.endDate).subtract(1, "day")}
+                        key={`startDate-${index}`}
+                      />
+                      {formikConfirm.touched.rounds?.[index]?.startDate &&
+                      formikConfirm.errors.rounds &&
+                      typeof formikConfirm.errors.rounds[index] === "object" &&
+                      formikConfirm.errors.rounds[index].startDate ? (
+                        <div className="text-red-600">
+                          {formikConfirm.errors.rounds[index].startDate}
                         </div>
                       ) : null}
-
                     </Col>
                     <Col span={12} className="mt-3">
                       <DatePickerComponent
@@ -326,27 +352,48 @@ const ProjectListPage = () => {
                         width="100%"
                         value={
                           formikConfirm?.values?.rounds[index]?.endDate
-                            ? dayjs(
-                              formikConfirm.values.rounds[index].endDate
-                            )
+                            ? dayjs(formikConfirm.values.rounds[index].endDate)
                             : null
                         }
-                        onChange={(date) =>
-                          handleDateChange(index, "endDate", date)
-                        }
+                        onChange={(date) => {
+                          if (date) {
+                            const formattedDate =
+                              date.format("MM/DD/YYYY HH:mm");
+                            console.log(formattedDate);
+                            formikConfirm.setFieldValue(
+                              `rounds.${index}.endDate`,
+                              formattedDate
+                            );
+                          } else {
+                            formikConfirm.setFieldValue(
+                              `rounds.${index}.endDate`,
+                              ""
+                            );
+                          }
+                        }}
+                        onBlur={() => {
+                          const touchedRounds = formikConfirm.touched.rounds
+                            ? [...formikConfirm.touched.rounds]
+                            : [];
+                          if (!touchedRounds[index]) {
+                            touchedRounds[index] = {};
+                          }
+                          touchedRounds[index].endDate = true;
+
+                          formikConfirm.setTouched({
+                            ...formikConfirm.touched,
+                            rounds: touchedRounds,
+                          });
+                        }}
                         minDate={dayjs(item.startDate).add(1, "days")}
                         key={`endDate-${index}`}
                       />
-
-                      {formikConfirm.errors.rounds &&
-                        Array.isArray(formikConfirm.errors.rounds) &&
-                        typeof formikConfirm.errors.rounds[index] === "object" &&
-                        formikConfirm.errors.rounds[index]?.endDate ? (
+                      {formikConfirm.touched.rounds?.[index]?.endDate &&
+                      formikConfirm.errors.rounds &&
+                      typeof formikConfirm.errors.rounds[index] === "object" &&
+                      formikConfirm.errors.rounds[index].endDate ? (
                         <div className="text-red-600">
-                          {
-                            formikConfirm.errors.rounds[index]
-                              ?.endDate as string
-                          }
+                          {formikConfirm.errors.rounds[index].endDate}
                         </div>
                       ) : null}
                     </Col>
@@ -404,7 +451,8 @@ const ProjectListPage = () => {
                   value={formikReject.values.rejectReason}
                   key="rejectReason"
                 />
-                {formikReject.touched.rejectReason && formikReject.errors.rejectReason ? (
+                {formikReject.touched.rejectReason &&
+                formikReject.errors.rejectReason ? (
                   <div className="text-red-600">
                     {formikReject.errors.rejectReason}
                   </div>
@@ -417,23 +465,6 @@ const ProjectListPage = () => {
         return null;
     }
   };
-
-  const handleDateChange = (
-    index: number,
-    field: "startDate" | "endDate",
-    value: any
-  ) => {
-    const updatedRounds = [...rounds];
-
-    const formattedValue = value ? dayjs(value).format(dateFormat) : null;
-    updatedRounds[index] = {
-      ...updatedRounds[index],
-      [field]: formattedValue,
-    };
-
-    setRounds(updatedRounds);
-  };
-
 
   const handleOpenModal = (modal_name: ModalName) => {
     setOpen(true);
@@ -468,7 +499,14 @@ const ProjectListPage = () => {
     const baseItems: MenuProps["items"] = [
       {
         key: "1",
-        label: <div className="text-[#fff]" onClick={() => navigate(`/detail/` + selectedProject?.id)}>View detail</div>,
+        label: (
+          <div
+            className="text-[#fff]"
+            onClick={() => navigate(`/detail/` + selectedProject?.id)}
+          >
+            View detail
+          </div>
+        ),
       },
       {
         key: "2",
@@ -506,10 +544,12 @@ const ProjectListPage = () => {
     ];
 
     // Remove items based on the active tab
-    if (activeTab === "2") { // Approved
-      return baseItems.filter(item => item?.key !== "2");
-    } else if (activeTab === "3") { // Rejected
-      return baseItems.filter(item => item?.key !== "3");
+    if (activeTab === "2") {
+      // Approved
+      return baseItems.filter((item) => item?.key !== "2");
+    } else if (activeTab === "3") {
+      // Rejected
+      return baseItems.filter((item) => item?.key !== "3");
     }
 
     return baseItems;
@@ -528,7 +568,7 @@ const ProjectListPage = () => {
         <th></th>
       </tr>
     </>
-  )
+  );
 
   const TableBody = (data: any) => {
     return (
@@ -581,9 +621,8 @@ const ProjectListPage = () => {
           </tr>
         ))}
       </>
-    )
-
-  }
+    );
+  };
 
   const tabs = [
     {
@@ -636,8 +675,6 @@ const ProjectListPage = () => {
     },
   ];
 
-
-
   return (
     <div className="mr-auto ml-auto max-w-[1196px]">
       <div>
@@ -653,7 +690,11 @@ const ProjectListPage = () => {
         </div>
       </div>
       <div className="mt-[20px]">
-        <TabsComp defaultActiveKey="1" items={tabs} onChange={handleTabChange} />
+        <TabsComp
+          defaultActiveKey="1"
+          items={tabs}
+          onChange={handleTabChange}
+        />
       </div>
       <ModalComponents
         open={open}

@@ -14,7 +14,6 @@ const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ data }) => {
     { label: "Yes", value: "1" },
     { label: "No", value: "2" },
   ];
-  console.log("data", data);
   return (
     <div>
       <Row>

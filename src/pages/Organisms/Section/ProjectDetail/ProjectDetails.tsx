@@ -44,7 +44,6 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
                     }
                   }}
                   onBlur={() => {
-                    console.log("Blur Event Triggered");
                     formik.setTouched({
                       ...formik.touched,
                       project_detail: {
@@ -54,10 +53,8 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
                     });
                   }}
                 />
-                <>
-                </>
                 {formik.touched.project_detail?.start_date &&
-                  formik.errors.project_detail?.start_date ? (
+                formik.errors.project_detail?.start_date ? (
                   <div className="text-red-600">
                     {formik.errors.project_detail.start_date}
                   </div>
@@ -88,7 +85,7 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.project_detail?.project_description &&
-                formik.errors.project_detail?.project_description ? (
+              formik.errors.project_detail?.project_description ? (
                 <div className="text-red-600">
                   {formik.errors.project_detail.project_description}
                 </div>
@@ -108,7 +105,7 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.project_detail?.ecosystem &&
-                formik.errors.project_detail?.ecosystem ? (
+              formik.errors.project_detail?.ecosystem ? (
                 <div className="text-red-600">
                   {formik.errors.project_detail.ecosystem}
                 </div>
@@ -128,7 +125,7 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.project_detail?.current_community &&
-                formik.errors.project_detail?.current_community ? (
+              formik.errors.project_detail?.current_community ? (
                 <div className="text-red-600">
                   {formik.errors.project_detail.current_community}
                 </div>
@@ -148,7 +145,7 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.project_detail?.size_existing_user &&
-                formik.errors.project_detail?.size_existing_user ? (
+              formik.errors.project_detail?.size_existing_user ? (
                 <div className="text-red-600">
                   {formik.errors.project_detail.size_existing_user}
                 </div>
