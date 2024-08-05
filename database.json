@@ -106,14 +106,17 @@
       "capital": {
         "rounds": [
           {
+            "roundName": "Investment Round 1",
             "startDate": "03/26/2024 08:00",
             "endDate": "03/27/2024 08:25"
           },
           {
+            "roundName": "Investment Round 2",
             "startDate": "03/26/2024 08:00",
             "endDate": "03/27/2024 08:25"
           },
           {
+            "roundName": "Investment Round 3",
             "startDate": "03/26/2024 08:00",
             "endDate": "03/27/2024 08:25"
           }
@@ -131,7 +134,7 @@
         "1",
         "2"
       ],
-      "statusId": 0,
+      "statusId": 2,
       "reject_reason": "Somthing wrong",
       "id": "6933"
     },
@@ -325,14 +328,17 @@
       "capital": {
         "rounds": [
           {
+            "roundName": "Investment Round 1",
             "startDate": "03/26/2024 08:00",
             "endDate": "03/27/2024 08:25"
           },
           {
+            "roundName": "Investment Round 2",
             "startDate": "03/26/2024 08:00",
             "endDate": "03/27/2024 08:25"
           },
           {
+            "roundName": "Investment Round 3",
             "startDate": "03/26/2024 08:00",
             "endDate": "03/27/2024 08:25"
           }
@@ -350,7 +356,7 @@
         "1",
         "2"
       ],
-      "statusId": 0,
+      "statusId": 1,
       "reject_reason": "Test",
       "id": "6753"
     }

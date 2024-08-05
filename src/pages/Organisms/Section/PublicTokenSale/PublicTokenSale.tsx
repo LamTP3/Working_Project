@@ -72,7 +72,12 @@ const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ formik }) => {
             />
           </div>
           <div>
-            <RadioComponent options={radioOptions} />
+            <RadioComponent
+              options={radioOptions}
+              name="public_token_sale.flexible_amount"
+              value={formik.values.public_token_sale.flexible_amount}
+              onChange={formik.handleChange}
+            />
           </div>
         </Col>
         <Col span={12} className="pr-9 mt-5">
