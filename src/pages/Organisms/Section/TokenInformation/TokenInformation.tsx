@@ -13,6 +13,20 @@ interface TokenInformationProps {
 }
 
 const TokenInformation: React.FC<TokenInformationProps> = ({ formik }) => {
+  const handleAddTokenomics = () => {
+    formik.setFieldValue("token_information.tokennomics", [
+      ...formik.values.token_information.tokennomics,
+      { tokennomics_Title: "", tokennomics_value: 0.0 },
+    ]);
+  };
+
+  const handleRemoveTokenomics = (index: number) => {
+    const newTokenomics = formik.values.token_information.tokennomics.filter(
+      (_, i) => i !== index
+    );
+    formik.setFieldValue("token_information.tokennomics", newTokenomics);
+  };
+
   return (
     <div>
       <Row>
@@ -138,7 +152,12 @@ const TokenInformation: React.FC<TokenInformationProps> = ({ formik }) => {
                   ) : null}
                 </div>
                 <div>
-                  <IconButtonComp icon={<MinusOutlined />} size="large" />
+                  <IconButtonComp
+                    icon={<MinusOutlined />}
+                    size="large"
+                    disabled
+                    onClick={() => handleRemoveTokenomics(index)}
+                  />
                 </div>
               </Col>
             </Row>
@@ -154,7 +173,11 @@ const TokenInformation: React.FC<TokenInformationProps> = ({ formik }) => {
                 <InputNumberComp defaultValue={0.0} step={0.01} unit="%" />
               </div>
               <div>
-                <IconButtonComp icon={<PlusOutlined />} size="large" />
+                <IconButtonComp
+                  icon={<PlusOutlined />}
+                  size="large"
+                  onClick={handleAddTokenomics}
+                />
               </div>
             </Col>
           </Row>

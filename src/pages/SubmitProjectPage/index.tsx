@@ -48,10 +48,7 @@ const initialValues: Project = {
       { tokennomics_Title: "Seed", tokennomics_value: 5.0 },
       { tokennomics_Title: "Partners & Advisors", tokennomics_value: 5.0 },
       { tokennomics_Title: "Team & Development", tokennomics_value: 10.0 },
-      {
-        tokennomics_Title: "Community & Ecosystem Growth",
-        tokennomics_value: 25.0,
-      },
+      { tokennomics_Title: "Community & Ecosystem Growth", tokennomics_value: 25.0 },
       { tokennomics_Title: "Reserve", tokennomics_value: 1.85 },
       { tokennomics_Title: "Liquidity", tokennomics_value: 15.0 },
       { tokennomics_Title: "Public Round", tokennomics_value: 3.15 },
