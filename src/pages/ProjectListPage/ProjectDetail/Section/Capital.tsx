@@ -1,21 +1,26 @@
-
 import { Col, Row } from "antd";
 import CheckboxComponent from "../../../../components/CommonInput/Checkbox/CheckboxComponent";
 import DatePickerComponent from "../../../../components/CommonInput/DatePicker/DatePicker";
 import dayjs from "dayjs";
+
 interface Props {
-    data: any
+    data: any;
+}
+
+interface Option {
+    label: string;
+    value: string;
 }
 
 const Capital = ({ data }: Props) => {
-
-    const options = data.capital.rounds.map((round: any, index: number) => ({
-        label: round.roundName,
+    const options: Option[] = data?.rounds?.map((round: any, index: number) => ({
+        label: round?.roundName,
         value: (index + 1).toString()
-    })) as { label: string; value: string }[];
+    })) || [];
+    const allValues = options.map((option: Option) => option.value);
 
-    const allValues = options.map((option: { label: string; value: string }) => option.value);
     return (
+
         <div>
             <Row gutter={[16, 16]}>
                 <Col span={8}>
@@ -32,7 +37,7 @@ const Capital = ({ data }: Props) => {
                     </Row>
                 </Col>
                 <Col span={16}>
-                    {data.capital.rounds?.map((item: any, index: any) => (
+                    {data?.rounds?.map((item: any, index: any) => (
                         <Row key={index} className="mt-5" align="middle" gutter={[40, 0]}>
                             <Col span={12}>
                                 <DatePickerComponent

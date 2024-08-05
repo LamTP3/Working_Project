@@ -26,7 +26,7 @@ const TokenInformation: React.FC<TokenInformationProps> = ({ data }) => {
                                         <InputComp
                                             name="token_information.token_name"
                                             placeholder="e.g. Bitcoin"
-                                            value={data?.token_information?.token_name}
+                                            value={data?.token_name}
                                             disabled
                                         />
                                     </div>
@@ -39,7 +39,7 @@ const TokenInformation: React.FC<TokenInformationProps> = ({ data }) => {
                                         <InputComp
                                             name="token_information.token_symbol"
                                             placeholder="e.g. BTC"
-                                            value={data?.token_information?.token_symbol}
+                                            value={data?.token_symbol}
                                             disabled
                                         />
                                     </div>
@@ -55,7 +55,7 @@ const TokenInformation: React.FC<TokenInformationProps> = ({ data }) => {
                                     <InputComp
                                         name="token_information.token_contract_address"
                                         placeholder="e.g. 0xc0f2...84d215"
-                                        value={data?.token_information?.token_contract_address}
+                                        value={data?.token_contract_address}
                                         disabled
                                     />
                                 </div>
@@ -64,7 +64,7 @@ const TokenInformation: React.FC<TokenInformationProps> = ({ data }) => {
                     </Row>
                 </Col>
                 <LabelComponent label="Tokenomics *" />
-                {data?.token_information?.tokennomics?.map(
+                {data?.tokennomics.map(
                     (item: any, index: number) => (
                         <Col key={index} className="gutter-row mb-[15px] mt-2" span={24}>
                             <Row>

@@ -24,7 +24,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({ data }) => {
                                             <InputComp
                                                 name="basic_information.project_name"
                                                 placeholder="e.g.Bitcoin"
-                                                value={data.basic_information.project_name}
+                                                value={data?.project_name}
                                                 disabled
                                             />
 
@@ -38,7 +38,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({ data }) => {
                                             <InputComp
                                                 name="basic_information.contact_name"
                                                 placeholder="Name & Surname"
-                                                value={data.basic_information.contact_name}
+                                                value={data?.contact_name}
                                                 disabled
                                             />
 
@@ -55,7 +55,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({ data }) => {
                                         width="137px"
                                         height="137px"
                                         label="Drag and drop an image file here or click"
-                                        value={data.basic_information.project_logo}
+                                        value={data?.project_logo}
                                         disabled
 
                                     />
@@ -79,7 +79,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({ data }) => {
                                             <InputComp
                                                 name="basic_information.contact_telegram_handle"
                                                 placeholder="e.g.@johndoe"
-                                                value={data.basic_information.contact_telegram_handle}
+                                                value={data?.contact_telegram_handle}
                                                 disabled
                                             />
                                         </div>
@@ -93,7 +93,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({ data }) => {
                                             <InputComp
                                                 name="basic_information.email"
                                                 placeholder="e.g.abc@abc.xyz"
-                                                value={data.basic_information.email}
+                                                value={data?.email}
                                                 disabled
                                             />
 
@@ -110,7 +110,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({ data }) => {
                                         width="468px"
                                         height="137px"
                                         label="Drag and drop an image/video file here or click"
-                                        value={data.basic_information.project_cover}
+                                        value={data?.basic_information?.project_cover}
                                         disabled
                                     />
                                 </div>

@@ -105,7 +105,7 @@ const ProjectListPage = () => {
   const fetchDataProject = async () => {
     try {
       const dataProject = await getAllProject();
-      setData(dataProject);
+      setData(dataProject.reverse());
 
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -179,7 +179,7 @@ const ProjectListPage = () => {
       case "Reject":
         return "Confirm Reject";
       case "Delete":
-        return "Do you want to delete Project 1 ?";
+        return `Do you want to delete ${selectedProject?.basic_information.project_name}  ?`;
       default:
         return "";
     }
@@ -470,7 +470,7 @@ const ProjectListPage = () => {
     const baseItems: MenuProps["items"] = [
       {
         key: "1",
-        label: <div className="text-[#fff]" onClick={() => navigate(`/detail`, { state: { project: selectedProject } })}>View detail</div>,
+        label: <div className="text-[#fff]" onClick={() => navigate(`/detail/` + selectedProject?.id)}>View detail</div>,
       },
       {
         key: "2",
