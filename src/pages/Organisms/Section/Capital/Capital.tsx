@@ -1,9 +1,15 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Col, Row } from "antd";
+import { FormikProps } from "formik";
 import CheckboxComponent from "../../../../components/CommonInput/Checkbox/CheckboxComponent";
 import DatePickerComponent from "../../../../components/CommonInput/DatePicker/DatePicker";
+import { Project } from "../../../../type/type";
 
-function Capital() {
+interface CapitalProps {
+  formik: FormikProps<Project>
+}
+
+const Capital: React.FC<CapitalProps> = ({formik}) => {
   const options = [
     { label: "Invesment Round 1", value: "1" },
     { label: "Invesment Round 2", value: "2" },
