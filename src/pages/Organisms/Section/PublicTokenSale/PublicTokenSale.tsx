@@ -7,13 +7,13 @@ import { FormikProps } from "formik";
 import { Project } from "../../../../type/type";
 
 interface PublicTokenSaleProps {
-  formik: FormikProps<Project>
+  formik: FormikProps<Project>;
 }
 
 const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ formik }) => {
   const radioOptions = [
-    { label: "Yes", value: 1 },
-    { label: "No", value: 2 },
+    { label: "Yes", value: "1" },
+    { label: "No", value: "2" },
   ];
   return (
     <div>
@@ -33,8 +33,11 @@ const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ formik }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.public_token_sale?.total_amount && formik.errors.public_token_sale?.total_amount ? (
-              <div className="text-red-600">{formik.errors.public_token_sale.total_amount}</div>
+            {formik.touched.public_token_sale?.total_amount &&
+            formik.errors.public_token_sale?.total_amount ? (
+              <div className="text-red-600">
+                {formik.errors.public_token_sale.total_amount}
+              </div>
             ) : null}
           </div>
         </Col>
@@ -53,8 +56,11 @@ const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ formik }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.public_token_sale?.amount_through_Galaxy && formik.errors.public_token_sale?.amount_through_Galaxy ? (
-              <div className="text-red-600">{formik.errors.public_token_sale.amount_through_Galaxy}</div>
+            {formik.touched.public_token_sale?.amount_through_Galaxy &&
+            formik.errors.public_token_sale?.amount_through_Galaxy ? (
+              <div className="text-red-600">
+                {formik.errors.public_token_sale.amount_through_Galaxy}
+              </div>
             ) : null}
           </div>
         </Col>
@@ -84,8 +90,11 @@ const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ formik }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.public_token_sale?.planned_FDV && formik.errors.public_token_sale?.planned_FDV ? (
-              <div className="text-red-600">{formik.errors.public_token_sale.planned_FDV}</div>
+            {formik.touched.public_token_sale?.planned_FDV &&
+            formik.errors.public_token_sale?.planned_FDV ? (
+              <div className="text-red-600">
+                {formik.errors.public_token_sale.planned_FDV}
+              </div>
             ) : null}
           </div>
         </Col>
@@ -122,6 +131,6 @@ const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ formik }) => {
       </Row>
     </div>
   );
-}
+};
 
 export default PublicTokenSale;

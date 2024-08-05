@@ -100,8 +100,6 @@ const ProjectListPage = () => {
     }
   }, [selectedProject]);
 
-
-
   const fetchDataProject = async () => {
     try {
       const dataProject = await getAllProject();

@@ -4,11 +4,19 @@ import { Radio } from "antd";
 import { StyledRadio } from "./styled";
 
 interface RadioComponentProps extends RadioGroupProps {
-  options: { label: string; value: number }[];
+  options: { label: string; value: string }[];
+  valueChoose?: string;
 }
 
-const RadioComponent: React.FC<RadioComponentProps> = ({ options, ...props }) => {
-  const [value, setValue] = useState<number>(options[0]?.value || 1);
+const RadioComponent: React.FC<RadioComponentProps> = ({
+  options,
+  valueChoose,
+  ...props
+}) => {
+  const [value, setValue] = useState<string>(
+    valueChoose ? valueChoose : options[0].value
+  );
+  console.log("valueChoose", valueChoose);
 
   const onChange = (e: RadioChangeEvent) => {
     console.log("radio checked", e.target.value);
@@ -18,8 +26,8 @@ const RadioComponent: React.FC<RadioComponentProps> = ({ options, ...props }) =>
   return (
     <StyledRadio $diabled={props.disabled}>
       <Radio.Group onChange={onChange} value={value} {...props}>
-        {options.map((option) => (
-          <Radio key={option.value} value={option.value}>
+        {options.map((option, index) => (
+          <Radio key={index} value={option.value}>
             {option.label}
           </Radio>
         ))}
