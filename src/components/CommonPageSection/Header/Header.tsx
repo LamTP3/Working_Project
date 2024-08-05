@@ -15,8 +15,8 @@ const Header = () => {
           <h2 className="header-logo-text">Galaxy Pad</h2>
         </div> */}
         <div className="header-mid flex">
-          <div className="mr-3 cursor-pointer">projects</div>
-          <Link className="cursor-pointer" to="/list">Come to List</Link>
+          <Link className="mr-3 cursor-pointer" to="/list" >projects</Link>
+          <Link className="cursor-pointer" to="/">Come to Add Project</Link>
         </div>
         <div className="header-right">
           <div className="header-welcome">
