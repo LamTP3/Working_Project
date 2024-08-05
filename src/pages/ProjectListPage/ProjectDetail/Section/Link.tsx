@@ -21,7 +21,7 @@ const Links: React.FC<LinkProps> = ({ data }) => {
                         <InputComp
                             name="links.project_website"
                             placeholder="e.g. https://abc.io"
-                            value={data?.links?.project_website}
+                            value={data?.project_website}
                             disabled
                         />
                     </div>
@@ -34,7 +34,7 @@ const Links: React.FC<LinkProps> = ({ data }) => {
                         <InputComp
                             name="links.project_twitter"
                             placeholder="e.g. https://twitter.com/abc"
-                            value={data?.links?.project_twitter}
+                            value={data?.project_twitter}
                             disabled
 
                         />
@@ -48,7 +48,7 @@ const Links: React.FC<LinkProps> = ({ data }) => {
                         <InputComp
                             name="links.project_telegram"
                             placeholder="e.g. https://t.me/abc"
-                            value={data?.links?.project_telegram}
+                            value={data?.project_telegram}
                             disabled
                         />
                     </div>
@@ -61,7 +61,7 @@ const Links: React.FC<LinkProps> = ({ data }) => {
                         <InputComp
                             name="links.project_medium"
                             placeholder="e.g. https://medium.com/@abc"
-                            value={data?.links?.project_medium}
+                            value={data?.project_medium}
                             disabled
 
                         />
@@ -76,7 +76,7 @@ const Links: React.FC<LinkProps> = ({ data }) => {
                             <TextAreaComp
                                 name="links.project_other_link"
                                 placeholder="e.g. https://drive.google.com/abc..."
-                                value={data?.links?.project_other_link}
+                                value={data?.project_other_link}
                                 disabled
                             />
 

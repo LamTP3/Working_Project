@@ -13,9 +13,10 @@ import Action from "../Organisms/Section/Action/Action";
 import { useFormik, FormikProps } from "formik";
 import { Project } from "../../type/type";
 import ButtonComponent from "../../components/CommonInput/Button/ButtonComponent";
-
+import { toast } from "react-toastify";
+import { postNewProject } from "../../service/service";
+import { useNavigate } from "react-router";
 const initialValues: Project = {
-  id: "",
   basic_information: {
     project_name: "",
     contact_name: "",
@@ -147,42 +148,53 @@ const validationSchema = Yup.object({
 
 const SubmitProjectPage = () => {
   const [captchaValue, setCaptchaValue] = useState<string | null>(null);
-
+  const navigate = useNavigate();
   const formik: FormikProps<Project> = useFormik<Project>({
     initialValues,
     validationSchema,
     onSubmit: (values) => {
-      console.log("Submit function called");
-      alert(JSON.stringify(values, null, 2));
-      console.log(values);
+      try {
+        postNewProject(values);
+        navigate("/list");
+        toast.success("Submit Project Success");
+        console.log(`Project Submit Value: `, values);
+      } catch (error) {
+        toast.error("Submit Project Fail");
+        console.log(error);
+      }
+
+
     },
   });
 
+  const createTouchedObject = (values: any) => {
+    return Object.keys(values).reduce((acc: any, key: string) => {
+      acc[key] =
+        typeof values[key] === "object" && !Array.isArray(values[key])
+          ? createTouchedObject(values[key])
+          : true;
+      return acc;
+    }, {});
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    formik.validateForm().then(() => {
-      if (formik.isValid && captchaValue) {
-        formik.handleSubmit();
-      } else {
-        if (!captchaValue) {
-          alert("Please complete the CAPTCHA");
-        } else {
-          alert("Please fill in all required fields");
-          // Đánh dấu tất cả các trường là đã chạm vào
-          const createTouchedObject = (values: any) => {
-            return Object.keys(values).reduce((acc: any, key: string) => {
-              acc[key] =
-                typeof values[key] === "object" && !Array.isArray(values[key])
-                  ? createTouchedObject(values[key])
-                  : true;
-              return acc;
-            }, {});
-          };
-
-          formik.setTouched(createTouchedObject(formik.values));
-        }
-      }
-    });
+    if (!captchaValue) {
+      toast.error("Please complete the CAPTCHA");
+      return;
+    } else {
+      // Đánh dấu tất cả các trường là đã chạm vào
+      formik.setTouched(createTouchedObject(formik.values)).then(() => {
+        // Kiểm tra lại giá trị các trường sau khi đã đánh dấu là chạm vào
+        formik.validateForm().then((errors) => {
+          if (Object.keys(errors).length === 0) {
+            formik.handleSubmit();
+          } else {
+            toast.error("Please fill in all required fields");
+          }
+        });
+      });
+    }
   };
 
   return (

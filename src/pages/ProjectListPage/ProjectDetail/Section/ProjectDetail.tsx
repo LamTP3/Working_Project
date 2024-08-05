@@ -25,8 +25,8 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ data }) => {
                                     placeholder="estimate"
                                     disabled={true}
                                     value={
-                                        data.project_detail.start_date
-                                            ? dayjs(data.project_detail.start_date)
+                                        data?.start_date
+                                            ? dayjs(data?.start_date)
                                             : null
                                     }
 
@@ -42,7 +42,7 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ data }) => {
                             <LabelComponent label="Project tags" />
                         </div>
                         <div className="mt-[8px]">
-                            <MultipleSelect value={data.project_detail.tags.map((item: any) => item.tag_value)} disabled />
+                            <MultipleSelect value={data?.tags.map((item: any) => item.tag_value)} disabled />
                         </div>
                     </div>
                     <div className="mb-[30px]">
@@ -53,7 +53,7 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ data }) => {
                             <TextAreaComp
                                 name="project_detail.project_description"
                                 placeholder="Describe the project, including the scope of the project and an explanation of how mature the project is."
-                                value={data.project_detail.project_description}
+                                value={data?.project_description}
                                 disabled
                             />
 
@@ -67,7 +67,7 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ data }) => {
                             <TextAreaComp
                                 name="project_detail.ecosystem"
                                 placeholder="Describe the project ecosystem. Explain where the project is hosted, the token to be issued and the grants received."
-                                value={data.project_detail.ecosystem}
+                                value={data?.ecosystem}
                                 disabled
                             />
                         </div>
@@ -80,7 +80,7 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ data }) => {
                             <TextAreaComp
                                 name="project_detail.current_community"
                                 placeholder="e.g. Provide details of what the current community consist of. e.g. 30,000 Twitter followers and 20,000 telegram members."
-                                value={data.project_detail.current_community}
+                                value={data?.current_community}
                                 disabled
                             />
                         </div>
@@ -93,7 +93,7 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ data }) => {
                             <TextAreaComp
                                 name="project_detail.size_existing_user"
                                 placeholder="Provide details of what the current community and user base consist of. e.g. Project currently has 4000 testnet users or project live with $100k TVL from 1000 wallets."
-                                value={data.project_detail.size_existing_user}
+                                value={data?.size_existing_user}
                                 disabled
                             />
                         </div>

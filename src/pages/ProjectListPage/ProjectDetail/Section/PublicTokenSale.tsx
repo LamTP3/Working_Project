@@ -28,7 +28,7 @@ const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ data }) => {
                         <InputComp
                             name="public_token_sale.total_amount"
                             placeholder="$1,000,000"
-                            value={formatPrice(data?.public_token_sale?.total_amount)}
+                            value={formatPrice(data?.total_amount)}
                             disabled
 
                         />
@@ -45,7 +45,7 @@ const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ data }) => {
                         <InputComp
                             name="public_token_sale.amount_through_Galaxy"
                             placeholder="$500,000"
-                            value={formatPrice(data?.public_token_sale?.amount_through_Galaxy)}
+                            value={formatPrice(data?.amount_through_Galaxy)}
                             disabled
 
                         />
@@ -73,7 +73,7 @@ const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ data }) => {
                         <InputComp
                             name="public_token_sale.planned_FDV"
                             placeholder="$30,000,000"
-                            value={formatPrice(data?.public_token_sale?.planned_FDV)}
+                            value={formatPrice(data?.planned_FDV)}
                             disabled
                         />
                     </div>
@@ -88,7 +88,7 @@ const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ data }) => {
                         <TextAreaComp
                             name="public_token_sale.other_information"
                             placeholder="Provide any information that helps us understand any expectations that you have."
-                            value={data?.public_token_sale?.other_information}
+                            value={data?.other_information}
                             disabled
                         />
                     </div>
@@ -101,7 +101,7 @@ const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ data }) => {
                         <InputComp
                             name="public_token_sale.sale"
                             placeholder="Provide any information that helps us understand any expectations that you have."
-                            value={data?.public_token_sale?.sale}
+                            value={data?.sale}
                             disabled
                         />
                     </div>
