@@ -12,6 +12,13 @@ interface ProjectDetailProps {
 }
 
 const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
+  const handleTagChange = (selectedTags: string[]) => {
+    const formattedTags = selectedTags.map((tag) => ({
+      tag_name: tag, // Hoặc bạn có thể ánh xạ thêm nếu cần
+      tag_value: tag,
+    }));
+    formik.setFieldValue("project_detail.tags", formattedTags);
+  };
   return (
     <div>
       <Row>
@@ -69,7 +76,15 @@ const ProjectDetails: React.FC<ProjectDetailProps> = ({ formik }) => {
               <LabelComponent label="Project tags" />
             </div>
             <div className="mt-[8px]">
-              <MultipleSelect />
+              <MultipleSelect
+                value={formik.values.project_detail.tags.map(
+                  (tag) => tag.tag_name
+                )} // Hiển thị tag_name
+                onChange={handleTagChange} // Cập nhật giá trị trong Formik
+                // onChange={(value) => {
+                //   console.log(value);
+                // }}
+              />
             </div>
           </div>
           <div className="mb-[30px]">

@@ -13,8 +13,8 @@ interface Option {
 }
 
 const Capital = ({ data }: Props) => {
-  const options: Option[] = data?.rounds?.map((round: any, index: number) => ({
-    label: round.roundName,
+  const options: Option[] = data?.rounds?.map((index: number) => ({
+    label: "Investment Round " + (index + 1),
     value: (index + 1).toString(),
   }));
   const value = options ? options?.map((item) => item.value) : [];

@@ -24,13 +24,12 @@ import dayjs from "dayjs";
 import { ChainIcon, MoreIcon } from "../../Icon";
 
 interface Round {
-  roundName: string;
   startDate: string;
   endDate: string;
 }
 
 interface ConfirmFormValues {
-  rounds: { roundName: string; startDate: string; endDate: string }[];
+  rounds: { startDate: string; endDate: string }[];
 }
 
 interface RejectFormValues {
@@ -68,7 +67,6 @@ const ProjectListPage = () => {
 
   const initialValuesConfirm: ConfirmFormValues = {
     rounds: rounds.map((round) => ({
-      roundName: round.roundName,
       startDate: round.startDate,
       endDate: round.endDate,
     })),
@@ -290,7 +288,7 @@ const ProjectListPage = () => {
                 {formikConfirm?.values?.rounds.map((item, index) => (
                   <Row gutter={[20, 0]} key={index}>
                     <Col span={24} className="mt-4">
-                      <LabelComponent label={item.roundName} />
+                      <LabelComponent label={`Investment Round ${index + 1}`} />
                     </Col>
                     <Col span={12} className="mt-3">
                       <DatePickerComponent

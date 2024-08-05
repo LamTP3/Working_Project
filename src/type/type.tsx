@@ -68,7 +68,7 @@ export type Capital = {
 export type PublicTokenSale = {
   total_amount?: number;
   amount_through_Galaxy?: number;
-  flexible_amount: boolean;
+  flexible_amount: string;
   planned_FDV?: number;
   other_information: string;
   sale: string;

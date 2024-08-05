@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Select, SelectProps } from "antd";
 import axios from "axios";
 import { MultipleSelectWarraper } from "./styled";
-const handleChange = (value: string[]) => {
-  console.log(`selected ${value}`);
-};
+
 // Định nghĩa kiểu dữ liệu
 type OptionType = {
   label: string;
@@ -15,7 +13,6 @@ type OptionType = {
 const fetchData = async (): Promise<OptionType[]> => {
   try {
     const response = await axios.get("http://localhost:9999/Project_Tag");
-    // Sử dụng type OptionType cho kiểu dữ liệu của response.data
     return response.data.map((item: OptionType) => ({
       label: item.label,
       value: item.value,
@@ -25,12 +22,18 @@ const fetchData = async (): Promise<OptionType[]> => {
     return [];
   }
 };
-interface MultipleSelectProps extends SelectProps {
+
+interface MultipleSelectProps extends SelectProps<string[]> {
   value?: string[];
+  onChange?: (value: string[]) => void;
+  onBlur?: () => void;
 }
+
 const MultipleSelect: React.FC<MultipleSelectProps> = ({
   value,
   disabled,
+  onChange,
+  onBlur,
   ...props
 }) => {
   const [options, setOptions] = useState<OptionType[]>([]);
@@ -50,10 +53,11 @@ const MultipleSelect: React.FC<MultipleSelectProps> = ({
         mode="multiple"
         style={{ width: "100%", height: "40px" }}
         placeholder="Select one or more tags"
-        onChange={handleChange}
+        onChange={onChange}
         options={options}
         value={value}
         disabled={disabled}
+        onBlur={onBlur}
         {...props}
       />
     </MultipleSelectWarraper>
