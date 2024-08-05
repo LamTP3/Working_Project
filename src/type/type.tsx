@@ -76,8 +76,7 @@ export type PublicTokenSale = {
 
 // Định nghĩa kiểu type cho status_of_partnerships
 export type StatusOfPartnerships = Array<{
-  label: string;
-  value: boolean;
+  value: string;
 }>;
 
 export type Project_Status = {

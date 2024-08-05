@@ -18,9 +18,9 @@ export const CheckboxWarraper = styled.div<Props>`
     border-radius: ${(props) => (props.$circle === true ? "50px" : "4px")};
   }
   .ant-checkbox-inner::after {
-   border-color: var(--text-color) !important;
     inset-inline-start: 29% !important;
   }
+    
   .ant-checkbox + span {
     font-family: Inter;
     font-weight: 500;
@@ -36,6 +36,8 @@ export const CheckboxWarraper = styled.div<Props>`
   }
     :where(.css-dev-only-do-not-override-1uq9j6g).ant-checkbox-disabled .ant-checkbox-inner:after {
     border-color: var(--text-color) !important;
+    
+
 }
 
 `;
