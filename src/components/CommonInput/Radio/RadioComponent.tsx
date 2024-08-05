@@ -16,7 +16,6 @@ const RadioComponent: React.FC<RadioComponentProps> = ({
   const [value, setValue] = useState<string>(
     valueChoose ? valueChoose : options[0].value
   );
-  console.log("valueChoose", valueChoose);
 
   const onChange = (e: RadioChangeEvent) => {
     console.log("radio checked", e.target.value);
