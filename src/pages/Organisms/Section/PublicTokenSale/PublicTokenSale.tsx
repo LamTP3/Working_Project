@@ -34,7 +34,7 @@ const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ formik }) => {
               onBlur={formik.handleBlur}
             />
             {formik.touched.public_token_sale?.total_amount &&
-            formik.errors.public_token_sale?.total_amount ? (
+              formik.errors.public_token_sale?.total_amount ? (
               <div className="text-red-600">
                 {formik.errors.public_token_sale.total_amount}
               </div>
@@ -57,7 +57,7 @@ const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ formik }) => {
               onBlur={formik.handleBlur}
             />
             {formik.touched.public_token_sale?.amount_through_Galaxy &&
-            formik.errors.public_token_sale?.amount_through_Galaxy ? (
+              formik.errors.public_token_sale?.amount_through_Galaxy ? (
               <div className="text-red-600">
                 {formik.errors.public_token_sale.amount_through_Galaxy}
               </div>
@@ -96,7 +96,7 @@ const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ formik }) => {
               onBlur={formik.handleBlur}
             />
             {formik.touched.public_token_sale?.planned_FDV &&
-            formik.errors.public_token_sale?.planned_FDV ? (
+              formik.errors.public_token_sale?.planned_FDV ? (
               <div className="text-red-600">
                 {formik.errors.public_token_sale.planned_FDV}
               </div>

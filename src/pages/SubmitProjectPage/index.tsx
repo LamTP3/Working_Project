@@ -147,6 +147,15 @@ const validationSchema = Yup.object({
     amount_through_Galaxy: Yup.number().required("Required"),
     planned_FDV: Yup.number().required("Required"),
   }),
+
+  capital: Yup.object({
+    rounds: Yup.array().of(
+      Yup.object({
+        startDate: Yup.string().required("Required!"),
+        endDate: Yup.string().required("Required!")
+      })
+    )
+  })
 });
 
 const SubmitProjectPage = () => {
