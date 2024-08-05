@@ -46,7 +46,7 @@ const App: React.FC = () => {
           element: <ProjectListPage />,
         }
         , {
-          path: "detail",
+          path: "detail/:id",
           element: <ProjectDetail />,
         }
       ],
