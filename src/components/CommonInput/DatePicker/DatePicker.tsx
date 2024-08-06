@@ -21,6 +21,7 @@ const DatePickerComponent: React.FC<DatePickerProps> = (props) => {
         onChange={onChange}
         allowClear={{ clearIcon: <CloseOutlined /> }}
         disabled={disabled}
+
         {...rest}
       />
     </DatePickerWarraper>
