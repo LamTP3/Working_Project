@@ -5,10 +5,10 @@ import { UploadFileProps } from "./UploadFileType";
 import { UploadBoxIcon } from "../../../Icon";
 import type { GetProp, UploadFile, UploadProps } from "antd";
 
-// FileType: Định nghĩa kiểu dữ liệu của file tải lên.
+//Định nghĩa kiểu dữ liệu của file tải lên.
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
-// getBase64: Hàm chuyển đổi file thành base64 để xem trước.
+//Hàm chuyển đổi file thành base64 để xem trước.
 const getBase64 = (file: FileType): Promise<string> =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -18,7 +18,7 @@ const getBase64 = (file: FileType): Promise<string> =>
   });
 
 const UploadFile: React.FC<
-  UploadFileProps & { value?: string; onChange?: (value: string) => void }
+  UploadFileProps & { onChange?: (value: string) => void }
 > = ({ width, height, label, value, onChange, disabled, ...restProps }) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
@@ -62,7 +62,7 @@ const UploadFile: React.FC<
   const uploadButton = (
     <button style={{ border: 0, background: "none" }} type="button">
       <UploadBoxIcon />
-      <div style={{ marginTop: 8 }} className="text-style" >
+      <div style={{ marginTop: 8 }} className="text-style">
         {label}
       </div>
     </button>
@@ -70,7 +70,11 @@ const UploadFile: React.FC<
 
   return (
     <>
-      <UploadFileWarraper $width={`${width}`} $height={`${height}`} $disabled={disabled} >
+      <UploadFileWarraper
+        $width={`${width}`}
+        $height={`${height}`}
+        $disabled={disabled}
+      >
         <Upload
           listType="picture-card"
           fileList={fileList}
