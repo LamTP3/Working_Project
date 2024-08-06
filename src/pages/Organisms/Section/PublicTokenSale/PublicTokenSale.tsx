@@ -78,6 +78,12 @@ const PublicTokenSale: React.FC<PublicTokenSaleProps> = ({ formik }) => {
               value={formik.values.public_token_sale.flexible_amount}
               onChange={formik.handleChange}
             />
+            {formik.touched.public_token_sale?.flexible_amount &&
+            formik.errors.public_token_sale?.flexible_amount ? (
+              <div className="text-red-600">
+                {formik.errors.public_token_sale.flexible_amount}
+              </div>
+            ) : null}
           </div>
         </Col>
         <Col span={12} className="pr-9 mt-5">

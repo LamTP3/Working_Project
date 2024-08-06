@@ -20,7 +20,8 @@ const DatePickerComponent: React.FC<DatePickerProps> = (props) => {
         onBlur={onBlur}
         onChange={onChange}
         allowClear={{ clearIcon: <CloseOutlined /> }}
-        disabled = {disabled}
+        disabled={disabled}
+
         {...rest}
       />
     </DatePickerWarraper>

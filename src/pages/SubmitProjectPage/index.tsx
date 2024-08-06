@@ -14,8 +14,8 @@ import { useFormik, FormikProps } from "formik";
 import { Project } from "../../type/type";
 import ButtonComponent from "../../components/CommonInput/Button/ButtonComponent";
 import { toast } from "react-toastify";
-import { postNewProject } from "../../service/service";
-import { useNavigate } from "react-router";
+// import { postNewProject } from "../../service/service";
+// import { useNavigate } from "react-router";
 const initialValues: Project = {
   basic_information: {
     project_name: "",
@@ -44,6 +44,7 @@ const initialValues: Project = {
     token_name: "",
     token_symbol: "",
     token_contract_address: "",
+
     tokennomics: [
       { tokennomics_Title: "Seed", tokennomics_value: 5.0 },
       { tokennomics_Title: "Partners & Advisors", tokennomics_value: 5.0 },
@@ -65,7 +66,7 @@ const initialValues: Project = {
   public_token_sale: {
     total_amount: undefined,
     amount_through_Galaxy: undefined,
-    flexible_amount: false,
+    flexible_amount: "1",
     planned_FDV: undefined,
     other_information: "",
     sale: "",
@@ -160,14 +161,14 @@ const validationSchema = Yup.object({
 
 const SubmitProjectPage = () => {
   const [captchaValue, setCaptchaValue] = useState<string | null>(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const formik: FormikProps<Project> = useFormik<Project>({
     initialValues,
     validationSchema,
     onSubmit: (values) => {
       try {
-        postNewProject(values);
-        navigate("/list");
+        // postNewProject(values);
+        // navigate("/list");
         toast.success("Submit Project Success");
         console.log(`Project Submit Value: `, values);
       } catch (error) {
